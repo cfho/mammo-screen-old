@@ -1,0 +1,184 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+    <img
+      *ngIf="form.get('imageSrc').value"
+      [src]="form.get('imageSrc').value"
+      class="mr-5 avatar"
+    />
+
+    <h2
+      *ngIf="form.get('ID_number').value || form.get('name').value"
+      class="m-0 headline"
+      fxFlex="auto"
+    >
+      {{ form.get("ID_number").value + " " + form.get("name").value }}
+    </h2>
+    <h2
+      *ngIf="!form.get('ID_number').value && !form.get('name').value"
+      class="m-0 headline"
+      fxFlex="auto"
+    >
+      New Customer
+    </h2>
+
+    <button
+      [matMenuTriggerFor]="settingsMenu"
+      class="text-secondary"
+      mat-icon-button
+      type="button"
+    >
+      <mat-icon [icIcon]="icMoreVert"></mat-icon>
+    </button>
+
+    <button
+      class="text-secondary"
+      mat-dialog-close
+      mat-icon-button
+      type="button"
+    >
+      <mat-icon [icIcon]="icClose"></mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="-mx-6 text-border"></mat-divider>
+
+  <mat-dialog-content fxLayout="column">
+    <h3>個案臨床資料</h3>
+    <div>
+      {{ this.form.value | json }}
+    </div>
+
+    <div class="flex-auto">
+      <h4>有無得過下列疾病？</h4>
+      <mat-radio-group class="example-radio-group" formControlName="past_hx">
+        <mat-radio-button
+          type="radio"
+          class="ml-4 example-radio-button"
+          *ngFor="let value of pastHistory"
+          [value]="value"
+        >
+          {{ value }}
+        </mat-radio-button>
+      </mat-radio-group>
+      <input
+        class=""
+        type="text"
+        formControlName="cancer_hx"
+        placeholder="cancer_hx"
+      />
+    </div>
+
+    <div class="flex-auto">
+      <h4>家族史：與您有血緣的家屬中，有無人得過乳癌？</h4>
+      <mat-radio-group class="example-radio-group" formControlName="past_hx">
+        <mat-radio-button
+          type="radio"
+          class="ml-4 example-radio-button"
+          *ngFor="let value of pastHistory"
+          [value]="value"
+        >
+          {{ value }}
+        </mat-radio-button>
+      </mat-radio-group>
+      <input
+        class=""
+        type="text"
+        formControlName="cancer_hx"
+        placeholder="cancer_hx"
+      />
+    </div>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto mt-6">
+        <!-- <mat-label>有</mat-label> -->
+
+        <input cdkFocusInitial formControlName="past_hx" matInput />
+
+        <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="flex-auto mt-4 ml-4">
+        <mat-label>First Name</mat-label>
+        <input cdkFocusInitial formControlName="ID_number" matInput />
+
+        <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="flex-auto sm:mt-4 sm:ml-4">
+        <mat-label>Last Name</mat-label>
+        <input cdkFocusInitial formControlName="name" matInput />
+
+        <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="flex-auto sm:mt-4 sm:ml-4">
+        <mat-label>Last Name</mat-label>
+        <input cdkFocusInitial formControlName="name" matInput />
+
+        <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="flex-auto">
+      <mat-label>Street</mat-label>
+      <input formControlName="street" matInput />
+
+      <mat-icon [icIcon]="icEditLocation" class="mr-3" matPrefix></mat-icon>
+    </mat-form-field>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Zipcode</mat-label>
+        <input formControlName="zipcode" matInput />
+
+        <mat-icon [icIcon]="icMyLocation" class="mr-3" matPrefix></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="flex-auto sm:ml-6">
+        <mat-label>City</mat-label>
+        <input formControlName="city" matInput />
+
+        <mat-icon [icIcon]="icLocationCity" class="mr-3" matPrefix></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="flex-auto">
+      <mat-label>Phone Number</mat-label>
+      <input formControlName="phoneNumber" matInput />
+
+      <mat-icon [icIcon]="icPhone" class="mr-3" matPrefix></mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto">
+      <mat-label>Notes</mat-label>
+      <textarea formControlName="notes" matInput></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">CANCEL</button>
+    <button *ngIf="isCreateMode()" color="primary" mat-button type="submit">
+      CREATE CUSTOMER
+    </button>
+    <button *ngIf="isUpdateMode()" color="primary" mat-button type="submit">
+      UPDATE CUSTOMER
+    </button>
+  </mat-dialog-actions>
+</form>
+
+<mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icPrint"></mat-icon>
+    <span>Print</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icDownload"></mat-icon>
+    <span>Export</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icDelete"></mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>

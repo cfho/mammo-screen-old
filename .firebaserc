@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mammo-screen": {
+      "hosting": {
+        "vex": [
+          "mammo-screen"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mammo-screen"
+  }
+}
