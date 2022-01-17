@@ -1,55 +1,62 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable, of, ReplaySubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
-import { TableColumn } from '../../../../@vex/interfaces/table-column.interface';
-import { aioTableData, aioTableLabels } from '../../../../static-data/aio-table-data';
-import { CustomerCreateUpdateComponent } from './customer-create-update/customer-create-update.component';
-import icEdit from '@iconify/icons-ic/twotone-edit';
-import icDelete from '@iconify/icons-ic/twotone-delete';
-import icSearch from '@iconify/icons-ic/twotone-search';
-import icAdd from '@iconify/icons-ic/twotone-add';
-import icFilterList from '@iconify/icons-ic/twotone-filter-list';
-import { SelectionModel } from '@angular/cdk/collections';
-import icMoreHoriz from '@iconify/icons-ic/twotone-more-horiz';
-import icFolder from '@iconify/icons-ic/twotone-folder';
-import { fadeInUp400ms } from '../../../../@vex/animations/fade-in-up.animation';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
-import { stagger40ms } from '../../../../@vex/animations/stagger.animation';
-import { FormControl } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { MatSelectChange } from '@angular/material/select';
-import icPhone from '@iconify/icons-ic/twotone-phone';
-import icMail from '@iconify/icons-ic/twotone-mail';
-import icMap from '@iconify/icons-ic/twotone-map';
-import { FirebaseService } from 'src/app/firebase.service';
-import { Customer } from 'src/app/pages/apps/aio-table/interfaces/customer.model';
-
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { Observable, of, ReplaySubject } from "rxjs";
+import { filter } from "rxjs/operators";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatDialog } from "@angular/material/dialog";
+import { TableColumn } from "../../../../@vex/interfaces/table-column.interface";
+import {
+  aioTableData,
+  aioTableLabels,
+} from "../../../../static-data/aio-table-data";
+import { CustomerCreateUpdateComponent } from "./customer-create-update/customer-create-update.component";
+import icEdit from "@iconify/icons-ic/twotone-edit";
+import icDelete from "@iconify/icons-ic/twotone-delete";
+import icSearch from "@iconify/icons-ic/twotone-search";
+import icAdd from "@iconify/icons-ic/twotone-add";
+import icFilterList from "@iconify/icons-ic/twotone-filter-list";
+import { SelectionModel } from "@angular/cdk/collections";
+import icMoreHoriz from "@iconify/icons-ic/twotone-more-horiz";
+import icFolder from "@iconify/icons-ic/twotone-folder";
+import { fadeInUp400ms } from "../../../../@vex/animations/fade-in-up.animation";
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldDefaultOptions,
+} from "@angular/material/form-field";
+import { stagger40ms } from "../../../../@vex/animations/stagger.animation";
+import { FormControl } from "@angular/forms";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { MatSelectChange } from "@angular/material/select";
+import icPhone from "@iconify/icons-ic/twotone-phone";
+import icMail from "@iconify/icons-ic/twotone-mail";
+import icMap from "@iconify/icons-ic/twotone-map";
+import { FirebaseService } from "src/app/firebase.service";
+import { Customer } from "src/app/pages/apps/aio-table/interfaces/customer.model";
 
 @UntilDestroy()
 @Component({
-  selector: 'vex-aio-table',
-  templateUrl: './aio-table.component.html',
-  styleUrls: ['./aio-table.component.scss'],
-  animations: [
-    fadeInUp400ms,
-    stagger40ms
-  ],
+  selector: "vex-aio-table",
+  templateUrl: "./aio-table.component.html",
+  styleUrls: ["./aio-table.component.scss"],
+  animations: [fadeInUp400ms, stagger40ms],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
-        appearance: 'standard'
-      } as MatFormFieldDefaultOptions
-    }
-  ]
+        appearance: "standard",
+      } as MatFormFieldDefaultOptions,
+    },
+  ],
 })
 export class AioTableComponent implements OnInit, AfterViewInit {
-
-  layoutCtrl = new FormControl('boxed');
+  layoutCtrl = new FormControl("boxed");
 
   /**
    * Simulating a service with HTTP that returns Observables
@@ -61,20 +68,55 @@ export class AioTableComponent implements OnInit, AfterViewInit {
 
   @Input()
   columns: TableColumn<Customer>[] = [
-    { label: 'Checkbox', property: 'checkbox', type: 'checkbox', visible: true },
+    {
+      label: "Checkbox",
+      property: "checkbox",
+      type: "checkbox",
+      visible: true,
+    },
     // { label: 'Image', property: 'image', type: 'image', visible: true },
-    { label: '姓名', property: 'name', type: 'text', visible: true, cssClasses: ['font-medium'] },
+    {
+      label: "姓名",
+      property: "_003name",
+      type: "text",
+      visible: true,
+      cssClasses: ["font-medium"],
+    },
     // { label: 'First Name', property: 'firstName', type: 'text', visible: false },
     // { label: 'Last Name', property: 'lastName', type: 'text', visible: false },
-    { label: 'Contact', property: 'contact', type: 'button', visible: true },
-    { label: '現居地', property: 'current_residence', type: 'text', visible: true, cssClasses: ['text-secondary', 'font-medium'] },
+    { label: "Contact", property: "contact", type: "button", visible: true },
+    {
+      label: "現居地",
+      property: "_006current_residence",
+      type: "text",
+      visible: true,
+      cssClasses: ["text-secondary", "font-medium"],
+    },
     // { label: 'Street', property: 'street', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
     // { label: 'Zipcode', property: 'zipcode', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
-    { label: 'City', property: 'city', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
-    { label: 'City', property: 'area_code', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
-    { label: '手機', property: 'mobile', type: 'text', visible: true, cssClasses: ['text-secondary', 'font-medium'] },
-    { label: 'Labels', property: 'labels', type: 'button', visible: true },
-    { label: 'Actions', property: 'actions', type: 'button', visible: true }
+    {
+      label: "City",
+      property: "city",
+      type: "text",
+      visible: false,
+      cssClasses: ["text-secondary", "font-medium"],
+    },
+    {
+      label: "City",
+      property: "_005area_code",
+      type: "text",
+      visible: false,
+      cssClasses: ["text-secondary", "font-medium"],
+    },
+    {
+      label: "手機",
+      property: "_010mobile",
+      type: "text",
+      visible: true,
+      cssClasses: ["text-secondary", "font-medium"],
+    },
+    { label: "Labels", property: "labels", type: "button", visible: true },
+    { label: "Actions", property: "actions", type: "button", visible: true },
   ];
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20, 50];
@@ -98,13 +140,12 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(
-    private dialog: MatDialog,
-    private afService: FirebaseService) {
-  }
+  constructor(private dialog: MatDialog, private afService: FirebaseService) {}
 
   get visibleColumns() {
-    return this.columns.filter(column => column.visible).map(column => column.property);
+    return this.columns
+      .filter((column) => column.visible)
+      .map((column) => column.property);
   }
 
   /**
@@ -117,23 +158,21 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.getData().subscribe(customers => {
+    this.getData().subscribe((customers) => {
       console.log(customers);
       this.subject$.next(customers);
     });
 
     this.dataSource = new MatTableDataSource();
 
-    this.data$.pipe(
-      filter<Customer[]>(Boolean)
-    ).subscribe(customers => {
+    this.data$.pipe(filter<Customer[]>(Boolean)).subscribe((customers) => {
       this.customers = customers;
       this.dataSource.data = customers;
     });
 
-    this.searchCtrl.valueChanges.pipe(
-      untilDestroyed(this)
-    ).subscribe(value => this.onFilterChange(value));
+    this.searchCtrl.valueChanges
+      .pipe(untilDestroyed(this))
+      .subscribe((value) => this.onFilterChange(value));
   }
 
   ngAfterViewInit() {
@@ -142,38 +181,45 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   createCustomer() {
-    this.dialog.open(CustomerCreateUpdateComponent).afterClosed().subscribe((customer: Customer) => {
-      /**
-       * Customer is the updated customer (if the user pressed Save - otherwise it's null)
-       */
-      if (customer) {
+    this.dialog
+      .open(CustomerCreateUpdateComponent)
+      .afterClosed()
+      .subscribe((customer: Customer) => {
         /**
-         * Here we are updating our local array.
-         * You would probably make an HTTP request here.
+         * Customer is the updated customer (if the user pressed Save - otherwise it's null)
          */
-        this.customers.unshift(new Customer(customer));
-        this.subject$.next(this.customers);
-      }
-    });
+        if (customer) {
+          /**
+           * Here we are updating our local array.
+           * You would probably make an HTTP request here.
+           */
+          this.customers.unshift(new Customer(customer));
+          this.subject$.next(this.customers);
+        }
+      });
   }
 
   updateCustomer(customer: Customer) {
-    this.dialog.open(CustomerCreateUpdateComponent, {
-      data: customer
-    }).afterClosed().subscribe(updatedCustomer => {
-      /**
-       * Customer is the updated customer (if the user pressed Save - otherwise it's null)
-       */
-      if (updatedCustomer) {
+    this.dialog
+      .open(CustomerCreateUpdateComponent, {
+        data: customer,
+      })
+      .afterClosed()
+      .subscribe((updatedCustomer) => {
         /**
-         * Here we are updating our local array.
-         * You would probably make an HTTP request here.
+         * Customer is the updated customer (if the user pressed Save - otherwise it's null)
          */
-        const index = this.customers.findIndex((existingCustomer) => existingCustomer.id === updatedCustomer.id);
-        this.customers[index] = new Customer(updatedCustomer);
-        this.subject$.next(this.customers);
-      }
-    });
+        if (updatedCustomer) {
+          /**
+           * Here we are updating our local array.
+           * You would probably make an HTTP request here.
+           */
+          // const index = this.customers.findIndex((existingCustomer) => existingCustomer.id === updatedCustomer.id);
+          // this.customers[index] = new Customer(updatedCustomer);
+          // this.subject$.next(this.customers);
+          this.afService.updateItem(updatedCustomer);
+        }
+      });
   }
 
   deleteCustomer(customer: Customer) {
@@ -181,7 +227,12 @@ export class AioTableComponent implements OnInit, AfterViewInit {
      * Here we are updating our local array.
      * You would probably make an HTTP request here.
      */
-    this.customers.splice(this.customers.findIndex((existingCustomer) => existingCustomer.id === customer.id), 1);
+    this.customers.splice(
+      this.customers.findIndex(
+        (existingCustomer) => existingCustomer.id === customer.id
+      ),
+      1
+    );
     this.selection.deselect(customer);
     this.subject$.next(this.customers);
   }
@@ -191,7 +242,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
      * Here we are updating our local array.
      * You would probably make an HTTP request here.
      */
-    customers.forEach(c => this.deleteCustomer(c));
+    customers.forEach((c) => this.deleteCustomer(c));
   }
 
   onFilterChange(value: string) {
@@ -218,9 +269,9 @@ export class AioTableComponent implements OnInit, AfterViewInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
   }
 
   trackByProperty<T>(index: number, column: TableColumn<T>) {
@@ -228,7 +279,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   onLabelChange(change: MatSelectChange, row: Customer) {
-    const index = this.customers.findIndex(c => c === row);
+    const index = this.customers.findIndex((c) => c === row);
     this.customers[index].labels = change.value;
     this.subject$.next(this.customers);
   }

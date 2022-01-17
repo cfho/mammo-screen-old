@@ -1,10 +1,10 @@
 <form (ngSubmit)="save()" [formGroup]="form">
   <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
-    <img
+    <!-- <img
       *ngIf="form.get('imageSrc').value"
       [src]="form.get('imageSrc').value"
       class="mr-5 avatar"
-    />
+    /> -->
 
     <h2
       *ngIf="form.get('ID_number').value || form.get('name').value"
@@ -104,22 +104,9 @@
         <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
       </mat-form-field>
 
-      <mat-form-field class="flex-auto sm:mt-4 sm:ml-4">
-        <mat-label>Last Name</mat-label>
-        <input cdkFocusInitial formControlName="name" matInput />
-
-        <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
-      </mat-form-field>
-
-      <mat-form-field class="flex-auto sm:mt-4 sm:ml-4">
-        <mat-label>Last Name</mat-label>
-        <input cdkFocusInitial formControlName="name" matInput />
-
-        <mat-icon [icIcon]="icPerson" class="mr-3" matPrefix></mat-icon>
-      </mat-form-field>
     </div>
 
-    <mat-form-field class="flex-auto">
+    <!-- <mat-form-field class="flex-auto">
       <mat-label>Street</mat-label>
       <input formControlName="street" matInput />
 
@@ -152,7 +139,8 @@
     <mat-form-field class="flex-auto">
       <mat-label>Notes</mat-label>
       <textarea formControlName="notes" matInput></textarea>
-    </mat-form-field>
+    </mat-form-field> -->
+
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">

@@ -55,20 +55,20 @@ export class CustomerCreateUpdateComponent implements OnInit {
     console.log(this.defaults.cancer_hx);
     this.form = this.fb.group({
       id: [CustomerCreateUpdateComponent.id++],
-      imageSrc: this.defaults.imageSrc,
-      ID_number: [this.defaults.ID_number || ''],
-      name: [this.defaults.name || ''],
-      past_hx: [this.pastHistory[this.defaults.past_hx] || ''],
-      cancer_hx: [this.defaults.cancer_hx || ''],
+      // imageSrc: this.defaults.imageSrc,
+      ID_number: [this.defaults._001ID_number || ''],
+      name: [this.defaults._003name || ''],
+      past_hx: [this.pastHistory[this.defaults._020past_hx] || ''],
+      cancer_hx: [this.defaults._021cancer_hx || ''],
 
 
-      street: this.defaults.street || '',
-      city: this.defaults.city || '',
+      // street: this.defaults.street || '',
+      // city: this.defaults.city || '',
 
 
-      zipcode: this.defaults.zipcode || '',
-      phoneNumber: this.defaults.phoneNumber || '',
-      notes: this.defaults.notes || ''
+      // zipcode: this.defaults.zipcode || '',
+      // phoneNumber: this.defaults.phoneNumber || '',
+      // notes: this.defaults.notes || ''
     });
   }
 
@@ -81,19 +81,22 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   createCustomer() {
-    const customer = this.form.value;
+    const customer: Customer = this.form.value;
 
-    if (!customer.imageSrc) {
-      customer.imageSrc = 'assets/img/avatars/1.jpg';
-    }
-
+    // if (!customer.imageSrc) {
+    //   customer.imageSrc = 'assets/img/avatars/1.jpg';
+    // }
+    customer.id = customer._001ID_number + "_" + customer._051mammo_day;
+    customer._020past_hx = this.pastHistory.indexOf(customer._020past_hx).toString();
+    console.log(customer);
     this.dialogRef.close(customer);
   }
 
   updateCustomer() {
-    const customer = this.form.value;
+    const customer: Customer = this.form.value;
     customer.id = this.defaults.id;
-
+    customer._020past_hx = this.pastHistory.indexOf(customer._020past_hx).toString();
+    console.log(customer);
     this.dialogRef.close(customer);
   }
 
