@@ -158,6 +158,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.afService.getFields().subscribe(console.log);
     this.getData().subscribe((customers) => {
       console.log(customers);
       this.subject$.next(customers);

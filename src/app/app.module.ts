@@ -12,9 +12,15 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 
+
+
 // angularfire
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { FormlyModule, FormlyFieldConfig,
+  FORMLY_CONFIG } from '@ngx-formly/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,9 +37,14 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     CustomLayoutModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideRemoteConfig(() => getRemoteConfig())
+    provideRemoteConfig(() => getRemoteConfig()),
+    FormlyModule.forRoot(
+      ),
+    ReactiveFormsModule,
+    FormlyMaterialModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,16 +8,31 @@ import roundToNearestMinutesWithOptions from "date-fns/esm/fp/roundToNearestMinu
 import { Observable } from "rxjs";
 import { Customer } from "./pages/apps/aio-table/interfaces/customer.model";
 
+export interface Field {
+  id: string;
+  chinese: string;
+  key: string;
+  number: number;
+  description: string;
+  required: boolean;
+}
+
 @Injectable({
   providedIn: "root",
 })
 export class FirebaseService {
   private itemsCollection: AngularFirestoreCollection<Customer>;
+  private fieldsCollection: AngularFirestoreCollection<Field>;
   // private itemDoc: AngularFirestoreDocument<Customer>;
   item: Observable<Customer>;
 
   constructor(private afs: AngularFirestore) {
     this.itemsCollection = afs.collection<Customer>("toFirebase");
+    this.fieldsCollection = afs.collection<Field>("fields");
+  }
+
+  getFields() {
+    return this.fieldsCollection.valueChanges();
   }
 
   getAllItems() {
