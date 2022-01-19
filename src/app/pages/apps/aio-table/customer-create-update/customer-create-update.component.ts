@@ -25,152 +25,139 @@ import data from './dynamic-form.json';
 })
 export class CustomerCreateUpdateComponent implements OnInit {
 
-  private _jsonURL = 'assets/dynamic-form.json'
   form = new FormGroup({});
-  model = {
-    id: 123123,
-    firstname: 'Juri',
-    age: 34,
-    nationId: 1,
-    cityId: 1,
-    ip: null
-  };
-  fields: FormlyFieldConfig[] = data;
-  // fields = data;
+  model: {};
+  // model = {
+  //   id: 123123,
+  //   firstname: '何承峰',
+  //   age: 34,
+  //   nationId: 1,
+  //   cityId: 1,
+  //   ip: null
+  // };
 
-  ngOnInit() {
-    // console.log(data);
-    // this.http
-    //   .get<FormlyFieldConfig[]>(this._jsonURL)
-    //   .subscribe(fields => {
-    //     this.fields = fields;
-    //   });
-  }
+  fields: FormlyFieldConfig[] = data;
 
   onSubmit({ valid, value }) {
     console.log(value);
   }
 
 
-  //below: origin
 
-  // static id = 100;
+  static id = 100;
 
-  // form: FormGroup;
-  // mode: "create" | "update" = "create";
+  mode: "create" | "update" = "create";
 
-  // icMoreVert = icMoreVert;
-  // icClose = icClose;
+  icMoreVert = icMoreVert;
+  icClose = icClose;
 
-  // icPrint = icPrint;
-  // icDownload = icDownload;
-  // icDelete = icDelete;
+  icPrint = icPrint;
+  icDownload = icDownload;
+  icDelete = icDelete;
 
-  // icPerson = icPerson;
-  // icMyLocation = icMyLocation;
-  // icLocationCity = icLocationCity;
-  // icEditLocation = icEditLocation;
-  // icPhone = icPhone;
+  icPerson = icPerson;
+  icMyLocation = icMyLocation;
+  icLocationCity = icLocationCity;
+  icEditLocation = icEditLocation;
+  icPhone = icPhone;
 
   // pastHistory = ["無", "乳房良性相關疾病", "乳癌", "其他癌症："];
   // fields: Field[];
 
-  // constructor(
-  //   @Inject(MAT_DIALOG_DATA) public defaults: any,
-  //   private dialogRef: MatDialogRef<CustomerCreateUpdateComponent>,
-  //   private fb: FormBuilder,
-  //   private afService: FirebaseService
-  // ) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public defaults: any,
+    private dialogRef: MatDialogRef<CustomerCreateUpdateComponent>,
+    private fb: FormBuilder,
+    private afService: FirebaseService
+  ) {}
 
-  // ngOnInit() {
-  //   this.afService.getFields().subscribe((fields) => {
-  //     this.fields = fields;
-  //   });
-  //   if (this.defaults) {
-  //     this.mode = "update";
-  //   } else {
-  //     this.defaults = {} as Customer;
-  //   }
-
-  //   this.form = this.fb.group({
-  //     id: [CustomerCreateUpdateComponent.id++],
-  //     // imageSrc: this.defaults.imageSrc,
-  //     _001ID_number: [this.defaults._001ID_number || ""],
-  //     _003name: [this.defaults._003name || ""],
-  //     _020past_hx: [this.pastHistory[this.defaults._020past_hx] || ""],
-  //     _021cancer_hx: [this.defaults._021cancer_hx || ""],
-  //     _022isBreastCa_family_hx: [this.defaults._022isBreastCa_family_hx || ""],
-  //     _023mother_number: [this.defaults._023mother_number || ""],
-  //     _024sister_number: [this.defaults._024sister_number || ""],
-  //     _025daughter_number: [this.defaults._025daughter_number || ""],
-  //     _026grandma_mother_number: [
-  //       this.defaults._026grandma_mother_number || "",
-  //     ],
-  //     _027grandma_father_number: [
-  //       this.defaults._027grandma_father_number || "",
-  //     ],
-
-  //     // street: this.defaults.street || '',
-  //     // city: this.defaults.city || '',
-
-  //     // zipcode: this.defaults.zipcode || '',
-  //     // phoneNumber: this.defaults.phoneNumber || '',
-  //     // notes: this.defaults.notes || ''
-  //   });
-  // }
-
-  // save() {
-  //   if (this.mode === "create") {
-  //     this.createCustomer();
-  //   } else if (this.mode === "update") {
-  //     this.updateCustomer();
-  //   }
-  // }
-
-  // createCustomer() {
-  //   const customer: Customer = this.form.value;
-
-  //   // if (!customer.imageSrc) {
-  //   //   customer.imageSrc = 'assets/img/avatars/1.jpg';
-  //   // }
-  //   customer.id = customer._001ID_number + "_" + customer._051mammo_day;
-  //   customer._020past_hx = this.pastHistory
-  //     .indexOf(customer._020past_hx)
-  //     .toString();
-  //   console.log(customer);
-  //   this.dialogRef.close(customer);
-  // }
-
-  // updateCustomer() {
-  //   const customer: Customer = this.form.value;
-  //   customer._020past_hx = this.pastHistory
-  //     .indexOf(customer._020past_hx)
-  //     .toString();
-  //     console.log(customer);
-
-  //     for (const [key, value] of Object.entries(customer)) {
-  //       console.log(key)
-  //       console.log(+key.substring(1,4))
-  //       if(+key.substring(1,4)) {
-
-  //         const spaceNumber = this.fields[+key.substring(1,4)-1].number;
-  //         console.log(this.fields[+key.substring(1,4)])
-  //         console.log(spaceNumber);
-  //         customer[key] = value.toString().padEnd(spaceNumber).length;
-  //       }
-  //     }
-      
-  //     console.log(customer);
+  ngOnInit() {
     
-  //   customer.id = this.defaults.id;
-  //   this.dialogRef.close(customer);
-  // }
+    // this.afService.getFields().subscribe((fields) => {
+    //   this.fields = fields;
+    // });
 
-  // isCreateMode() {
-  //   return this.mode === "create";
-  // }
+    if (this.defaults) {
+      this.mode = "update";
+      this.model = this.defaults;
+      console.log(this.mode);
+      console.log(this.model);
+    } else {
+      this.defaults = {} as Customer;
+    }
 
-  // isUpdateMode() {
-  //   return this.mode === "update";
-  // }
+    // this.form = this.fb.group({
+    //   id: [CustomerCreateUpdateComponent.id++],
+    //   // imageSrc: this.defaults.imageSrc,
+    //   _001ID_number: [this.defaults._001ID_number || ""],
+    //   _003name: [this.defaults._003name || ""],
+    //   _020past_hx: [this.pastHistory[this.defaults._020past_hx] || ""],
+    //   _021cancer_hx: [this.defaults._021cancer_hx || ""],
+    //   _022isBreastCa_family_hx: [this.defaults._022isBreastCa_family_hx || ""],
+    //   _023mother_number: [this.defaults._023mother_number || ""],
+    //   _024sister_number: [this.defaults._024sister_number || ""],
+    //   _025daughter_number: [this.defaults._025daughter_number || ""],
+    //   _026grandma_mother_number: [
+    //     this.defaults._026grandma_mother_number || "",
+    //   ],
+    //   _027grandma_father_number: [
+    //     this.defaults._027grandma_father_number || "",
+    //   ],
+    // });
+  }
+
+  save() {
+    if (this.mode === "create") {
+      this.createCustomer();
+    } else if (this.mode === "update") {
+      this.updateCustomer();
+    }
+  }
+
+  createCustomer() {
+    // const customer: Customer = this.form.value;
+
+    // // if (!customer.imageSrc) {
+    // //   customer.imageSrc = 'assets/img/avatars/1.jpg';
+    // // }
+    // customer.id = customer._001ID_number + "_" + customer._051mammo_day;
+    // customer._020past_hx = this.pastHistory
+    //   .indexOf(customer._020past_hx)
+    //   .toString();
+    // console.log(customer);
+    // this.dialogRef.close(customer);
+  }
+
+  updateCustomer() {
+    // const customer: Customer = this.form.value;
+    // customer._020past_hx = this.pastHistory
+    //   .indexOf(customer._020past_hx)
+    //   .toString();
+    //   console.log(customer);
+
+    //   for (const [key, value] of Object.entries(customer)) {
+    //     console.log(key)
+    //     console.log(+key.substring(1,4))
+    //     if(+key.substring(1,4)) {
+
+    //       const spaceNumber = this.fields[+key.substring(1,4)-1].number;
+    //       console.log(this.fields[+key.substring(1,4)])
+    //       console.log(spaceNumber);
+    //       customer[key] = value.toString().padEnd(spaceNumber).length;
+    //     }
+    //   }
+      
+    //   console.log(customer);
+    
+    // customer.id = this.defaults.id;
+    // this.dialogRef.close(customer);
+  }
+
+  isCreateMode() {
+    return this.mode === "create";
+  }
+
+  isUpdateMode() {
+    return this.mode === "update";
+  }
 }

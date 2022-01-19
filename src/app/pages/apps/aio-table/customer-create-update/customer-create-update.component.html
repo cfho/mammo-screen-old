@@ -1,26 +1,80 @@
+
+
 <div class="outer-shell">
-  <mat-toolbar color="primary" class="example-toolbar">
+  <!-- <mat-toolbar color="primary" class="example-toolbar">
     Angular Forms with ngx-formly
-  </mat-toolbar>
+  </mat-toolbar> -->
 
-  <div class="example-sidenav-container">
-    <div class="container">
-      <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
-        <formly-form
-          [model]="model"
-          [fields]="fields"
-          [form]="form"
-        ></formly-form>
+  <mat-divider class="-mx-6 text-border"></mat-divider>
 
-        <div
-          class="button-row"
-          style="display:flex; flex-direction: row; justify-content: space-between;"
-        >
-          <button type="reset" mat-raised-button>Clear</button>
-          <button mat-raised-button color="primary">Submit</button>
-        </div>
-      </form>
-      <app-form-debug [form]="form.value" [model]="model"></app-form-debug>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+
+      <button
+        [matMenuTriggerFor]="settingsMenu"
+        class="text-secondary"
+        mat-icon-button
+        type="button"
+      >
+        <mat-icon [icIcon]="icMoreVert"></mat-icon>
+      </button>
+
+      <button
+        class="text-secondary"
+        mat-dialog-close
+        mat-icon-button
+        type="button"
+      >
+        <mat-icon [icIcon]="icClose"></mat-icon>
+      </button>
     </div>
-  </div>
+
+    <mat-divider class="-mx-6 text-border"></mat-divider>
+
+    <mat-dialog-content fxLayout="column">
+      <formly-form
+        [model]="model"
+        [fields]="fields"
+        [form]="form"
+      ></formly-form>
+
+      <div
+        class="button-row"
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      ></div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <!-- <button type="reset" mat-raised-button>Clear</button> -->
+      <button mat-button mat-dialog-close type="button">CANCEL</button>
+      <button *ngIf="isCreateMode()" color="primary" mat-button type="submit">
+        CREATE CUSTOMER
+      </button>
+      <button *ngIf="isUpdateMode()" color="primary" mat-button type="submit">
+        UPDATE CUSTOMER
+      </button>
+    </mat-dialog-actions>
+  </form>
+  <app-form-debug [form]="form.value" [model]="model"></app-form-debug>
 </div>
+
+<mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icPrint"></mat-icon>
+    <span>Print</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icDownload"></mat-icon>
+    <span>Export</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icDelete"></mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>

@@ -3,21 +3,21 @@
       "fieldGroupClassName": "display-flex",
       "fieldGroup": [
         {
-          "key": "firstname",
+          "key": "_003name",
           "type": "input",
           "className": "flex-3",
           "templateOptions": {
-            "label": "Firstname",
+            "label": "姓名",
             "required": true
           }
         },
         {
-          "key": "age",
+          "key": "_037hormone_age",
           "type": "input",
           "className": "flex-1",
           "templateOptions": {
             "type": "number",
-            "label": "Age",
+            "label": "Hormon age",
             "min": 18
           },
           "validation": {
