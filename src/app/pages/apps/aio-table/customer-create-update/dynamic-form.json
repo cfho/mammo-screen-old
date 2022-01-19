@@ -11,6 +11,7 @@
             "required": true
           }
         },
+        
         {
           "key": "_037hormone_age",
           "type": "input",
@@ -29,52 +30,64 @@
       ]
     },
     {
-      "fieldGroupClassName": "display-flex",
-      "fieldGroup": [
-        {
-          "key": "nationId",
-          "type": "select",
-          "className": "flex-3",
-          "templateOptions": {
-            "label": "Nation",
-            "options": [
-              {
-                "value": null,
-                "label": "--"
-              },
-              {
-                "value": 1,
-                "label": "Italy"
-              }
-            ]
-          }
-        },
-        {
-          "key": "cityId",
-          "type": "select",
-          "className": "flex-3",
-          "templateOptions": {
-            "label": "Cities",
-            "options": []
-          },
-          "expressionProperties": {
-            "templateOptions.disabled": "!model.nationId",
-            "model.cityId": "!model.nationId ? null : model.cityId"
-          },
-          "hideExpression": "!model.nationId"
-        }
-      ]
+      "className": "section-label",
+      "template": "<hr /><div><strong>家族史-與您有血緣的家屬中，有無人得過乳癌:</strong></div>"
     },
+    
     {
       "fieldGroupClassName": "display-flex",
       "fieldGroup": [
         {
-          "key": "ip",
-          "type": "input",
-          "className": "flex-6",
+          "key": "_022isBreastCa_family_hx",
+          "type": "checkbox",
+          "className": "flex-1",
           "templateOptions": {
-            "label": "IP Address",
-            "required": true
+            "label": "是"
+          }
+        },
+        {
+          "key": "_023mother_number",
+          "type": "input",
+          "className": "flex-1",
+          "templateOptions": {
+            "label": "母親",
+            "type": "number"
+          }
+        },
+        {
+          "key": "_024sister_number",
+          "type": "input",
+          "className": "flex-1",
+          "templateOptions": {
+            "label": "姐妹",
+            "type": "number"
+          }
+        },
+        {
+          "key": "_025daughter_number",
+          "type": "input",
+          "className": "flex-1",
+          "templateOptions": {
+            "label": "女兒",
+            "type": "number"
+          }
+        },
+        {
+          "key": "_026grandma_mother_number",
+          "type": "input",
+          "className": "flex-1",
+          "templateOptions": {
+            "label": "祖母",
+            "type": "number"
+          }
+        },
+        {
+          "key": "_027grandma_father_number",
+          "type": "input",
+          "className": "flex-1",
+          "templateOptions": {
+            "label": "外祖母",
+            "type": "number"
           }
         }
       ]

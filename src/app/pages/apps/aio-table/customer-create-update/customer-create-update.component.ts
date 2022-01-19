@@ -27,22 +27,11 @@ export class CustomerCreateUpdateComponent implements OnInit {
 
   form = new FormGroup({});
   model: {};
-  // model = {
-  //   id: 123123,
-  //   firstname: '何承峰',
-  //   age: 34,
-  //   nationId: 1,
-  //   cityId: 1,
-  //   ip: null
-  // };
-
   fields: FormlyFieldConfig[] = data;
 
   onSubmit({ valid, value }) {
     console.log(value);
   }
-
-
 
   static id = 100;
 
@@ -62,7 +51,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
   icPhone = icPhone;
 
   // pastHistory = ["無", "乳房良性相關疾病", "乳癌", "其他癌症："];
-  // fields: Field[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
@@ -73,10 +61,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
 
   ngOnInit() {
     
-    // this.afService.getFields().subscribe((fields) => {
-    //   this.fields = fields;
-    // });
-
     if (this.defaults) {
       this.mode = "update";
       this.model = this.defaults;
@@ -85,25 +69,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
     } else {
       this.defaults = {} as Customer;
     }
-
-    // this.form = this.fb.group({
-    //   id: [CustomerCreateUpdateComponent.id++],
-    //   // imageSrc: this.defaults.imageSrc,
-    //   _001ID_number: [this.defaults._001ID_number || ""],
-    //   _003name: [this.defaults._003name || ""],
-    //   _020past_hx: [this.pastHistory[this.defaults._020past_hx] || ""],
-    //   _021cancer_hx: [this.defaults._021cancer_hx || ""],
-    //   _022isBreastCa_family_hx: [this.defaults._022isBreastCa_family_hx || ""],
-    //   _023mother_number: [this.defaults._023mother_number || ""],
-    //   _024sister_number: [this.defaults._024sister_number || ""],
-    //   _025daughter_number: [this.defaults._025daughter_number || ""],
-    //   _026grandma_mother_number: [
-    //     this.defaults._026grandma_mother_number || "",
-    //   ],
-    //   _027grandma_father_number: [
-    //     this.defaults._027grandma_father_number || "",
-    //   ],
-    // });
   }
 
   save() {
@@ -129,28 +94,28 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   updateCustomer() {
-    // const customer: Customer = this.form.value;
+    const customer: Customer = this.form.value;
     // customer._020past_hx = this.pastHistory
     //   .indexOf(customer._020past_hx)
     //   .toString();
     //   console.log(customer);
 
-    //   for (const [key, value] of Object.entries(customer)) {
-    //     console.log(key)
-    //     console.log(+key.substring(1,4))
-    //     if(+key.substring(1,4)) {
+      // for (const [key, value] of Object.entries(customer)) {
+      //   console.log(key)
+      //   console.log(+key.substring(1,4))
+      //   if(+key.substring(1,4)) {
 
-    //       const spaceNumber = this.fields[+key.substring(1,4)-1].number;
-    //       console.log(this.fields[+key.substring(1,4)])
-    //       console.log(spaceNumber);
-    //       customer[key] = value.toString().padEnd(spaceNumber).length;
-    //     }
-    //   }
+          // const spaceNumber = this.fields[+key.substring(1,4)-1].number;
+          // console.log(this.fields[+key.substring(1,4)])
+          // console.log(spaceNumber);
+          // customer[key] = value.toString().padEnd(spaceNumber).length;
+        // }
+      // }
       
-    //   console.log(customer);
+      console.log(customer);
     
-    // customer.id = this.defaults.id;
-    // this.dialogRef.close(customer);
+    customer.id = this.defaults.id;
+    this.dialogRef.close(customer);
   }
 
   isCreateMode() {
