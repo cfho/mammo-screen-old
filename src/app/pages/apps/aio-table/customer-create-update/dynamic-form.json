@@ -1,96 +1,616 @@
 [
-    {
-      "fieldGroupClassName": "display-flex",
-      "fieldGroup": [
-        {
-          "key": "_003name",
-          "type": "input",
-          "className": "flex-3",
-          "templateOptions": {
-            "label": "姓名",
-            "required": true
-          }
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>個案基本資料</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_003name",
+        "type": "input",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "姓名",
+          "required": true
+        }
+      },
+      {
+        "key": "_037hormone_age",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "type": "number",
+          "label": "Hormon age",
+          "min": 18
         },
-        
-        {
-          "key": "_037hormone_age",
-          "type": "input",
-          "className": "flex-1",
-          "templateOptions": {
-            "type": "number",
-            "label": "Hormon age",
-            "min": 18
-          },
-          "validation": {
-            "messages": {
-              "min": "Sorry, you have to be older than 18"
-            }
+        "validation": {
+          "messages": {
+            "min": "Sorry, you have to be older than 18"
           }
         }
-      ]
-    },
-    {
-      "className": "section-label",
-      "template": "<hr /><div><strong>家族史-與您有血緣的家屬中，有無人得過乳癌:</strong></div>"
-    },
-    
-    {
-      "fieldGroupClassName": "display-flex",
-      "fieldGroup": [
-        {
-          "key": "_022isBreastCa_family_hx",
-          "type": "checkbox",
-          "className": "flex-1",
-          "templateOptions": {
-            "label": "是"
-          }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>疾病史-有無得過下列疾病?</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_020past_hx",
+        "type": "radio",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "有",
+          "placeholder": "Placeholder",
+          "description": "Description",
+          "required": true,
+          "options": [
+            { "value": "0", "label": "無" },
+            { "value": "1", "label": "乳房良性相關疾病" },
+            { "value": "2", "label": "乳癌" },
+            { "value": "3", "label": "其他癌症" }
+          ]
+        }
+      },
+      {
+        "key": "_021cancer_hx",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "其他癌症描述",
+          "max": 25
         },
-        {
-          "key": "_023mother_number",
-          "type": "input",
-          "className": "flex-1",
-          "templateOptions": {
-            "label": "母親",
-            "type": "number"
-          }
-        },
-        {
-          "key": "_024sister_number",
-          "type": "input",
-          "className": "flex-1",
-          "templateOptions": {
-            "label": "姐妹",
-            "type": "number"
-          }
-        },
-        {
-          "key": "_025daughter_number",
-          "type": "input",
-          "className": "flex-1",
-          "templateOptions": {
-            "label": "女兒",
-            "type": "number"
-          }
-        },
-        {
-          "key": "_026grandma_mother_number",
-          "type": "input",
-          "className": "flex-1",
-          "templateOptions": {
-            "label": "祖母",
-            "type": "number"
-          }
-        },
-        {
-          "key": "_027grandma_father_number",
-          "type": "input",
-          "className": "flex-1",
-          "templateOptions": {
-            "label": "外祖母",
-            "type": "number"
+        "validation": {
+          "messages": {
+            "min": "Sorry, you have to be older than 18"
           }
         }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>家族史-與您有血緣的家屬中，有無人得過乳癌?</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_022isBreastCa_family_hx",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "是"
+        }
+      },
+      {
+        "key": "_023mother_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "母親",
+          "type": "number"
+        }
+      },
+      {
+        "key": "_024sister_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "姐妹",
+          "type": "number"
+        }
+      },
+      {
+        "key": "_025daughter_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "女兒",
+          "type": "number"
+        }
+      },
+      {
+        "key": "_026grandma_mother_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "祖母",
+          "type": "number"
+        }
+      },
+      {
+        "key": "_027grandma_father_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "外祖母",
+          "type": "number"
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>月經史</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_028menarche",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "初經年齡",
+          "type": "number"
+        }
+      },
+      {
+        "key": "_029isMenopause",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "是否停經"
+        }
+      },
+      {
+        "key": "_030menopause_period",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "停經年齡",
+          "type": "number"
+        }
+      },
+      {
+        "key": "_031menopause_causes_2",
+        "type": "checkbox",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "自然停經"
+        }
+      },
+      {
+        "key": "_031menopause_causes_3",
+        "type": "checkbox",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "子宮切除"
+        }
+      },
+      {
+        "key": "_031menopause_causes_4",
+        "type": "checkbox",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "卵巢切除"
+        }
+      },
+      {
+        "key": "_031menopause_causes_5",
+        "type": "checkbox",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "其他"
+        }
+      },
+      {
+        "key": "_032menopause_other",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "停經原因其他敘述",
+          "max": 25
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>生育史</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_033production_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "生育次數",
+          "type": "number",
+          "required": true
+        }
+      },
+      {
+        "key": "_034isBreastFeeding",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "有無哺餵母乳",
+          "required": true
+        }
+      },
+      {
+        "key": "_035production_age",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "第一胎生產年齡",
+          "type": "number",
+          "max": 99
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>用藥史</strong></div>"
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>荷爾蒙補充劑</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_036isHormone",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "是否服用荷爾蒙補充劑？",
+          "required": true
+        }
+      },
+      {
+        "key": "_037hormone_age",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "幾歲開始(荷)",
+          "type": "number",
+          "max": 99
+        }
+      },
+      {
+        "key": "_038hormone_period",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "服用幾年(荷)",
+          "type": "number"
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>避孕藥</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_039isContraceptive",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "是否服用避孕藥？",
+          "required": true
+        }
+      },
+      {
+        "key": "_040contraceptive_age",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "幾歲開始(避)",
+          "type": "number",
+          "max": 99
+        }
+      },
+      {
+        "key": "_041contracepative_period",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "服用幾年(避)",
+          "type": "number"
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>腫塊</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_042isSelfExam",
+        "type": "radio",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "是否有感覺到異常腫塊?",
+          "required": true,
+          "options": [
+            { "value": "1", "label": "有摸到硬塊或疼痛、壓痛" },
+            { "value": "2", "label": "沒有症狀" },
+            { "value": "3", "label": "未做過乳房自我檢查" }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>其他</strong></div>"
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>最近二年內是否做過下列檢查（可復選）？</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_043isTouch",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "醫護人員觸診"
+        }
+      },
+      {
+        "key": "_044isMammo",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳房 X 光攝影檢查"
+        }
+      },
+      {
+        "key": "_045isSono",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳房超音波檢查"
+        }
+      },
+      {
+        "key": "_047isOP",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "以上皆未做過"
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>是否接受過乳房手術？</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_047isOP",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "是",
+          "required": true
+        }
+      },
+      {
+        "key": "_048OP_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "左側"
+        }
+      },
+      {
+        "key": "_049OP_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "右側"
+        }
+      }
+    ]
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>乳房X光攝影檢查結果（攝影醫院填寫）</strong></div>"
+  },
+  {
+    "key": "_050hospital_code",
+    "type": "input",
+    "className": "flex-1",
+    "templateOptions": {
+      "label": "乳攝醫院代碼：耕莘醫院",
+      "required": true
+    }
+  },
+  {
+    "key": "_051mammo_day",
+    "type": "input",
+    "className": "flex-1",
+    "templateOptions": {
+      "label": "乳房攝影攝日期",
+      "required": true
+    }
+  },
+  {
+    "key": "_052mammo_machine",
+    "type": "radio",
+    "className": "flex-3",
+    "templateOptions": {
+      "label": "攝影儀機型",
+      "required": true,
+      "options": [
+        { "value": "2", "label": "CR 乳房X光攝影儀" },
+        { "value": "3", "label": "DR 乳房X光攝影儀" },
+        { "value": "4", "label": "乳房斷層攝影機(Tomosynthesis, Tomo)" }
       ]
     }
-  ]
-  
+  },
+  {
+    "key": "_053touch_result",
+    "type": "radio",
+    "className": "flex-3",
+    "templateOptions": {
+      "label": "乳房觸診檢查",
+      "required": true,
+      "options": [
+        { "value": "2", "label": "有腫塊或其他異常" },
+        { "value": "3", "label": "無異常" },
+        { "value": "4", "label": "未做觸診檢查" }
+      ]
+    }
+  },
+  {
+    "key": "_054gland_composition",
+    "type": "radio",
+    "className": "flex-3",
+    "templateOptions": {
+      "label": "乳腺組成",
+      "required": true,
+      "options": [
+        { "value": "1", "label": "Fatty" },
+        { "value": "5", "label": "Scattered fibroglandular density" },
+        { "value": "3", "label": "Heterogeneously dense" },
+        { "value": "4", "label": "Extremely dense" }
+      ]
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_055isComparison",
+        "type": "radio",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "是否與舊片比較？",
+          "required": true,
+          "options": [
+            { "value": "T", "label": "是" },
+            { "value": "F", "label": "否" }
+          ]
+        }
+      },
+      {
+        "key": "_056noOldMammo_cause",
+        "type": "radio",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "無舊片的原因",
+          "options": [
+            { "value": "1", "label": "第一次篩檢" },
+            { "value": "2", "label": "無法取得舊片" },
+            { "value": "3", "label": "無法獲知是否有舊片" }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "key": "_057report_day",
+    "type": "input",
+    "className": "flex-1",
+    "templateOptions": {
+      "type": "number",
+      "required": true,
+      "label": "攝影判讀日期"
+    }
+  },
+  {
+    "className": "section-label",
+    "template": "<hr /><div><strong>乳房攝影檢查結果：Category 0,3,4,5需加填【檢查異常個案報告表】</strong></div>"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_058mammo_category",
+        "type": "radio",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "乳攝結果",
+          "required": true,
+          "options": [
+            { "value": "0", "label": "（Category 0）需附加其他影像檢查再評估" },
+            { "value": "1", "label": "（Category 1）無異常發現" },
+            { "value": "2", "label": "（Category 2）良性發現" },
+            {
+              "value": "3",
+              "label": "（Category 3）可能是良性發現-六個月內須追蹤檢查"
+            },
+            { "value": "4", "label": "（Category 4）可疑異常需考慮組織生檢" },
+            {
+              "value": "5",
+              "label": "（Category 5）高度懷疑為惡性腫瘤,須採取適當的措施"
+            }
+          ]
+        }
+      },
+      {
+        "key": "_059cat4_subtype",
+        "type": "radio",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "無舊片的原因",
+          "options": [
+            { "value": "a", "label": "a-Low suspicion" },
+            { "value": "b", "label": "b-Moderate Intermediate suspicion" },
+            { "value": "c", "label": "c-High Moderate suspicion" }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_060report_Dr",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "放射科醫師姓名",
+          "max": 10,
+          "required": true
+        }
+      },
+      {
+        "key": "_061technician",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "醫事放射師姓名",
+          "max": 10,
+          "required": true
+        }
+      },
+      {
+        "key": "_062referHospital_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "轉診醫院代碼",
+          "max": 10
+        }
+      }
+    ]
+  }
+]

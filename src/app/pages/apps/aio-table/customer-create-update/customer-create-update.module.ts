@@ -20,6 +20,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { IconModule } from '@visurel/iconify-angular';
 import { MatDividerModule } from '@angular/material/divider';
 import { SharedModule } from './shared/shared.module';
+import { FormlyFieldTabs } from './tabs.type';
+
+
 
 import { FormlyModule, FormlyFieldConfig,
   FORMLY_CONFIG } from '@ngx-formly/core';
@@ -59,6 +62,7 @@ export function minValidationMessage(err, field: FormlyFieldConfig) {
     IconModule,
     MatDividerModule,
     FormlyModule.forRoot({
+      types: [{ name: 'tabs', component: FormlyFieldTabs }],
       validators: [
         {
           name: 'ip',
@@ -82,7 +86,7 @@ export function minValidationMessage(err, field: FormlyFieldConfig) {
     }),
     FormlyMaterialModule
   ],
-  declarations: [CustomerCreateUpdateComponent],
+  declarations: [CustomerCreateUpdateComponent, FormlyFieldTabs],
   entryComponents: [CustomerCreateUpdateComponent],
   exports: [CustomerCreateUpdateComponent]
 })

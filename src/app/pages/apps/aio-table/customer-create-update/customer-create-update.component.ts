@@ -29,21 +29,13 @@ export class CustomerCreateUpdateComponent implements OnInit {
   model: {};
   fields: FormlyFieldConfig[] = data;
 
-  onSubmit({ valid, value }) {
-    console.log(value);
-  }
-
   static id = 100;
-
   mode: "create" | "update" = "create";
-
   icMoreVert = icMoreVert;
   icClose = icClose;
-
   icPrint = icPrint;
   icDownload = icDownload;
   icDelete = icDelete;
-
   icPerson = icPerson;
   icMyLocation = icMyLocation;
   icLocationCity = icLocationCity;
@@ -60,11 +52,13 @@ export class CustomerCreateUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
     if (this.defaults) {
       this.mode = "update";
+      this.defaults['_031menopause_causes_2']= false;
+      this.defaults['_031menopause_causes_3']= false;
+      this.defaults['_031menopause_causes_4']= false;
+      this.defaults['_031menopause_causes_5']= false;
       this.model = this.defaults;
-      console.log(this.mode);
       console.log(this.model);
     } else {
       this.defaults = {} as Customer;
