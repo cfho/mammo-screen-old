@@ -612,5 +612,731 @@
         }
       }
     ]
+  },
+  {
+    "className": "title2",
+    "template": "<hr /><div>【檢查異常個案報告表】</div>"
+  },
+  {
+    "key": "_063IsMass",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "1.Mass"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_064mass_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_065mass_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      },
+      {
+        "key": "_066mass_uni",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "multiple, unilateral"
+        }
+      },
+      {
+        "key": "_067mass_bil",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "multiple, bilateral"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Location</div>",
+    "hideExpression":"!model._063IsMass"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_068mass_UOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UOQ"
+        }
+      },
+      {
+        "key": "_069mass_UIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UIQ"
+        }
+      },
+      {
+        "key": "_070mass_LOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LOQ"
+        }
+      },
+      {
+        "key": "_071mass_LIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LIQ"
+        }
+      },
+      {
+        "key": "_072mass_subareolar",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "subareolar"
+        }
+      },
+      {
+        "key": "_073mass_axilla",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "axilla"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>One view only</div>",
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_074mass_oneView_upper",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "upper"
+        }
+      },
+      {
+        "key": "_075mass_oneView_lower",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "lower"
+        }
+      },
+      {
+        "key": "_076mass_oneView_outer",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "outer"
+        }
+      },
+      {
+        "key": "_077mass_oneView_inner",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "inner"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "key": "_096isCal",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "2.Calcifications"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_097cal_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_098cal_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      },
+      {
+        "key": "_099cal_uni",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "multiple, unilateral"
+        }
+      },
+      {
+        "key": "_100cal_bil",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "multiple, bilateral"
+        }
+      }
+    ],
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Location</div>",
+    "hideExpression":"!model._096isCal"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_101cal_UOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UOQ"
+        }
+      },
+      {
+        "key": "_102cal_UIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UIQ"
+        }
+      },
+      {
+        "key": "_103cal_LOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LOQ"
+        }
+      },
+      {
+        "key": "_104cal_LIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LIQ"
+        }
+      },
+      {
+        "key": "_105cal_subareolar",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "subareolar"
+        }
+      },
+      {
+        "key": "_106cal_axilla",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "axilla"
+        }
+      }
+    ],
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>One view only</div>",
+    "hideExpression":"!model._096isCal"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_107cal_oneView_upper",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "upper"
+        }
+      },
+      {
+        "key": "_108cal_oneView_lower",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "lower"
+        }
+      },
+      {
+        "key": "_109cal_oneView_outer",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "outer"
+        }
+      },
+      {
+        "key": "_110cal_oneView_inner",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "inner"
+        }
+      }
+    ],
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "key": "_120isAsym",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "3.Aymmetry"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_121asym_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_122asym_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      },
+      {
+        "key": "_123Asymmetry",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "Asymmetry"
+        }
+      },
+      {
+        "key": "_124focalAsymmetry",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "Focal asymmetry"
+        }
+      },
+      {
+        "key": "_125asym_developing",
+        "type": "checkbox",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "Developing asymmetry"
+        }
+      }
+    ],
+    "hideExpression": "!model._120isAsym"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Location</div>",
+    "hideExpression":"!model._120isAsym"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_126asym_UOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UOQ"
+        }
+      },
+      {
+        "key": "_127asym_UIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UIQ"
+        }
+      },
+      {
+        "key": "_128asym_LOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LOQ"
+        }
+      },
+      {
+        "key": "_129asym_LIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LIQ"
+        }
+      },
+      {
+        "key": "_130asym_subareolar",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "subareolar"
+        }
+      },
+      {
+        "key": "_131asym_axilla",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "axilla"
+        }
+      }
+    ],
+    "hideExpression": "!model._120isAsym"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>One view only</div>",
+    "hideExpression":"!model._120isAsym"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_132asym_oneView_upper",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "upper"
+        }
+      },
+      {
+        "key": "_133asym_oneView_lower",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "lower"
+        }
+      },
+      {
+        "key": "_134asym_oneView_outer",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "outer"
+        }
+      },
+      {
+        "key": "_135asym_oneView_inner",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "inner"
+        }
+      }
+    ],
+    "hideExpression": "!model._120isAsym"
+  },
+  {
+    "key": "_136isDistorsion",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "4.Architectural distorsion"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_137distorsion_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_138distorsion_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      }
+    ],
+    "hideExpression": "!model._136isDistorsion"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Location</div>",
+    "hideExpression":"!model._136isDistorsion"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_139distorsion_UOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UOQ"
+        }
+      },
+      {
+        "key": "_140distorsion_UIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "UIQ"
+        }
+      },
+      {
+        "key": "_141distorsion_LOQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LOQ"
+        }
+      },
+      {
+        "key": "_142distorsion_LIQ",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "LIQ"
+        }
+      },
+      {
+        "key": "_143distorsion_subareolar",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "subareolar"
+        }
+      },
+      {
+        "key": "_144distorsion_axilla",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "axilla"
+        }
+      }
+    ],
+    "hideExpression": "!model._136isDistorsion"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>One view only</div>",
+    "hideExpression":"!model._136isDistorsion"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_145distorsion_oneView_upper",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "upper"
+        }
+      },
+      {
+        "key": "_146distorsion_oneView_lower",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "lower"
+        }
+      },
+      {
+        "key": "_147distorsion_oneView_outer",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "outer"
+        }
+      },
+      {
+        "key": "_148distorsion_oneView_inner",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "inner"
+        }
+      }
+    ],
+    "hideExpression": "!model._136isDistorsion"
+  },
+  {
+    "key": "_149isRectraction",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "5.Thickening or retraction of the skin and/or nipple"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_150retraction_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_151retraction_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      }
+    ],
+    "hideExpression": "!model._149isRectraction"
+  },
+  {
+    "key": "_152isLN",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "6.Dense or enlarged axillary LNs"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_153LN_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_154LN_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      }
+    ],
+    "hideExpression": "!model._152isLN"
+  },
+  {
+    "key": "_155isDuct",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "7.Dilated lactiferous ducts"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_156duct_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_157duct_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      }
+    ],
+    "hideExpression": "!model._155isDuct"
+  },
+  {
+    "key": "_158isSkin",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "8.Diffuse thickening of the skin and increased density"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_159skin_right",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Rt"
+        }
+      },
+      {
+        "key": "_160skin_left",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Lt"
+        }
+      }
+    ],
+    "hideExpression": "!model._158isSkin"
+  },
+  {
+    "key": "_161isOther",
+    "type": "checkbox",
+    "className": "flex-1 ",
+    "templateOptions": {
+      "label": "9.Others"
+    }
+  },
+  {
+    "key": "_162Other",
+    "type": "input",
+    "className": "flex-1",
+    "hideExpression": "!model._161isOther",
+    "templateOptions": {
+      "label": "描述"
+    }
   }
+  
 ]

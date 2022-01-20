@@ -1,36 +1,35 @@
 
 
-<div class="outer-shell">
+<!-- <div class="outer-shell"> -->
   <!-- <mat-toolbar color="primary" class="example-toolbar">
     Angular Forms with ngx-formly
   </mat-toolbar> -->
 
+  <!-- <mat-divider class="-mx-6 text-border"></mat-divider> -->
+
+  <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+
+    <button
+      [matMenuTriggerFor]="settingsMenu"
+      class="text-secondary"
+      mat-icon-button
+      type="button"
+    >
+      <mat-icon [icIcon]="icMoreVert"></mat-icon>
+    </button>
+
+    <button
+      class="text-secondary"
+      mat-dialog-close
+      mat-icon-button
+      type="button"
+    >
+      <mat-icon [icIcon]="icClose"></mat-icon>
+    </button>
+  </div>
   <mat-divider class="-mx-6 text-border"></mat-divider>
 
   <form [formGroup]="form" (ngSubmit)="save()">
-    <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
-
-      <button
-        [matMenuTriggerFor]="settingsMenu"
-        class="text-secondary"
-        mat-icon-button
-        type="button"
-      >
-        <mat-icon [icIcon]="icMoreVert"></mat-icon>
-      </button>
-
-      <button
-        class="text-secondary"
-        mat-dialog-close
-        mat-icon-button
-        type="button"
-      >
-        <mat-icon [icIcon]="icClose"></mat-icon>
-      </button>
-    </div>
-
-    <mat-divider class="-mx-6 text-border"></mat-divider>
-
     <mat-dialog-content fxLayout="column">
       <formly-form
         [model]="model"
@@ -59,8 +58,9 @@
       </button>
     </mat-dialog-actions>
   </form>
+
   <app-form-debug [form]="form.value" [model]="model"></app-form-debug>
-</div>
+<!-- </div> -->
 
 <mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
   <button mat-menu-item>

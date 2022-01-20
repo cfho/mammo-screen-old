@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Customer } from "../interfaces/customer.model";
@@ -22,6 +22,7 @@ import data from './dynamic-form.json';
   selector: "vex-customer-create-update",
   templateUrl: "./customer-create-update.component.html",
   styleUrls: ["./customer-create-update.component.scss"],
+  // encapsulation: ViewEncapsulation.None
 })
 export class CustomerCreateUpdateComponent implements OnInit {
 

@@ -29,32 +29,55 @@
   // --color-warn-contrast: black;
 }
 
+.title1 {
+  font-size: large;
+  color: blue;
+}
+.title2 {
+  font-size: larger;
+  font-weight: bold;
+  color: blue;
+}
+.title3 {
+  // font-size: medium;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.section-label {
+}
+
+.mat-form-field-infix {
+  width: auto !important;
+}
+
 .display-flex {
   display: flex;
 }
 
+
 .flex-1 {
-  flex: 1;
+  flex: 1 0 auto;
 }
 
 .flex-2 {
-  flex: 2;
+  flex: 2 0 auto;
 }
 
 .flex-3 {
-  flex: 3;
+  flex: 3 0 auto;
 }
 
 .flex-4 {
-  flex: 4;
+  flex: 4 0 auto;
 }
 
 .flex-5 {
-  flex: 5;
+  flex: 5 0 auto;
 }
 
 .flex-6 {
-  flex: 6;
+  flex: 6 0 auto;
 }
 
 [class*='flex-'] {
