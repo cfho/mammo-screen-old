@@ -15,6 +15,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { DebugComponent } from "./debug.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import {MatDialogModule} from '@angular/material/dialog';
 
 const sharedStuff = [
   MatInputModule,
@@ -29,6 +30,7 @@ const sharedStuff = [
   MatToolbarModule,
   MatExpansionModule,
   ReactiveFormsModule,
+  MatDialogModule,
   RouterModule
 ];
 

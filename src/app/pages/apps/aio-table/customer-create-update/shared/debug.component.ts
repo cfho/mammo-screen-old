@@ -5,22 +5,23 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
 @Component({
   selector: "app-form-debug",
   template: `
+  <mat-dialog-content>
     <mat-expansion-panel
       [(expanded)]="isExpanded"
       (expandedChange)="onExpandedChange($event)"
     >
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          Debug
-        </mat-panel-title>
+        <mat-panel-title> Debug </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-card-content>
         <mat-tab-group [(selectedIndex)]="selectedIndex">
           <mat-tab label="Form value">
-            <pre>{{ form | json }}</pre>
+
+              <pre>{{ form | json }}</pre>
+            
           </mat-tab>
           <mat-tab label="Model" [disabled]="!model">
-            <pre>{{ model | json }}</pre>
+              <pre>{{ model | json }}</pre>
           </mat-tab>
           <mat-tab label="Submitted" [disabled]="submittedValue === null">
             <p>You just submitted ({{ submittedDate | date: "short" }}):</p>
@@ -29,6 +30,7 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
         </mat-tab-group>
       </mat-card-content>
     </mat-expansion-panel>
+    </mat-dialog-content>
   `,
   styles: [
     `
@@ -44,8 +46,8 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
       .mat-expansion-panel-header.mat-expanded:hover {
         background: rgba(0, 0, 0, 0.03);
       }
-    `
-  ]
+    `,
+  ],
 })
 export class DebugComponent implements OnInit {
   @Input() form: FormGroup;

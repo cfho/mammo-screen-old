@@ -31,6 +31,10 @@ export class Customer {
   _029isMenopause: string;
   _030menopause_period: string;
   _031menopause_causes: string;
+  _031menopause_causes_2?: boolean;
+  _031menopause_causes_3?: boolean;
+  _031menopause_causes_4?: boolean;
+  _031menopause_causes_5?: boolean;
   _032menopause_other: string;
   _033production_number: string;
   _034isBreastFeeding: string;

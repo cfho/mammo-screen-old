@@ -1,39 +1,243 @@
 [
   {
-    "className": "section-label",
-    "template": "<hr /><div><strong>個案基本資料</strong></div>"
+    "className": "title1",
+    "template": "<hr /><div><strong>一，個案基本資料</strong></div>"
   },
   {
     "fieldGroupClassName": "display-flex",
     "fieldGroup": [
       {
-        "key": "_003name",
-        "type": "input",
-        "className": "flex-3",
-        "templateOptions": {
-          "label": "姓名",
-          "required": true
-        }
-      },
-      {
-        "key": "_037hormone_age",
+        "key": "_001ID_number",
         "type": "input",
         "className": "flex-1",
         "templateOptions": {
-          "type": "number",
-          "label": "Hormon age",
-          "min": 18
+          "label": "身分証字號"
         },
-        "validation": {
-          "messages": {
-            "min": "Sorry, you have to be older than 18"
-          }
+        "validators": {
+          "validation": ["id"]
+        }
+      },
+      {
+        "key": "_002ID_class",
+        "type": "input",
+        "defaultValue": "1",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "ID 類別",
+          "required": true,
+          "maxLength": 1
+        }
+      },
+      {
+        "key": "_004birthday",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "出生日期",
+          "maxLength": 7
+        },
+        "validators": {
+          "validation": ["day"]
+        }
+      },
+      {
+        "key": "_003name",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "姓名",
+          "required": true,
+          "maxLength": 15
         }
       }
     ]
   },
   {
-    "className": "section-label",
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_006current_residence",
+        "type": "input",
+        "className": "flex-2",
+        "templateOptions": {
+          "label": "地址",
+          "required": true,
+          "maxLength": 50
+        }
+      },
+      {
+        "key": "_010mobile",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "手機",
+          "maxLength": 20
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_007phone_area_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "電話區碼",
+          "maxLength": 4
+        }
+      },
+      {
+        "key": "_008phone",
+        "type": "input",
+        "className": "flex-3",
+        "templateOptions": {
+          "label": "市内電話",
+          "maxLength": 20
+        }
+      },
+      {
+        "key": "_009phone_ext",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "分機",
+          "maxLength": 6
+        }
+      }
+    ]
+  },
+  {
+    "key": "_011payment",
+    "type": "radio",
+    "className": "flex-1",
+    "defaultValue": "2",
+    "templateOptions": {
+      "label": "支付方式",
+      "required": true,
+      "options": [
+        { "value": "1", "label": "健保醫療給付" },
+        { "value": "2", "label": "預防保健" },
+        { "value": "3", "label": "其他公務預算補助" },
+        { "value": "4", "label": "其他" },
+        { "value": "5", "label": "自費健康檢查" }
+      ]
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_012isMammoCar",
+        "type": "radio",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳攝車篩檢",
+          "required": true,
+          "options": [
+            { "value": "1", "label": "是" },
+            { "value": "0", "label": "否" }
+          ]
+        }
+      },
+      {
+        "key": "_013mammoCar_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳攝車車號",
+          "maxLength": 10
+        },
+        "hideExpression": "model._012isMammoCar === '0'"
+      },
+      {
+        "key": "_014affiliated_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "所屬單位機構代碼",
+          "maxLength": 10,
+          "description": "新店耕莘醫院"
+        },
+        "hideExpression": "model._012isMammoCar === '0'"
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_015mammoCar_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳攝儀器登設字號",
+          "required": true,
+          "maxLength": 10
+        }
+      },
+      {
+        "key": "_016hx_number",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "病歷號",
+          "required": true,
+          "maxLength": 25
+        }
+      }
+    ]
+  },
+  {
+    "key": "_017education",
+    "type": "radio",
+    "className": "flex-1",
+    "templateOptions": {
+      "label": "教育程度",
+      "required": true,
+      "options": [
+        { "value": "1", "label": "不識字無" },
+        { "value": "2", "label": "小學" },
+        { "value": "3", "label": "國(初)中" },
+        { "value": "4", "label": "高中/高職專科" },
+        { "value": "5", "label": "專科、大學以上" },
+        { "value": "6", "label": "研究所以上" },
+        { "value": "7", "label": "拒答" }
+      ]
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_018height",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "身高",
+          "required": true,
+          "maxLength": 10
+        }
+      },
+      {
+        "key": "_019weight",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "體重",
+          "required": true,
+          "maxLength": 10
+        }
+      }
+    ]
+  },
+  {
+    "className": "title1",
+    "template": "<hr /><div><strong>二，個案臨床資料（保險對象填寫）</strong></div>"
+  },
+  {
+    "className": "title2",
     "template": "<hr /><div><strong>疾病史-有無得過下列疾病?</strong></div>"
   },
   {
@@ -42,7 +246,7 @@
       {
         "key": "_020past_hx",
         "type": "radio",
-        "className": "flex-1",
+        "className": "flex-2",
         "templateOptions": {
           "label": "有",
           "placeholder": "Placeholder",
@@ -59,21 +263,17 @@
       {
         "key": "_021cancer_hx",
         "type": "input",
-        "className": "flex-1",
+        "className": "flex-3",
         "templateOptions": {
           "label": "其他癌症描述",
           "max": 25
         },
-        "validation": {
-          "messages": {
-            "min": "Sorry, you have to be older than 18"
-          }
-        }
+        "hideExpression": "model._020past_hx !== '3'"
       }
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>家族史-與您有血緣的家屬中，有無人得過乳癌?</strong></div>"
   },
   {
@@ -81,10 +281,15 @@
     "fieldGroup": [
       {
         "key": "_022isBreastCa_family_hx",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
         "templateOptions": {
-          "label": "是"
+          "label": "有血緣的家屬曾經得過乳癌",
+          "required": true,
+          "options": [
+            { "value": "0", "label": "無" },
+            { "value": "1", "label": "有" }
+          ]
         }
       },
       {
@@ -93,8 +298,9 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "母親",
-          "type": "number"
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._022isBreastCa_family_hx === '0'"
       },
       {
         "key": "_024sister_number",
@@ -102,8 +308,9 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "姐妹",
-          "type": "number"
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._022isBreastCa_family_hx === '0'"
       },
       {
         "key": "_025daughter_number",
@@ -111,8 +318,9 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "女兒",
-          "type": "number"
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._022isBreastCa_family_hx === '0'"
       },
       {
         "key": "_026grandma_mother_number",
@@ -120,8 +328,9 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "祖母",
-          "type": "number"
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._022isBreastCa_family_hx === '0'"
       },
       {
         "key": "_027grandma_father_number",
@@ -129,13 +338,14 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "外祖母",
-          "type": "number"
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._022isBreastCa_family_hx === '0'"
       }
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>月經史</strong></div>"
   },
   {
@@ -147,15 +357,22 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "初經年齡",
-          "type": "number"
+          "required": true,
+          "maxLength": 2
         }
       },
       {
         "key": "_029isMenopause",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "0",
         "templateOptions": {
-          "label": "是否停經"
+          "label": "是否停經",
+          "required": true,
+          "options": [
+            { "value": "1", "label": "是" },
+            { "value": "0", "label": "否" }
+          ]
         }
       },
       {
@@ -164,40 +381,55 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "停經年齡",
-          "type": "number"
-        }
-      },
+          "maxLength": 2
+        },
+        "hideExpression": "model._029isMenopause === '0'"
+      }
+    ]
+  },
+  {
+    "className": "title2",
+    "template": "<hr /><div><strong>停經原因</strong></div>",
+    "hideExpression": "model._029isMenopause === '0'"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
       {
         "key": "_031menopause_causes_2",
         "type": "checkbox",
-        "className": "flex-3",
+        "className": "flex-1",
         "templateOptions": {
           "label": "自然停經"
-        }
+        },
+        "hideExpression": "model._029isMenopause === '0'"
       },
       {
         "key": "_031menopause_causes_3",
         "type": "checkbox",
-        "className": "flex-3",
+        "className": "flex-1",
         "templateOptions": {
           "label": "子宮切除"
-        }
+        },
+        "hideExpression": "model._029isMenopause === '0'"
       },
       {
         "key": "_031menopause_causes_4",
         "type": "checkbox",
-        "className": "flex-3",
+        "className": "flex-1",
         "templateOptions": {
           "label": "卵巢切除"
-        }
+        },
+        "hideExpression": "model._029isMenopause === '0'"
       },
       {
         "key": "_031menopause_causes_5",
         "type": "checkbox",
-        "className": "flex-3",
+        "className": "flex-1",
         "templateOptions": {
           "label": "其他"
-        }
+        },
+        "hideExpression": "model._029isMenopause === '0'"
       },
       {
         "key": "_032menopause_other",
@@ -206,12 +438,13 @@
         "templateOptions": {
           "label": "停經原因其他敘述",
           "max": 25
-        }
+        },
+        "hideExpression": "model._029isMenopause === '0'"
       }
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>生育史</strong></div>"
   },
   {
@@ -249,11 +482,11 @@
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>用藥史</strong></div>"
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>荷爾蒙補充劑</strong></div>"
   },
   {
@@ -290,7 +523,7 @@
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>避孕藥</strong></div>"
   },
   {
@@ -327,7 +560,7 @@
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>腫塊</strong></div>"
   },
   {
@@ -350,11 +583,11 @@
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>其他</strong></div>"
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>最近二年內是否做過下列檢查（可復選）？</strong></div>"
   },
   {
@@ -395,7 +628,7 @@
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>是否接受過乳房手術？</strong></div>"
   },
   {
@@ -429,7 +662,7 @@
     ]
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>乳房X光攝影檢查結果（攝影醫院填寫）</strong></div>"
   },
   {
@@ -535,16 +768,16 @@
     }
   },
   {
-    "className": "section-label",
+    "className": "title2",
     "template": "<hr /><div><strong>乳房攝影檢查結果：Category 0,3,4,5需加填【檢查異常個案報告表】</strong></div>"
   },
   {
-    "fieldGroupClassName": "display-flex",
+    "fieldGroupClassName": "",
     "fieldGroup": [
       {
         "key": "_058mammo_category",
         "type": "radio",
-        "className": "flex-3",
+        "className": "display-column d-inline-flex",
         "templateOptions": {
           "label": "乳攝結果",
           "required": true,
@@ -567,7 +800,7 @@
       {
         "key": "_059cat4_subtype",
         "type": "radio",
-        "className": "flex-3",
+        "className": "display-column",
         "templateOptions": {
           "label": "無舊片的原因",
           "options": [
@@ -620,7 +853,7 @@
   {
     "key": "_063IsMass",
     "type": "checkbox",
-    "className": "flex-1 ",
+    "className": "flex-1",
     "templateOptions": {
       "label": "1.Mass"
     }
@@ -666,7 +899,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>Location</div>",
-    "hideExpression":"!model._063IsMass"
+    "hideExpression": "!model._063IsMass"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -766,9 +999,198 @@
     "hideExpression": "!model._063IsMass"
   },
   {
+    "className": "title3",
+    "template": "<hr /><div>Size</div>",
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_078mass_size_1",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "< 1.0 cm"
+        }
+      },
+      {
+        "key": "_079mass_size_2",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "1-2 cm"
+        }
+      },
+      {
+        "key": "_080mass_size_3",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "2-3 cm"
+        }
+      },
+      {
+        "key": "_081mass_size_4",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "3-4 cm"
+        }
+      },
+      {
+        "key": "_082mass_size_large",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "> 4 cm"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Shape</div>",
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_083mass_round",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "round"
+        }
+      },
+      {
+        "key": "_084mass_ovale",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "ovale"
+        }
+      },
+      {
+        "key": "_085mass_lobular",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "lobular"
+        }
+      },
+      {
+        "key": "_086mass_irregular",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "irregular"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Margin</div>",
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_087mass_circum",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "circumscribed"
+        }
+      },
+      {
+        "key": "_088mass_microlob",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "microlobulated"
+        }
+      },
+      {
+        "key": "_089mass_obscured",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "obscured"
+        }
+      },
+      {
+        "key": "_090mass_indistinct",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "indistinct"
+        }
+      },
+      {
+        "key": "_091mass_spiculated",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "spiculated"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Density</div>",
+    "hideExpression": "!model._063IsMass"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_092mass_highDensity",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "high-density"
+        }
+      },
+      {
+        "key": "_093mass_equalDensity",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "equal density"
+        }
+      },
+      {
+        "key": "_094mass_lowDensity",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "low density"
+        }
+      },
+      {
+        "key": "_095mass_fat",
+        "type": "checkbox",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "fat-containing"
+        }
+      }
+    ],
+    "hideExpression": "!model._063IsMass"
+  },
+  {
     "key": "_096isCal",
     "type": "checkbox",
     "className": "flex-1 ",
+    "defaultValue": false,
     "templateOptions": {
       "label": "2.Calcifications"
     }
@@ -814,7 +1236,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>Location</div>",
-    "hideExpression":"!model._096isCal"
+    "hideExpression": "!model._096isCal"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -873,7 +1295,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>One view only</div>",
-    "hideExpression":"!model._096isCal"
+    "hideExpression": "!model._096isCal"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -970,7 +1392,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>Location</div>",
-    "hideExpression":"!model._120isAsym"
+    "hideExpression": "!model._120isAsym"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1029,7 +1451,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>One view only</div>",
-    "hideExpression":"!model._120isAsym"
+    "hideExpression": "!model._120isAsym"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1102,7 +1524,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>Location</div>",
-    "hideExpression":"!model._136isDistorsion"
+    "hideExpression": "!model._136isDistorsion"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1161,7 +1583,7 @@
   {
     "className": "title3",
     "template": "<hr /><div>One view only</div>",
-    "hideExpression":"!model._136isDistorsion"
+    "hideExpression": "!model._136isDistorsion"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1295,6 +1717,7 @@
     "key": "_158isSkin",
     "type": "checkbox",
     "className": "flex-1 ",
+    "defaultValue": false,
     "templateOptions": {
       "label": "8.Diffuse thickening of the skin and increased density"
     }
@@ -1338,5 +1761,4 @@
       "label": "描述"
     }
   }
-  
 ]

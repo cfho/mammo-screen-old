@@ -29,14 +29,24 @@
   // --color-warn-contrast: black;
 }
 
+#formly_93_radio__011payment_4{
+  flex-direction: row;
+}
+
+//for radio
+.mat-radio-label-content {
+  margin-right: 10px;
+}
+
 .title1 {
   font-size: large;
+  font-weight: bold;
   color: blue;
 }
 .title2 {
   font-size: larger;
   font-weight: bold;
-  color: blue;
+  color: rgba(0, 0, 255, 0.637);
 }
 .title3 {
   // font-size: medium;
@@ -55,6 +65,12 @@
   display: flex;
 }
 
+.display-column {
+  display: inline-block;
+  flex-direction: column;
+  border: 5px solid red;
+  color: rebeccapurple;
+}
 
 .flex-1 {
   flex: 1 0 auto;

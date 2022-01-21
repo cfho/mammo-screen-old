@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ValidationErrors } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Customer } from "../interfaces/customer.model";
 import icMoreVert from "@iconify/icons-ic/twotone-more-vert";
@@ -13,9 +13,10 @@ import icMyLocation from "@iconify/icons-ic/twotone-my-location";
 import icLocationCity from "@iconify/icons-ic/twotone-location-city";
 import icEditLocation from "@iconify/icons-ic/twotone-edit-location";
 import { Field, FirebaseService } from "src/app/firebase.service";
-import { FormlyFieldConfig } from "@ngx-formly/core";
+import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 
-import data from './dynamic-form.json';
+import JSONdata from "./dynamic-form.json";
+
 
 
 @Component({
@@ -25,10 +26,16 @@ import data from './dynamic-form.json';
   // encapsulation: ViewEncapsulation.None
 })
 export class CustomerCreateUpdateComponent implements OnInit {
-
   form = new FormGroup({});
   model: {};
-  fields: FormlyFieldConfig[] = data;
+  fields: FormlyFieldConfig[] = JSONdata;
+
+  menopuaseCausesObj = {
+    2: '_031menopause_causes_2',
+    3: '_031menopause_causes_3',
+    4: '_031menopause_causes_4',
+    5: '_031menopause_causes_5'
+  }
 
   static id = 100;
   mode: "create" | "update" = "create";
@@ -43,8 +50,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
   icEditLocation = icEditLocation;
   icPhone = icPhone;
 
-  // pastHistory = ["無", "乳房良性相關疾病", "乳癌", "其他癌症："];
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
     private dialogRef: MatDialogRef<CustomerCreateUpdateComponent>,
@@ -53,17 +58,34 @@ export class CustomerCreateUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     if (this.defaults) {
+      this.menopauseCauses(this.defaults);
       this.mode = "update";
-      this.defaults['_031menopause_causes_2']= false;
-      this.defaults['_031menopause_causes_3']= false;
-      this.defaults['_031menopause_causes_4']= false;
-      this.defaults['_031menopause_causes_5']= false;
+      for (const [key, value] of Object.entries(this.defaults)) {
+        if(+key.substring(1, 4) < 63 ){
+          // console.log(key.substring(1, 4));
+          continue;
+        }
+        if (value === "T") {
+          this.defaults[key] = true;
+        } else if (value === " " || value === "") {
+          this.defaults[key] = false;
+        }
+      }
       this.model = this.defaults;
       console.log(this.model);
     } else {
       this.defaults = {} as Customer;
     }
+  }
+
+  menopauseCauses(data: Customer ) {
+    const arr = data._031menopause_causes.split("");
+    arr.map(val => {
+      const key = this.menopuaseCausesObj[val];
+      this.defaults[key] = true;
+    })
   }
 
   save() {
@@ -76,7 +98,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
 
   createCustomer() {
     // const customer: Customer = this.form.value;
-
     // // if (!customer.imageSrc) {
     // //   customer.imageSrc = 'assets/img/avatars/1.jpg';
     // // }
@@ -88,27 +109,44 @@ export class CustomerCreateUpdateComponent implements OnInit {
     // this.dialogRef.close(customer);
   }
 
+  formlyToFirebase(customer) {
+    for (const [key, value] of Object.entries(customer)) {
+      if (value === true) {
+        // console.log(key);
+        customer[key] = "T";
+      } else if (value === false || value === undefined) {
+        // console.log(key);
+        customer[key] = " ";
+      }
+    }
+  }
+
+  firebaseToFormly() {
+
+  }
+
   updateCustomer() {
     const customer: Customer = this.form.value;
-    // customer._020past_hx = this.pastHistory
-    //   .indexOf(customer._020past_hx)
-    //   .toString();
-    //   console.log(customer);
+    console.log(customer);
+    if (customer._031menopause_causes_2) {
+      let dataArr = [];
+      Object.values(this.menopuaseCausesObj).map(key => {
+        if(customer[key] === true){
+          // const last = key.charAt(key.length - 1);
+          dataArr.push(this.menopuaseCausesObj[key])
+          console.log(dataArr);
+        }
+        customer['_031menopause_causes'] = dataArr.join("");
+        console.log(customer._031menopause_causes);
+      }) 
+    } else {
+      customer['_031menopause_causes'] = "    ";
+    }
 
-      // for (const [key, value] of Object.entries(customer)) {
-      //   console.log(key)
-      //   console.log(+key.substring(1,4))
-      //   if(+key.substring(1,4)) {
+    this.formlyToFirebase(customer);
 
-          // const spaceNumber = this.fields[+key.substring(1,4)-1].number;
-          // console.log(this.fields[+key.substring(1,4)])
-          // console.log(spaceNumber);
-          // customer[key] = value.toString().padEnd(spaceNumber).length;
-        // }
-      // }
-      
-      console.log(customer);
-    
+    console.log(customer);
+
     customer.id = this.defaults.id;
     this.dialogRef.close(customer);
   }
