@@ -29,6 +29,11 @@ export class CustomerCreateUpdateComponent implements OnInit {
   form = new FormGroup({});
   model: {};
   fields: FormlyFieldConfig[] = JSONdata;
+  options: FormlyFormOptions = {
+    formState: {
+      disabled: true,
+    },
+  };
 
   menopuaseCausesObj = {
     2: '_031menopause_causes_2',
@@ -157,5 +162,10 @@ export class CustomerCreateUpdateComponent implements OnInit {
 
   isUpdateMode() {
     return this.mode === "update";
+  }
+
+  toggleDisabled() {
+    this.options.formState.disabled = !this.options.formState.disabled;
+    console.log(this.options.formState.disabled)
   }
 }

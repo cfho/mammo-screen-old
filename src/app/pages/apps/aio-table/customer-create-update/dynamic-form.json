@@ -1,4 +1,5 @@
 [
+  
   {
     "className": "title1",
     "template": "<hr /><div><strong>一，個案基本資料</strong></div>"
@@ -454,19 +455,11 @@
         "key": "_033production_number",
         "type": "input",
         "className": "flex-1",
+        "defaultValue": "0",
         "templateOptions": {
           "label": "生育次數",
-          "type": "number",
-          "required": true
-        }
-      },
-      {
-        "key": "_034isBreastFeeding",
-        "type": "checkbox",
-        "className": "flex-1",
-        "templateOptions": {
-          "label": "有無哺餵母乳",
-          "required": true
+          "required": true,
+          "maxLength": 2
         }
       },
       {
@@ -475,8 +468,22 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "第一胎生產年齡",
-          "type": "number",
-          "max": 99
+          "maxLength": 2
+        },
+        "hideExpression": "model._033production_number === '0'"
+      },
+      {
+        "key": "_034isBreastFeeding",
+        "type": "radio",
+        "className": "flex-1",
+        "defaultValue": "0",
+        "templateOptions": {
+          "label": "有無哺餵母乳",
+          "required": true,
+          "options": [
+            { "value": "0", "label": "否" },
+            { "value": "1", "label": "是" }
+          ]
         }
       }
     ]
@@ -494,11 +501,16 @@
     "fieldGroup": [
       {
         "key": "_036isHormone",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "0",
         "templateOptions": {
           "label": "是否服用荷爾蒙補充劑？",
-          "required": true
+          "required": true,
+          "options": [
+            { "value": "0", "label": "否" },
+            { "value": "1", "label": "是" }
+          ]
         }
       },
       {
@@ -507,9 +519,9 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "幾歲開始(荷)",
-          "type": "number",
-          "max": 99
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._036isHormone === '0'"
       },
       {
         "key": "_038hormone_period",
@@ -517,8 +529,9 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "服用幾年(荷)",
-          "type": "number"
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._036isHormone === '0'"
       }
     ]
   },
@@ -531,11 +544,16 @@
     "fieldGroup": [
       {
         "key": "_039isContraceptive",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "0",
         "templateOptions": {
           "label": "是否服用避孕藥？",
-          "required": true
+          "required": true,
+          "options": [
+            { "value": "0", "label": "否" },
+            { "value": "1", "label": "是" }
+          ]
         }
       },
       {
@@ -545,8 +563,9 @@
         "templateOptions": {
           "label": "幾歲開始(避)",
           "type": "number",
-          "max": 99
-        }
+          "maxLength": 2
+        },
+        "hideExpression": "model._039isContraceptive === '0'"
       },
       {
         "key": "_041contracepative_period",
@@ -555,7 +574,8 @@
         "templateOptions": {
           "label": "服用幾年(避)",
           "type": "number"
-        }
+        },
+        "hideExpression": "model._039isContraceptive === '0'"
       }
     ]
   },
@@ -621,6 +641,7 @@
         "key": "_047isOP",
         "type": "checkbox",
         "className": "flex-1",
+        "defaultValue": "1",
         "templateOptions": {
           "label": "以上皆未做過"
         }
@@ -636,28 +657,45 @@
     "fieldGroup": [
       {
         "key": "_047isOP",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "F",
         "templateOptions": {
           "label": "是",
-          "required": true
+          "required": true,
+          "options": [
+            { "value": "F", "label": "否" },
+            { "value": "T", "label": "是" }
+          ]
         }
       },
       {
         "key": "_048OP_left",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "0",
         "templateOptions": {
-          "label": "左側"
-        }
+          "label": "左側開刀",
+          "options":[
+            { "value": "0", "label": "否" },
+            { "value": "1", "label": "是" }
+          ]
+        },
+        "hideExpression": "model._047isOP === 'F'"
       },
       {
         "key": "_049OP_right",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "0",
         "templateOptions": {
-          "label": "右側"
-        }
+          "label": "右側開刀",
+          "options":[
+            { "value": "0", "label": "否" },
+            { "value": "1", "label": "是" }
+          ]
+        },
+        "hideExpression": "model._047isOP === 'F'"
       }
     ]
   },
@@ -666,55 +704,64 @@
     "template": "<hr /><div><strong>乳房X光攝影檢查結果（攝影醫院填寫）</strong></div>"
   },
   {
-    "key": "_050hospital_code",
-    "type": "input",
-    "className": "flex-1",
-    "templateOptions": {
-      "label": "乳攝醫院代碼：耕莘醫院",
-      "required": true
-    }
-  },
-  {
-    "key": "_051mammo_day",
-    "type": "input",
-    "className": "flex-1",
-    "templateOptions": {
-      "label": "乳房攝影攝日期",
-      "required": true
-    }
-  },
-  {
-    "key": "_052mammo_machine",
-    "type": "radio",
-    "className": "flex-3",
-    "templateOptions": {
-      "label": "攝影儀機型",
-      "required": true,
-      "options": [
-        { "value": "2", "label": "CR 乳房X光攝影儀" },
-        { "value": "3", "label": "DR 乳房X光攝影儀" },
-        { "value": "4", "label": "乳房斷層攝影機(Tomosynthesis, Tomo)" }
-      ]
-    }
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_050hospital_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳攝醫院代碼：耕莘醫院",
+          "required": true,
+          "maxLength": 10
+        }
+      },
+      {
+        "key": "_051mammo_day",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳房攝影攝日期",
+          "required": true,
+          "maxLength": 7
+        }
+      },
+      {
+        "key": "_052mammo_machine",
+        "type": "radio",
+        "className": "flex-1",
+        "defaultValue": "3",
+        "templateOptions": {
+          "label": "攝影儀機型",
+          "required": true,
+          "options": [
+            { "value": "2", "label": "CR 乳房X光攝影儀" },
+            { "value": "3", "label": "DR 乳房X光攝影儀" },
+            { "value": "4", "label": "乳房斷層攝影機(Tomosynthesis, Tomo)" }
+          ]
+        }
+      }
+    ]
   },
   {
     "key": "_053touch_result",
     "type": "radio",
-    "className": "flex-3",
+    "className": "flex-1",
+    "defaultValue": "2",
     "templateOptions": {
       "label": "乳房觸診檢查",
       "required": true,
       "options": [
-        { "value": "2", "label": "有腫塊或其他異常" },
-        { "value": "3", "label": "無異常" },
-        { "value": "4", "label": "未做觸診檢查" }
+        { "value": "1", "label": "有腫塊或其他異常" },
+        { "value": "2", "label": "無異常" },
+        { "value": "3", "label": "未做觸診檢查" }
       ]
     }
   },
   {
     "key": "_054gland_composition",
     "type": "radio",
-    "className": "flex-3",
+    "className": "flex-1",
     "templateOptions": {
       "label": "乳腺組成",
       "required": true,
@@ -737,15 +784,16 @@
           "label": "是否與舊片比較？",
           "required": true,
           "options": [
-            { "value": "T", "label": "是" },
-            { "value": "F", "label": "否" }
+            { "value": "F", "label": "否" },
+            { "value": "T", "label": "是" }
           ]
         }
       },
       {
         "key": "_056noOldMammo_cause",
         "type": "radio",
-        "className": "flex-3",
+        "className": "flex-1",
+        "defaultValue": "2",
         "templateOptions": {
           "label": "無舊片的原因",
           "options": [
@@ -753,7 +801,8 @@
             { "value": "2", "label": "無法取得舊片" },
             { "value": "3", "label": "無法獲知是否有舊片" }
           ]
-        }
+        },
+        "hideExpression": "model._055isComparison === 'F'"
       }
     ]
   },
@@ -762,9 +811,9 @@
     "type": "input",
     "className": "flex-1",
     "templateOptions": {
-      "type": "number",
       "required": true,
-      "label": "攝影判讀日期"
+      "label": "攝影判讀日期",
+      "maxLength": 7
     }
   },
   {
@@ -772,12 +821,12 @@
     "template": "<hr /><div><strong>乳房攝影檢查結果：Category 0,3,4,5需加填【檢查異常個案報告表】</strong></div>"
   },
   {
-    "fieldGroupClassName": "",
+    "fieldGroupClassName": "display-flex",
     "fieldGroup": [
       {
         "key": "_058mammo_category",
         "type": "radio",
-        "className": "display-column d-inline-flex",
+        "className": "flex-1",
         "templateOptions": {
           "label": "乳攝結果",
           "required": true,
@@ -800,7 +849,7 @@
       {
         "key": "_059cat4_subtype",
         "type": "radio",
-        "className": "display-column",
+        "className": "flex-1",
         "templateOptions": {
           "label": "無舊片的原因",
           "options": [
@@ -808,7 +857,8 @@
             { "value": "b", "label": "b-Moderate Intermediate suspicion" },
             { "value": "c", "label": "c-High Moderate suspicion" }
           ]
-        }
+        },
+        "hideExpression": "model._058mammo_category !== '4'"
       }
     ]
   },

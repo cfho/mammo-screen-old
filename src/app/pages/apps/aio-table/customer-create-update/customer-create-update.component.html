@@ -28,13 +28,16 @@
     </button>
   </div>
   <mat-divider class="-mx-6 text-border"></mat-divider>
+  
 
   <form [formGroup]="form" (ngSubmit)="save()">
     <mat-dialog-content fxLayout="column">
+      
       <formly-form
         [model]="model"
         [fields]="fields"
         [form]="form"
+        [options]="options"
       ></formly-form>
 
       <div
