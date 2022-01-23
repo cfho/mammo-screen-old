@@ -1,8 +1,7 @@
 [
-  
   {
     "className": "title1",
-    "template": "<hr /><div><strong>一，個案基本資料</strong></div>"
+    "template": "<hr /><div><strong>已匯入資料</strong></div>"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -16,6 +15,9 @@
         },
         "validators": {
           "validation": ["id"]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -27,6 +29,9 @@
           "label": "ID 類別",
           "required": true,
           "maxLength": 1
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -39,6 +44,9 @@
         },
         "validators": {
           "validation": ["day"]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -49,6 +57,9 @@
           "label": "姓名",
           "required": true,
           "maxLength": 15
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       }
     ]
@@ -64,6 +75,9 @@
           "label": "地址",
           "required": true,
           "maxLength": 50
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -73,6 +87,9 @@
         "templateOptions": {
           "label": "手機",
           "maxLength": 20
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       }
     ]
@@ -87,6 +104,9 @@
         "templateOptions": {
           "label": "電話區碼",
           "maxLength": 4
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -96,6 +116,9 @@
         "templateOptions": {
           "label": "市内電話",
           "maxLength": 20
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -105,6 +128,9 @@
         "templateOptions": {
           "label": "分機",
           "maxLength": 6
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       }
     ]
@@ -124,6 +150,9 @@
         { "value": "4", "label": "其他" },
         { "value": "5", "label": "自費健康檢查" }
       ]
+    },
+    "expressionProperties": {
+      "templateOptions.disabled": "formState.disabled"
     }
   },
   {
@@ -133,6 +162,7 @@
         "key": "_012isMammoCar",
         "type": "radio",
         "className": "flex-1",
+        "defaultValue": "1",
         "templateOptions": {
           "label": "乳攝車篩檢",
           "required": true,
@@ -140,6 +170,9 @@
             { "value": "1", "label": "是" },
             { "value": "0", "label": "否" }
           ]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -149,6 +182,9 @@
         "templateOptions": {
           "label": "乳攝車車號",
           "maxLength": 10
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         },
         "hideExpression": "model._012isMammoCar === '0'"
       },
@@ -160,6 +196,9 @@
           "label": "所屬單位機構代碼",
           "maxLength": 10,
           "description": "新店耕莘醫院"
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         },
         "hideExpression": "model._012isMammoCar === '0'"
       }
@@ -176,6 +215,9 @@
           "label": "乳攝儀器登設字號",
           "required": true,
           "maxLength": 10
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -186,10 +228,123 @@
           "label": "病歷號",
           "required": true,
           "maxLength": 25
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       }
     ]
   },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_050hospital_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳攝醫院代碼：耕莘醫院",
+          "required": true,
+          "maxLength": 10
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
+        }
+      },
+      {
+        "key": "_051mammo_day",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "乳房攝影攝日期",
+          "required": true,
+          "maxLength": 7
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
+        }
+      },
+      {
+        "key": "_052mammo_machine",
+        "type": "radio",
+        "className": "flex-1",
+        "defaultValue": "3",
+        "templateOptions": {
+          "label": "攝影儀機型",
+          "required": true,
+          "options": [
+            { "value": "2", "label": "CR 乳房X光攝影儀" },
+            { "value": "3", "label": "DR 乳房X光攝影儀" },
+            { "value": "4", "label": "乳房斷層攝影機(Tomosynthesis, Tomo)" }
+          ]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
+        }
+      }
+    ]
+  },
+  {
+    "key": "_057report_day",
+    "type": "input",
+    "className": "flex-1",
+    "templateOptions": {
+      "required": true,
+      "label": "攝影判讀日期",
+      "maxLength": 7
+    },
+    "expressionProperties": {
+      "templateOptions.disabled": "formState.disabled"
+    }
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_060report_Dr",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "放射科醫師姓名",
+          "max": 10,
+          "required": true
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
+        }
+      },
+      {
+        "key": "_061technician",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "醫事放射師姓名",
+          "max": 10,
+          "required": true
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
+        }
+      },
+      {
+        "key": "_062referHospital_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "轉診醫院代碼",
+          "max": 10
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
+        }
+      }
+    ]
+  },
+  {
+    "className": "title1",
+    "template": "<hr /><div><strong>一，個案基本資料</strong></div>"
+  },
+  
   {
     "key": "_017education",
     "type": "radio",
@@ -590,6 +745,7 @@
         "key": "_042isSelfExam",
         "type": "radio",
         "className": "flex-3",
+        "defaultValue": "2",
         "templateOptions": {
           "label": "是否有感覺到異常腫塊?",
           "required": true,
@@ -700,49 +856,10 @@
     ]
   },
   {
-    "className": "title2",
-    "template": "<hr /><div><strong>乳房X光攝影檢查結果（攝影醫院填寫）</strong></div>"
+    "className": "title1",
+    "template": "<hr /><div><strong>三，乳房X光攝影檢查結果（攝影醫院填寫）</strong></div>"
   },
-  {
-    "fieldGroupClassName": "display-flex",
-    "fieldGroup": [
-      {
-        "key": "_050hospital_code",
-        "type": "input",
-        "className": "flex-1",
-        "templateOptions": {
-          "label": "乳攝醫院代碼：耕莘醫院",
-          "required": true,
-          "maxLength": 10
-        }
-      },
-      {
-        "key": "_051mammo_day",
-        "type": "input",
-        "className": "flex-1",
-        "templateOptions": {
-          "label": "乳房攝影攝日期",
-          "required": true,
-          "maxLength": 7
-        }
-      },
-      {
-        "key": "_052mammo_machine",
-        "type": "radio",
-        "className": "flex-1",
-        "defaultValue": "3",
-        "templateOptions": {
-          "label": "攝影儀機型",
-          "required": true,
-          "options": [
-            { "value": "2", "label": "CR 乳房X光攝影儀" },
-            { "value": "3", "label": "DR 乳房X光攝影儀" },
-            { "value": "4", "label": "乳房斷層攝影機(Tomosynthesis, Tomo)" }
-          ]
-        }
-      }
-    ]
-  },
+  
   {
     "key": "_053touch_result",
     "type": "radio",
@@ -807,16 +924,6 @@
     ]
   },
   {
-    "key": "_057report_day",
-    "type": "input",
-    "className": "flex-1",
-    "templateOptions": {
-      "required": true,
-      "label": "攝影判讀日期",
-      "maxLength": 7
-    }
-  },
-  {
     "className": "title2",
     "template": "<hr /><div><strong>乳房攝影檢查結果：Category 0,3,4,5需加填【檢查異常個案報告表】</strong></div>"
   },
@@ -862,40 +969,7 @@
       }
     ]
   },
-  {
-    "fieldGroupClassName": "display-flex",
-    "fieldGroup": [
-      {
-        "key": "_060report_Dr",
-        "type": "input",
-        "className": "flex-1",
-        "templateOptions": {
-          "label": "放射科醫師姓名",
-          "max": 10,
-          "required": true
-        }
-      },
-      {
-        "key": "_061technician",
-        "type": "input",
-        "className": "flex-1",
-        "templateOptions": {
-          "label": "醫事放射師姓名",
-          "max": 10,
-          "required": true
-        }
-      },
-      {
-        "key": "_062referHospital_code",
-        "type": "input",
-        "className": "flex-1",
-        "templateOptions": {
-          "label": "轉診醫院代碼",
-          "max": 10
-        }
-      }
-    ]
-  },
+  
   {
     "className": "title2",
     "template": "<hr /><div>【檢查異常個案報告表】</div>"

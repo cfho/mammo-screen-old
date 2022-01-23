@@ -66,8 +66,8 @@
 <!-- </div> -->
 
 <mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
-  <button mat-menu-item>
-    <mat-icon [icIcon]="icPrint"></mat-icon>
+  <button mat-menu-item (click)="toggleDisabled()">
+    <mat-icon [icIcon]="icPrint" ></mat-icon>
     <span>Print</span>
   </button>
 

@@ -165,7 +165,8 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   toggleDisabled() {
+    console.log('before change: ' + this.options.formState.disabled);
     this.options.formState.disabled = !this.options.formState.disabled;
-    console.log(this.options.formState.disabled)
+    console.log('after change: ' + this.options.formState.disabled);
   }
 }
