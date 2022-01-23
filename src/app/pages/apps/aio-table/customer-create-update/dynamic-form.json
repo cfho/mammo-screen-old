@@ -999,8 +999,13 @@
   },
   
   {
-    "className": "title2",
+    "className": "title1",
     "template": "<hr /><div>【檢查異常個案報告表】</div>"
+  },
+  {
+    "className": "title2",
+    "template": "<hr /><div>【Mass】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "key": "_063IsMass",
@@ -1008,7 +1013,8 @@
     "className": "flex-1",
     "templateOptions": {
       "label": "1.Mass"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1339,13 +1345,19 @@
     "hideExpression": "!model._063IsMass"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Calcification】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_096isCal",
     "type": "checkbox",
     "className": "flex-1 ",
     "defaultValue": false,
     "templateOptions": {
       "label": "2.Calcifications"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1488,12 +1500,18 @@
     "hideExpression": "!model._096isCal"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Asymmetry】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_120isAsym",
     "type": "checkbox",
     "className": "flex-1 ",
     "templateOptions": {
       "label": "3.Aymmetry"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1644,12 +1662,18 @@
     "hideExpression": "!model._120isAsym"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Distorsion】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_136isDistorsion",
     "type": "checkbox",
     "className": "flex-1 ",
     "templateOptions": {
       "label": "4.Architectural distorsion"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1776,12 +1800,18 @@
     "hideExpression": "!model._136isDistorsion"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Retraction】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_149isRectraction",
     "type": "checkbox",
     "className": "flex-1 ",
     "templateOptions": {
       "label": "5.Thickening or retraction of the skin and/or nipple"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1806,12 +1836,18 @@
     "hideExpression": "!model._149isRectraction"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【LN】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_152isLN",
     "type": "checkbox",
     "className": "flex-1 ",
     "templateOptions": {
       "label": "6.Dense or enlarged axillary LNs"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1836,12 +1872,18 @@
     "hideExpression": "!model._152isLN"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Dilated Ducts】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_155isDuct",
     "type": "checkbox",
     "className": "flex-1 ",
     "templateOptions": {
       "label": "7.Dilated lactiferous ducts"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1866,13 +1908,19 @@
     "hideExpression": "!model._155isDuct"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Diffuse skin thickening】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_158isSkin",
     "type": "checkbox",
     "className": "flex-1 ",
     "defaultValue": false,
     "templateOptions": {
       "label": "8.Diffuse thickening of the skin and increased density"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "fieldGroupClassName": "display-flex",
@@ -1897,12 +1945,18 @@
     "hideExpression": "!model._158isSkin"
   },
   {
+    "className": "title2",
+    "template": "<hr /><div>【Others】</div>",
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
+  },
+  {
     "key": "_161isOther",
     "type": "checkbox",
     "className": "flex-1 ",
     "templateOptions": {
       "label": "9.Others"
-    }
+    },
+    "hideExpression": "model._058mammo_category === '1' || model._058mammo_category === '2'"
   },
   {
     "key": "_162Other",
