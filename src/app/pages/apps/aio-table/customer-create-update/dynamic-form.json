@@ -770,36 +770,64 @@
     "fieldGroupClassName": "display-flex",
     "fieldGroup": [
       {
-        "key": "_043isTouch",
-        "type": "checkbox",
+        "key": "_046isNoExam",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": "1",
         "templateOptions": {
-          "label": "醫護人員觸診"
+          "label": "皆未做過",
+          "options": [
+            { "value": "1", "label": "是" },
+            { "value": " ", "label": "有做檢查：" }
+          ]
+        }
+      },
+      {
+        "key": "_043isTouch",
+        "type": "radio",
+        "className": "flex-1",
+        "defaultValue": " ",
+        "templateOptions": {
+          "label": "醫護人員觸診？",
+          "options": [
+            { "value": "1", "label": "有" },
+            { "value": " ", "label": "無" }
+          ]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "model._046isNoExam =='1'"
         }
       },
       {
         "key": "_044isMammo",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": " ",
         "templateOptions": {
-          "label": "乳房 X 光攝影檢查"
+          "label": "乳房X光攝影檢查？",
+          "options": [
+            { "value": "1", "label": "有" },
+            { "value": " ", "label": "無" }
+          ]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "model._046isNoExam =='1'"
         }
       },
       {
         "key": "_045isSono",
-        "type": "checkbox",
+        "type": "radio",
         "className": "flex-1",
+        "defaultValue": " ",
         "templateOptions": {
-          "label": "乳房超音波檢查"
-        }
-      },
-      {
-        "key": "_047isOP",
-        "type": "checkbox",
-        "className": "flex-1",
-        "defaultValue": "1",
-        "templateOptions": {
-          "label": "以上皆未做過"
+          "label": "乳房超音波檢查？",
+          "options": [
+            { "value": "1", "label": "有" },
+            { "value": " ", "label": "無" }
+          ]
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "model._046isNoExam =='1'"
         }
       }
     ]

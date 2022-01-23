@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -12,9 +12,11 @@ export interface Field {
   id: string;
   chinese: string;
   key: string;
+  defaulValue: string;
   number: number;
   description: string;
   required: boolean;
+  type: string;
 }
 
 @Injectable({
@@ -25,6 +27,7 @@ export class FirebaseService {
   private fieldsCollection: AngularFirestoreCollection<Field>;
   // private itemDoc: AngularFirestoreDocument<Customer>;
   item: Observable<Customer>;
+  fieldsDetail: Field[];
 
   constructor(private afs: AngularFirestore) {
     this.itemsCollection = afs.collection<Customer>("toFirebase");
@@ -32,7 +35,10 @@ export class FirebaseService {
   }
 
   getFields() {
-    return this.fieldsCollection.valueChanges();
+    this.fieldsCollection.valueChanges().subscribe((data) => {
+      this.fieldsDetail = data;
+      console.log(this.fieldsDetail);
+    });
   }
 
   getAllItems() {
@@ -41,7 +47,8 @@ export class FirebaseService {
 
   updateItem(customer: Customer) {
     const path = customer.id;
-    this.afs.doc<Customer>("toFirebase/" + path).update(customer);
+    // this.afs.doc<Customer>("toFirebase/" + path).update(customer);
+    this.afs.doc<Customer>("toFirebase/" + path).set(customer);
   }
 
   newItem(customer: Customer) {
@@ -51,6 +58,6 @@ export class FirebaseService {
 
   deleteItem(customer: Customer) {
     const path = customer.id;
-    this.afs.doc<Customer>("toFirebase/" + path).delete()
+    this.afs.doc<Customer>("toFirebase/" + path).delete();
   }
 }

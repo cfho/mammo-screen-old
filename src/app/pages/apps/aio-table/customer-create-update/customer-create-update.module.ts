@@ -39,7 +39,7 @@ export function minlengthValidationMessage(err, field) {
 
 
 export function maxlengthValidationMessage(err, field) {
-  console.log(err);
+  // console.log(err);
   return `必須小於或等於 ${field.templateOptions.maxLength} 個數`;
 }
 

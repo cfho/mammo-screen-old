@@ -11,6 +11,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
+import { APP_INITIALIZER } from '@angular/core';
 
 
 
@@ -21,6 +22,7 @@ import { FormlyModule, FormlyFieldConfig,
   FORMLY_CONFIG } from '@ngx-formly/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { FirebaseService } from './firebase.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +46,16 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
     FormlyMaterialModule
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: resourceProviderFactory,
+      deps: [FirebaseService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function resourceProviderFactory(provider: FirebaseService) {
+  return () => provider.getFields();
+}
