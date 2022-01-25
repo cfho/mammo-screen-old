@@ -40,6 +40,11 @@ import icMap from "@iconify/icons-ic/twotone-map";
 import { FirebaseService } from "src/app/firebase.service";
 import { Customer } from "src/app/pages/apps/aio-table/interfaces/customer.model";
 
+import { fieldsData } from "./fields-data";
+
+import { Workbook } from "exceljs";
+import * as fs from "file-saver";
+
 @UntilDestroy()
 @Component({
   selector: "vex-aio-table",
@@ -137,6 +142,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   icMoreHoriz = icMoreHoriz;
   icFolder = icFolder;
 
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -152,6 +158,24 @@ export class AioTableComponent implements OnInit, AfterViewInit {
    * Example on how to get data and pass it to the table - usually you would want a dedicated service with a HTTP request for this
    * We are simulating this request here.
    */
+
+  exportExcel() {
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet("ProductSheet");
+    // this.getData().subscribe((data) => {
+      let header = [];
+      fieldsData.map(key => header.push({header: key.substring(1, 4), key: key}));
+      // console.log(header);
+      worksheet.columns = header;
+      worksheet.addRows(this.customers, "n");
+
+      workbook.xlsx.writeBuffer().then((data) => {
+        let blob = new Blob([data], { type: "text/csv" });
+        fs.saveAs(blob, "ProductData.csv");
+      });
+    // });
+  }
+
   getData() {
     // return of(aioTableData.map(customer => new Customer(customer)));
     return this.afService.getAllItems();

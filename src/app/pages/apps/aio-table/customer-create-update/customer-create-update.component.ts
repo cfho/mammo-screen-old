@@ -21,7 +21,9 @@ import { Field, FirebaseService } from "src/app/firebase.service";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 
 import JSONdata from "./dynamic-form.json";
-import data from "@iconify/icons-ic/twotone-more-vert";
+// import data from "@iconify/icons-ic/twotone-more-vert";
+
+
 
 @Component({
   selector: "vex-customer-create-update",
@@ -88,6 +90,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
       this.defaults = {} as Customer;
     }
   }
+
 
   firebaseToFormly() {
     const checkboxFieldsArr = this.fieldsDetail
