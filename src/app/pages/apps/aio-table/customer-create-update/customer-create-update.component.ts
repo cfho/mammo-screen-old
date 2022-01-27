@@ -21,6 +21,7 @@ import { Field, FirebaseService } from "src/app/firebase.service";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 
 import JSONdata from "./dynamic-form.json";
+
 // import data from "@iconify/icons-ic/twotone-more-vert";
 
 
@@ -49,14 +50,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
     5: "_031menopause_causes_5",
   };
 
-  deleteFields = [
-    "id",
-    "_031menopause_causes_2",
-    "_031menopause_causes_3",
-    "_031menopause_causes_4",
-    "_031menopause_causes_5",
-  ];
-
   static id = 100;
   mode: "create" | "update" = "create";
   icMoreVert = icMoreVert;
@@ -80,7 +73,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.fillSpaces(this.defaults);
     if (this.defaults) {
       this.mode = "update";
       this.menopauseCausesSplit();
@@ -124,22 +116,29 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   fillSpaces(obj: Customer) {
-    let keyNumberObj = {};
+    const keyNumberObj = this.afService.fieldsKeyNumberObj;
+    // console.log(this.fieldsDetail);
+    console.log(keyNumberObj);
 
-    this.fieldsDetail.map((fieldObj) => {
-      keyNumberObj[fieldObj.key] = fieldObj.number;
-    });
-    Object.keys(obj)
-      .filter((key) => this.deleteFields.indexOf(key) == -1)
-      .map((key) => {
+    Object.keys(keyNumberObj)
+      .filter(key => obj[key])
+      .map(key => {
         // console.log("資料key： " + key);
+        // console.log("資料value： " + obj[key]);
         // console.log("資料value長： " + obj[key].length);
         // console.log("預計value長： " + keyNumberObj[key]);
-        // console.log(obj[key]);
         obj[key] = obj[key].padEnd(+keyNumberObj[key]);
         // console.log('處理后資料value長： ' + obj[key].length);
         // console.log(obj[key]);
-      });
+      })
+    Object.keys(keyNumberObj)
+      .filter(key => !obj[key])
+      .map(key => {
+        console.log("資料key： " + key);
+        console.log("預計value長： " + keyNumberObj[key]);
+        obj[key] = "".padEnd(+keyNumberObj[key]);
+        console.log('處理后資料value長： ' + obj[key].length);
+      })
   }
 
   removeAbnormForm(obj: Customer) {

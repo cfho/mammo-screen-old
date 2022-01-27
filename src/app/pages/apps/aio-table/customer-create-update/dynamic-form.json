@@ -535,6 +535,7 @@
         "key": "_030menopause_period",
         "type": "input",
         "className": "flex-1",
+        "defaultValue": "  ",
         "templateOptions": {
           "label": "停經年齡",
           "maxLength": 2
@@ -555,6 +556,7 @@
         "key": "_031menopause_causes_2",
         "type": "checkbox",
         "className": "flex-1",
+        "defaultValue": false,
         "templateOptions": {
           "label": "自然停經"
         },
@@ -564,6 +566,7 @@
         "key": "_031menopause_causes_3",
         "type": "checkbox",
         "className": "flex-1",
+        "defaultValue": false,
         "templateOptions": {
           "label": "子宮切除"
         },
@@ -573,6 +576,7 @@
         "key": "_031menopause_causes_4",
         "type": "checkbox",
         "className": "flex-1",
+        "defaultValue": false,
         "templateOptions": {
           "label": "卵巢切除"
         },
@@ -582,6 +586,7 @@
         "key": "_031menopause_causes_5",
         "type": "checkbox",
         "className": "flex-1",
+        "defaultValue": false,
         "templateOptions": {
           "label": "其他"
         },
