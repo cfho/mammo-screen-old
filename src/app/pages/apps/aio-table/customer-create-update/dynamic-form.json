@@ -306,7 +306,7 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "放射科醫師姓名",
-          "max": 10,
+          "maxLength": 10,
           "required": true
         },
         "expressionProperties": {
@@ -319,7 +319,7 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "醫事放射師姓名",
-          "max": 10,
+          "maxLength": 10,
           "required": true
         },
         "expressionProperties": {
@@ -332,7 +332,7 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "轉診醫院代碼",
-          "max": 10
+          "maxLength": 10
         },
         "expressionProperties": {
           "templateOptions.disabled": "formState.disabled"
@@ -422,7 +422,7 @@
         "className": "flex-3",
         "templateOptions": {
           "label": "其他癌症描述",
-          "max": 25
+          "maxLength": 25
         },
         "hideExpression": "model._020past_hx !== '3'"
       }
@@ -598,7 +598,7 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "停經原因其他敘述",
-          "max": 25
+          "maxLength": 25
         },
         "hideExpression": "model._029isMenopause === '0'"
       }
@@ -733,7 +733,8 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "服用幾年(避)",
-          "type": "number"
+          "type": "number",
+          "maxLength": 2
         },
         "hideExpression": "model._039isContraceptive === '0'"
       }

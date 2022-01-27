@@ -134,10 +134,10 @@ export class CustomerCreateUpdateComponent implements OnInit {
     Object.keys(keyNumberObj)
       .filter(key => !obj[key])
       .map(key => {
-        console.log("資料key： " + key);
-        console.log("預計value長： " + keyNumberObj[key]);
+        // console.log("資料key： " + key);
+        // console.log("預計value長： " + keyNumberObj[key]);
         obj[key] = "".padEnd(+keyNumberObj[key]);
-        console.log('處理后資料value長： ' + obj[key].length);
+        // console.log('處理后資料value長： ' + obj[key].length);
       })
   }
 

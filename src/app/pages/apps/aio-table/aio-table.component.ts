@@ -161,10 +161,22 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     let workbook = new Workbook();
     let worksheet = workbook.addWorksheet("ProductSheet");
     worksheet.columns = header;
-    worksheet.addRows(this.customers, "n");
+
+    const exportData = this.customers;
+    for (const obj of exportData) {
+      // 選出 report category = 1 or 2
+      if (obj._058mammo_category == "1" || obj._058mammo_category == "2") {
+        Object.keys(obj)
+          .filter((key) => +key.substring(1, 4) > 62) // filter _62 以後的item
+          .map((key) => delete obj[key]); // remove _062 以後的item
+      }
+    }
+    console.log(exportData);
+
+    worksheet.addRows(exportData, "n");
     workbook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], { type: "text/csv" });
-      fs.saveAs(blob, "ProductData.csv");
+      fs.saveAs(blob, "下載資料.csv");
     });
   }
 
@@ -176,7 +188,6 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // this.afService.getFields().subscribe(console.log);
     this.getData().subscribe((customers) => {
-      console.log(customers);
       this.subject$.next(customers);
     });
 
@@ -184,6 +195,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
 
     this.data$.pipe(filter<Customer[]>(Boolean)).subscribe((customers) => {
       this.customers = customers;
+      console.log(customers);
       this.dataSource.data = customers;
     });
 
