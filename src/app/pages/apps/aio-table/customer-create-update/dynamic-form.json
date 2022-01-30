@@ -81,7 +81,7 @@
       {
         "key": "_006current_residence",
         "type": "input",
-        "className": "flex-2",
+        "className": "flex-4",
         "templateOptions": {
           "label": "地址",
           "required": true,
@@ -94,10 +94,13 @@
       {
         "key": "_010mobile",
         "type": "input",
-        "className": "flex-1",
+        "className": "flex-2",
         "templateOptions": {
           "label": "手機",
           "maxLength": 20
+        },
+        "validators": {
+          "validation": ["number"]
         },
         "expressionProperties": {
           "templateOptions.disabled": "formState.disabled"
@@ -271,6 +274,9 @@
           "required": true,
           "maxLength": 7
         },
+        "validators": {
+          "validation": ["day"]
+        },
         "expressionProperties": {
           "templateOptions.disabled": "formState.disabled"
         }
@@ -303,6 +309,9 @@
       "required": true,
       "label": "攝影判讀日期",
       "maxLength": 7
+    },
+    "validators": {
+      "validation": ["day"]
     },
     "expressionProperties": {
       "templateOptions.disabled": "formState.disabled"
@@ -546,6 +555,9 @@
           "label": "初經年齡",
           "required": true,
           "maxLength": 2
+        },
+        "validators": {
+          "validation": ["number"]
         }
       },
       {

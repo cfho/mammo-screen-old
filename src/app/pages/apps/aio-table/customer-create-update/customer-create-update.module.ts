@@ -47,15 +47,22 @@ export function idValidator(control: FormControl): ValidationErrors {
   return /^[A-Z][0-9]{9}/.test(control.value) ? null : { id: true };
 }
 
-export function idValidatorMessage(err, field: FormlyFieldConfig) {
-  return `"${field.formControl.value}" 不是正確的身份證號`;
-}
 export function dayValidator(control: FormControl): ValidationErrors {
   return /[0-9]{7}/.test(control.value) ? null : { day: true };
 }
+export function numberValidator(control: FormControl): ValidationErrors {
+  return /[0-9]*/.test(control.value) ? null : { number: true };
+}
+
+export function idValidatorMessage(err, field: FormlyFieldConfig) {
+  return `不是正確的身份證號`;
+}
 
 export function dayValidatorMessage(err, field: FormlyFieldConfig) {
-  return `"${field.formControl.value}" YYYMMDD 民國年月日,例如 1110101`;
+  return `YYYMMDD 民國年月日,例如 1110101`;
+}
+export function numberValidatorMessage(err, field: FormlyFieldConfig) {
+  return `請輸入數字`;
 }
 
 @NgModule({
@@ -78,7 +85,8 @@ export function dayValidatorMessage(err, field: FormlyFieldConfig) {
       types: [{ name: "tabs", component: FormlyFieldTabs }],
       validators: [
         { name: "id", validation: idValidator },
-        { name: "day", validation: dayValidator }
+        { name: "day", validation: dayValidator },
+        { name: "number", validation: numberValidator }
       ],
       validationMessages: [
         { name: "required", message: "這是必填資料" },
@@ -87,6 +95,7 @@ export function dayValidatorMessage(err, field: FormlyFieldConfig) {
         { name: 'maxlength', message: maxlengthValidationMessage },
         { name: "id", message: idValidatorMessage },
         { name: "day", message: dayValidatorMessage },
+        { name: "number", message: numberValidatorMessage },
       ],
     }),
     FormlyMaterialModule,

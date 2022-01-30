@@ -4,6 +4,7 @@ export class Customer {
   techName?: string;
   report?: string;
   labels?: any;
+  accessionNumber?: string;
   _001ID_number: string;
   _002ID_class: string;
   _003name: string;
