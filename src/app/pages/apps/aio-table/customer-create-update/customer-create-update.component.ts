@@ -21,10 +21,9 @@ import { Field, FirebaseService } from "src/app/firebase.service";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 
 import JSONdata from "./dynamic-form.json";
+import { log } from "console";
 
 // import data from "@iconify/icons-ic/twotone-more-vert";
-
-
 
 @Component({
   selector: "vex-customer-create-update",
@@ -41,6 +40,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
       disabled: true,
     },
   };
+  disabled: true;
 
   fieldsDetail: Field[];
   menopuaseCausesObj = {
@@ -75,6 +75,8 @@ export class CustomerCreateUpdateComponent implements OnInit {
   ngOnInit() {
     if (this.defaults) {
       this.mode = "update";
+      this.countyAreaCode();
+      this.nameCode();
       this.menopauseCausesSplit();
       this.firebaseToFormly();
       this.model = this.defaults;
@@ -82,7 +84,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
       this.defaults = {} as Customer;
     }
   }
-
 
   firebaseToFormly() {
     const checkboxFieldsArr = this.fieldsDetail
@@ -121,8 +122,8 @@ export class CustomerCreateUpdateComponent implements OnInit {
     console.log(keyNumberObj);
 
     Object.keys(keyNumberObj)
-      .filter(key => obj[key])
-      .map(key => {
+      .filter((key) => obj[key])
+      .map((key) => {
         // console.log("資料key： " + key);
         // console.log("資料value： " + obj[key]);
         // console.log("資料value長： " + obj[key].length);
@@ -130,15 +131,15 @@ export class CustomerCreateUpdateComponent implements OnInit {
         obj[key] = obj[key].padEnd(+keyNumberObj[key]);
         // console.log('處理后資料value長： ' + obj[key].length);
         // console.log(obj[key]);
-      })
+      });
     Object.keys(keyNumberObj)
-      .filter(key => !obj[key])
-      .map(key => {
+      .filter((key) => !obj[key])
+      .map((key) => {
         // console.log("資料key： " + key);
         // console.log("預計value長： " + keyNumberObj[key]);
         obj[key] = "".padEnd(+keyNumberObj[key]);
         // console.log('處理后資料value長： ' + obj[key].length);
-      })
+      });
   }
 
   removeAbnormForm(obj: Customer) {
@@ -152,6 +153,41 @@ export class CustomerCreateUpdateComponent implements OnInit {
       //     delete obj[item[0]];
       //   }
       // });
+    }
+  }
+
+  nameCode() {
+    const drName: string = this.defaults.drName;
+    const techName: string = this.defaults.techName;
+    const personnelCodeObj = this.afService.personnelCodeObj;
+
+    if (personnelCodeObj[drName]) {
+      // this.defaults.drName = this.defaults._060report_Dr;
+      this.defaults._060report_Dr = personnelCodeObj[drName];
+    } else {
+      alert(`報告醫師: ${drName}, 找不到`);
+    }
+
+    if (personnelCodeObj[techName]) {
+      // this.defaults.techName = this.defaults._061technician;
+      this.defaults._061technician = personnelCodeObj[techName];
+    } else {
+      alert(`放射師： ${drName}, 找不到`);
+    }
+  }
+
+  countyAreaCode() {
+    const data: string = this.defaults._006current_residence;
+    const countyCode = data.substring(0, 3);
+    const areaCode = data.substring(3, 6);
+    const countyCodeObj = this.afService.countyCodeObj;
+    const areaCodeObj = this.afService.areaCodeObj;
+
+    if (countyCodeObj[countyCode] && areaCodeObj[areaCode]) {
+      this.defaults._005current_area_code =
+        countyCodeObj[countyCode] + areaCodeObj[areaCode];
+    } else {
+      alert(`地址: ${data}, 鄉鎮市找不到`);
     }
   }
 
@@ -202,6 +238,8 @@ export class CustomerCreateUpdateComponent implements OnInit {
     this.menopauseCausesSum();
     this.formlyToFirebase();
     this.removeAbnormForm(customer);
+
+    customer._005current_area_code;
     this.fillSpaces(customer);
     console.log(customer);
     customer.id = this.defaults.id;

@@ -1,5 +1,9 @@
 export class Customer {
   id?: string;
+  drName?: string;
+  techName?: string;
+  report?: string;
+  labels?: any;
   _001ID_number: string;
   _002ID_class: string;
   _003name: string;
@@ -166,8 +170,6 @@ export class Customer {
   _160skin_left: string;
   _161isOther: string;
   _162Other: string;
-
-  labels?: any;
 
   constructor(customer) {
     this._001ID_number = customer._001ID_number;

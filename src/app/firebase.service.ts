@@ -33,22 +33,31 @@ export const deleteFields = [
 export class FirebaseService {
   private itemsCollection: AngularFirestoreCollection<Customer>;
   private fieldsCollection: AngularFirestoreCollection<Field>;
-  // private itemDoc: AngularFirestoreDocument<Customer>;
+  private personnelCollection: AngularFirestoreCollection;
+  private countyCollection: AngularFirestoreCollection;
+  private areaCollection: AngularFirestoreCollection;
+  
   item: Observable<Customer>;
 
   // get fields with different styles;
   fieldsKeyArr;
   fieldsDetail: Field[]; // [{key: '_001ID_number', number: 10, ...}, {}, ...]
   fieldsHeaderObjArr: { header: string; key: string }[]; // [{header: '001', key: '_001ID_number'}, {}, ...]
-  fieldsKeyNumberObj: { key: string; number: number }; // {key: '_001ID_number', number: 10}, ...}
+  fieldsKeyNumberObj: {}; // {_001ID_number: "10", ...}
+  personnelCodeObj: {}; // {陳達欣: '14138', ...}
+  countyCodeObj: {}; // {台北市: '01', ...}
+  areaCodeObj: {}; // {中正區: '01', ...}
 
   constructor(private afs: AngularFirestore) {
     this.itemsCollection = afs.collection<Customer>("toFirebase");
     this.fieldsCollection = afs.collection<Field>("fields");
+    this.personnelCollection = afs.collection("personnel_code");
+    this.countyCollection = afs.collection("county_code");
+    this.areaCollection = afs.collection("area_code");
   }
 
   // return [{header: '001', key: '_001ID_number'}, {}, ...
-  setFieldsHeaderObjArr() {
+  private setFieldsHeaderObjArr() {
     let header: { header: string; key: string }[] = [];
     fieldsData.map((key) =>
       header.push({ header: key.substring(1, 4), key: key })
@@ -57,22 +66,54 @@ export class FirebaseService {
     console.log(header);
   }
 
-
-  // return {key: '_001ID_number', number: 10}, ...}
-  setFieldsKeyNumberObj(fieldsDetail) {
+  // return {_001ID_number: 10, ...}
+  private setFieldsKeyNumberObj(fieldsDetail) {
     let keyNumberObj = {} as { key: string; number: number };
     fieldsDetail.map((fieldObj) => {
       keyNumberObj[fieldObj.key] = fieldObj.number;
     });
     this.fieldsKeyNumberObj = keyNumberObj;
-    deleteFields.map(key => delete this.fieldsKeyNumberObj[key]);
+    deleteFields.map((key) => delete this.fieldsKeyNumberObj[key]);
     console.log(this.fieldsKeyNumberObj);
+  }
+
+  private getPersonnelCodeObj() {
+    this.personnelCollection.valueChanges().subscribe((data) => {
+      let newObj = {};
+      // console.log(data);
+      data.map((obj) => (newObj[obj['key']] = obj['code']));
+      this.personnelCodeObj = newObj;
+      console.log(this.personnelCodeObj);
+    });
+  }
+
+  private getCountyCodeObj() {
+    this.countyCollection.valueChanges().subscribe((data) => {
+      let newObj = {};
+      // console.log(data);
+      data.map((obj) => (newObj[obj['key']] = obj['code']));
+      this.countyCodeObj = newObj;
+      console.log(this.countyCodeObj);
+    });
+  }
+
+  private getAreaCodeObj() {
+    this.areaCollection.valueChanges().subscribe((data) => {
+      let newObj = {};
+      // console.log(data);
+      data.map((obj) => (newObj[obj['key']] = obj['code']));
+      this.areaCodeObj = newObj;
+      console.log(this.areaCodeObj);
+    });
   }
 
   // return [{key: '_001ID_number', number: 10, ...}, {}, ...]
   getFields() {
     this.fieldsKeyArr = fieldsData;
     this.setFieldsHeaderObjArr();
+    this.getPersonnelCodeObj();
+    this.getCountyCodeObj();
+    this.getAreaCodeObj();
     this.fieldsCollection.valueChanges().subscribe((data) => {
       this.fieldsDetail = data;
       this.setFieldsKeyNumberObj(data);

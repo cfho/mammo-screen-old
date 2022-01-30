@@ -68,6 +68,17 @@
     "fieldGroupClassName": "display-flex",
     "fieldGroup": [
       {
+        "key": "_005current_area_code",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "地區代碼",
+          "required": true,
+          "maxLength": 4,
+          "readonly": true
+        }
+      },
+      {
         "key": "_006current_residence",
         "type": "input",
         "className": "flex-2",
@@ -301,11 +312,21 @@
     "fieldGroupClassName": "display-flex",
     "fieldGroup": [
       {
+        "key": "drName",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "醫師姓名",
+          "maxLength": 10,
+          "readonly": true
+        }
+      },
+      {
         "key": "_060report_Dr",
         "type": "input",
         "className": "flex-1",
         "templateOptions": {
-          "label": "放射科醫師姓名",
+          "label": "醫師代碼",
           "maxLength": 10,
           "required": true
         },
@@ -314,11 +335,21 @@
         }
       },
       {
+        "key": "techName",
+        "type": "input",
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "放射師姓名",
+          "maxLength": 10,
+          "readonly": true
+        }
+      },
+      {
         "key": "_061technician",
         "type": "input",
         "className": "flex-1",
         "templateOptions": {
-          "label": "醫事放射師姓名",
+          "label": "放射師代碼",
           "maxLength": 10,
           "required": true
         },
@@ -781,9 +812,9 @@
         "className": "flex-1",
         "defaultValue": "1",
         "templateOptions": {
-          "label": "皆未做過",
+          "label": "有做檢查嗎？",
           "options": [
-            { "value": "1", "label": "是" },
+            { "value": "1", "label": "沒有" },
             { "value": " ", "label": "有做檢查：" }
           ]
         }
@@ -851,7 +882,7 @@
         "className": "flex-1",
         "defaultValue": "F",
         "templateOptions": {
-          "label": "是",
+          "label": "有手術嗎？",
           "required": true,
           "options": [
             { "value": "F", "label": "否" },
