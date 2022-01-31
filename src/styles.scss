@@ -29,6 +29,17 @@
   // --color-warn-contrast: black;
 }
 
+/* for aio-table table */
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+  background-color: lightgrey;
+}
+
+
 #formly_93_radio__011payment_4{
   flex-direction: row;
 }

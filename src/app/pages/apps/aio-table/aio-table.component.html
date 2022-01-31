@@ -1,12 +1,19 @@
 <vex-page-layout>
-
-  <vex-page-layout-header class="pb-16" fxLayout="column" fxLayoutAlign="center start">
-    <div [class.container]="layoutCtrl.value === 'boxed'"
-         [class.px-gutter]="layoutCtrl.value === 'fullwidth'"
-         class="flex flex-col justify-between w-full sm:flex-row">
+  <vex-page-layout-header
+    class="pb-16"
+    fxLayout="column"
+    fxLayoutAlign="center start"
+  >
+    <div
+      [class.container]="layoutCtrl.value === 'boxed'"
+      [class.px-gutter]="layoutCtrl.value === 'fullwidth'"
+      class="flex flex-col justify-between w-full sm:flex-row"
+    >
       <div>
         <h1 class="mt-0 mb-1 title">All-In-One Table</h1>
-        <vex-breadcrumbs [crumbs]="['Apps', 'All-In-One Table']"></vex-breadcrumbs>
+        <vex-breadcrumbs
+          [crumbs]="['Apps', 'All-In-One Table']"
+        ></vex-breadcrumbs>
       </div>
 
       <mat-button-toggle-group [formControl]="layoutCtrl" class="mt-4 sm:mt-0">
@@ -16,90 +23,138 @@
     </div>
   </vex-page-layout-header>
 
-  <vex-page-layout-content [class.container]="layoutCtrl.value === 'boxed'"
-                           [class.px-gutter]="layoutCtrl.value === 'fullwidth'"
-                           class="-mt-6">
-
+  <vex-page-layout-content
+    [class.container]="layoutCtrl.value === 'boxed'"
+    [class.px-gutter]="layoutCtrl.value === 'fullwidth'"
+    class="-mt-6"
+  >
     <div class="-mt-16 overflow-auto card">
-      <div class="sticky left-0 h-16 px-6 border-b bg-app-bar" fxLayout="row" fxLayoutAlign="start center">
-        <h2 class="my-0 title ltr:pr-4 rtl:pl-4 ltr:mr-4 rtl:ml-4 ltr:border-r rtl:border-l" fxFlex="none" fxHide.xs>
+      <div
+        class="sticky left-0 h-16 px-6 border-b bg-app-bar"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <h2
+          class="my-0 title ltr:pr-4 rtl:pl-4 ltr:mr-4 rtl:ml-4 ltr:border-r rtl:border-l"
+          fxFlex="none"
+          fxHide.xs
+        >
           <span *ngIf="selection.isEmpty()">Customers</span>
-          <span *ngIf="selection.hasValue()">{{ selection.selected.length }}
-            Customer<span *ngIf="selection.selected.length > 1">s</span> selected</span>
+          <span *ngIf="selection.hasValue()"
+            >{{ selection.selected.length }} Customer<span
+              *ngIf="selection.selected.length > 1"
+              >s</span
+            >
+            selected</span
+          >
         </h2>
 
-        <div *ngIf="selection.hasValue()" class="pr-4 mr-4 border-r" fxFlex="none">
-          <button (click)="deleteCustomers(selection.selected)"
-                  color="primary"
-                  mat-icon-button
-                  matTooltip="Delete selected"
-                  type="button">
+        <div
+          *ngIf="selection.hasValue()"
+          class="pr-4 mr-4 border-r"
+          fxFlex="none"
+        >
+          <button
+            (click)="deleteCustomers(selection.selected)"
+            color="primary"
+            mat-icon-button
+            matTooltip="Delete selected"
+            type="button"
+          >
             <mat-icon [icIcon]="icDelete"></mat-icon>
           </button>
 
-          <button color="primary" mat-icon-button matTooltip="Another action" type="button">
+          <button
+            color="primary"
+            mat-icon-button
+            matTooltip="Another action"
+            type="button"
+          >
             <mat-icon [icIcon]="icFolder"></mat-icon>
           </button>
         </div>
 
-        <div class="px-4 border rounded-full bg-card"
-             fxFlex="400px"
-             fxFlex.lt-md="auto"
-             fxHide.xs
-             fxLayout="row"
-             fxLayoutAlign="start center">
+        <div
+          class="px-4 border rounded-full bg-card"
+          fxFlex="400px"
+          fxFlex.lt-md="auto"
+          fxHide.xs
+          fxLayout="row"
+          fxLayoutAlign="start center"
+        >
           <ic-icon [icIcon]="icSearch" size="20px"></ic-icon>
-          <input [formControl]="searchCtrl"
-                 class="w-full px-4 py-3 bg-transparent border-0 outline-none"
-                 placeholder="Search..."
-                 type="search">
+          <input
+            [formControl]="searchCtrl"
+            class="w-full px-4 py-3 bg-transparent border-0 outline-none"
+            placeholder="Search..."
+            type="search"
+          />
         </div>
 
         <span fxFlex></span>
 
-        <button class="ml-4" fxFlex="none" fxHide.gt-xs mat-icon-button type="button">
+        <button
+          class="ml-4"
+          fxFlex="none"
+          fxHide.gt-xs
+          mat-icon-button
+          type="button"
+        >
           <mat-icon [icIcon]="icSearch"></mat-icon>
         </button>
 
-        <button [matMenuTriggerFor]="columnFilterMenu"
-                class="ml-4"
-                fxFlex="none"
-                mat-icon-button
-                matTooltip="Filter Columns"
-                type="button">
+        <button
+          [matMenuTriggerFor]="columnFilterMenu"
+          class="ml-4"
+          fxFlex="none"
+          mat-icon-button
+          matTooltip="Filter Columns"
+          type="button"
+        >
           <mat-icon [icIcon]="icFilterList"></mat-icon>
         </button>
 
-        <button (click)="createCustomer()"
-                class="ml-4"
-                color="primary"
-                fxFlex="none"
-                mat-mini-fab
-                matTooltip="Add Customer"
-                type="button">
+        <button
+          (click)="createCustomer()"
+          class="ml-4"
+          color="primary"
+          fxFlex="none"
+          mat-mini-fab
+          matTooltip="Add Customer"
+          type="button"
+        >
           <mat-icon [icIcon]="icAdd"></mat-icon>
         </button>
       </div>
 
-      <table @stagger [dataSource]="dataSource" class="w-full" mat-table matSort>
-
+      <table
+        @stagger
+        [dataSource]="dataSource"
+        class="w-full"
+        mat-table
+        matSort
+      >
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Checkbox Column -->
         <ng-container matColumnDef="checkbox">
           <th *matHeaderCellDef mat-header-cell>
-            <mat-checkbox (change)="$event ? masterToggle() : null"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()"
-                          color="primary">
+            <mat-checkbox
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              color="primary"
+            >
             </mat-checkbox>
           </th>
           <td *matCellDef="let row" class="w-4" mat-cell>
-            <mat-checkbox (change)="$event ? selection.toggle(row) : null"
-                          (click)="$event.stopPropagation()"
-                          [checked]="selection.isSelected(row)"
-                          color="primary">
+            <mat-checkbox
+              (change)="$event ? selection.toggle(row) : null"
+              (click)="$event.stopPropagation()"
+              [checked]="selection.isSelected(row)"
+              color="primary"
+            >
             </mat-checkbox>
           </td>
         </ng-container>
@@ -108,15 +163,27 @@
         <ng-container matColumnDef="image">
           <th *matHeaderCellDef mat-header-cell></th>
           <td *matCellDef="let row" class="w-8 pr-0 min-w-8" mat-cell>
-            <img [src]="row['imageSrc']" class="w-8 h-8 align-middle avatar">
+            <img [src]="row['imageSrc']" class="w-8 h-8 align-middle avatar" />
           </td>
         </ng-container>
 
         <!-- Text Columns -->
         <ng-container *ngFor="let column of columns; trackBy: trackByProperty">
-          <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
-            <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
-            <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>{{ row[column.property] }}</td>
+          <ng-container
+            *ngIf="column.type === 'text'"
+            [matColumnDef]="column.property"
+          >
+            <th
+              *matHeaderCellDef
+              class="uppercase"
+              mat-header-cell
+              mat-sort-header
+            >
+              {{ column.label }}
+            </th>
+            <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>
+              {{ row[column.property] }}
+            </td>
           </ng-container>
         </ng-container>
 
@@ -125,9 +192,11 @@
           <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
           <td *matCellDef="let row" mat-cell>
             <div class="flex">
-              <a (click)="$event.stopPropagation()"
-                 class="flex items-center justify-center w-8 h-8 leading-none hover:bg-hover text-primary bg-primary-light"
-                 mat-icon-button>
+              <a
+                (click)="$event.stopPropagation()"
+                class="flex items-center justify-center w-8 h-8 leading-none hover:bg-hover text-primary bg-primary-light"
+                mat-icon-button
+              >
                 <mat-icon [icIcon]="icPhone" size="18px"></mat-icon>
               </a>
 
@@ -148,31 +217,50 @@
 
         <!-- Label Column -->
         <ng-container matColumnDef="labels">
-          <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header>Labels</th>
+          <th
+            *matHeaderCellDef
+            class="uppercase"
+            mat-header-cell
+            mat-sort-header
+          >
+            Labels
+          </th>
           <td *matCellDef="let row" mat-cell>
-            <div (click)="$event.stopPropagation()" fxLayoutAlign="start center" fxLayoutGap="4px">
-              <div *ngFor="let label of row.labels"
-                   [ngClass]="[label.textClass, label.bgClass]"
-                   class="px-2 py-1 text-xs font-medium rounded"
-                   fxFlex="none">
+            <div
+              (click)="$event.stopPropagation()"
+              fxLayoutAlign="start center"
+              fxLayoutGap="4px"
+            >
+              <div
+                *ngFor="let label of row.labels"
+                [ngClass]="[label.textClass, label.bgClass]"
+                class="px-2 py-1 text-xs font-medium rounded"
+                fxFlex="none"
+              >
                 {{ label.text }}
               </div>
-              <div (click)="labelSelect.open()"
-                   class="cursor-pointer text-secondary bg-base text-hint hover:bg-hover"
-                   fxFlex="none"
-                   fxLayout="row"
-                   fxLayoutAlign="center center">
+              <div
+                (click)="labelSelect.open()"
+                class="cursor-pointer text-secondary bg-base text-hint hover:bg-hover"
+                fxFlex="none"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+              >
                 <ic-icon [icon]="icAdd" size="18px"></ic-icon>
               </div>
-              <mat-select #labelSelect="matSelect"
-                          (selectionChange)="onLabelChange($event, row)"
-                          [value]="row.labels"
-                          class="invisible w-0 h-0 text-sm"
-                          fxFlex="0 1 0px"
-                          multiple>
+              <mat-select
+                #labelSelect="matSelect"
+                (selectionChange)="onLabelChange($event, row)"
+                [value]="row.labels"
+                class="invisible w-0 h-0 text-sm"
+                fxFlex="0 1 0px"
+                multiple
+              >
                 <mat-option *ngFor="let label of labels" [value]="label">
-                  <div [ngClass]="label.previewClass"
-                       class="inline-block w-6 h-6 align-middle rounded ltr:mr-2 rtl:ml-2"></div>
+                  <div
+                    [ngClass]="label.previewClass"
+                    class="inline-block w-6 h-6 align-middle rounded ltr:mr-2 rtl:ml-2"
+                  ></div>
                   <span>{{ label.text }}</span>
                 </mat-option>
               </mat-select>
@@ -184,35 +272,49 @@
         <ng-container matColumnDef="actions">
           <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
           <td *matCellDef="let row" class="w-10 text-secondary" mat-cell>
-            <button (click)="$event.stopPropagation()"
-                    [matMenuTriggerData]="{ customer: row }"
-                    [matMenuTriggerFor]="actionsMenu"
-                    mat-icon-button
-                    type="button">
+            <button
+              (click)="$event.stopPropagation()"
+              [matMenuTriggerData]="{ customer: row }"
+              [matMenuTriggerFor]="actionsMenu"
+              mat-icon-button
+              type="button"
+            >
               <mat-icon [icIcon]="icMoreHoriz"></mat-icon>
             </button>
           </td>
         </ng-container>
 
         <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
-        <tr (click)="updateCustomer(row)"
-            *matRowDef="let row; columns: visibleColumns;"
-            @fadeInUp
-            class="cursor-pointer hover:bg-hover trans-ease-out"
-            mat-row></tr>
+        <tr
+          (click)="updateCustomer(row); clickedRows.add(row)"
+          [class.demo-row-is-clicked]="clickedRows.has(row)"
+          *matRowDef="let row; columns: visibleColumns"
+          @fadeInUp
+          class="cursor-pointer hover:bg-hover trans-ease-out"
+          mat-row
+        ></tr>
       </table>
 
-      <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+      <mat-paginator
+        [pageSizeOptions]="pageSizeOptions"
+        [pageSize]="pageSize"
+        class="sticky left-0"
+      ></mat-paginator>
     </div>
-
   </vex-page-layout-content>
-
 </vex-page-layout>
 
 <mat-menu #columnFilterMenu="matMenu" xPosition="before" yPosition="below">
-  <button (click)="toggleColumnVisibility(column, $event)" *ngFor="let column of columns"
-          class="checkbox-item mat-menu-item">
-    <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="column.visible" color="primary">
+  <button
+    (click)="toggleColumnVisibility(column, $event)"
+    *ngFor="let column of columns"
+    class="checkbox-item mat-menu-item"
+  >
+    <mat-checkbox
+      (click)="$event.stopPropagation()"
+      [(ngModel)]="column.visible"
+      color="primary"
+    >
       {{ column.label }}
     </mat-checkbox>
   </button>

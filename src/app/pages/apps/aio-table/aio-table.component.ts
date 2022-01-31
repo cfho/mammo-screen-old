@@ -140,6 +140,8 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   icMoreHoriz = icMoreHoriz;
   icFolder = icFolder;
 
+  clickedRows = new Set();
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
