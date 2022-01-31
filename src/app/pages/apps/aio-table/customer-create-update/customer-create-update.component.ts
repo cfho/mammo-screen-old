@@ -17,11 +17,13 @@ import icPerson from "@iconify/icons-ic/twotone-person";
 import icMyLocation from "@iconify/icons-ic/twotone-my-location";
 import icLocationCity from "@iconify/icons-ic/twotone-location-city";
 import icEditLocation from "@iconify/icons-ic/twotone-edit-location";
-import { Field, FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/firebase.service";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 
 import JSONdata from "./dynamic-form.json";
+import fieldsDetail from "../../../../../static-data/fieldsDetail.json";
 import { log } from "console";
+import { Field } from "../interfaces/field";
 
 // import data from "@iconify/icons-ic/twotone-more-vert";
 
@@ -69,7 +71,8 @@ export class CustomerCreateUpdateComponent implements OnInit {
     private fb: FormBuilder,
     private afService: FirebaseService
   ) {
-    this.fieldsDetail = this.afService.fieldsDetail;
+    // this.fieldsDetail = this.afService.fieldsDetail;
+    this.fieldsDetail = fieldsDetail;
   }
 
   ngOnInit() {
@@ -86,6 +89,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   firebaseToFormly() {
+    console.log(this.fieldsDetail);
     const checkboxFieldsArr = this.fieldsDetail
       .filter((obj) => obj.type === "checkbox")
       .map((obj) => obj.key);

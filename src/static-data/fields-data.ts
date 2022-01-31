@@ -1,4 +1,4 @@
-export const fieldsData = [
+export const exportFields = [
     "_001ID_number",
     "_002ID_class",
     "_003name",

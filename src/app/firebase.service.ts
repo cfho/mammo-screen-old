@@ -6,18 +6,17 @@ import {
 } from "@angular/fire/compat/firestore";
 import { Observable } from "rxjs";
 import { Customer } from "./pages/apps/aio-table/interfaces/customer.model";
-import { fieldsData } from "../app/pages/apps/aio-table/fields-data";
 
-export interface Field {
-  id: string;
-  chinese: string;
-  key: string;
-  defaulValue: string;
-  number: number;
-  description: string;
-  required: boolean;
-  type: string;
-}
+//interface
+import { Field } from "./pages/apps/aio-table/interfaces/field";
+
+//local data in static-data folder
+import { exportFields } from "../static-data/fields-data";
+import fieldsDetail from "../static-data/fieldsDetail.json";
+import personnelCode from "../static-data/personnel-code.json";
+import countyCode from "../static-data/county-code.json";
+import areaCode from "../static-data/area-code.json";
+
 
 export const deleteFields = [
   "id",
@@ -32,16 +31,16 @@ export const deleteFields = [
 })
 export class FirebaseService {
   private itemsCollection: AngularFirestoreCollection<Customer>;
-  private fieldsCollection: AngularFirestoreCollection<Field>;
-  private personnelCollection: AngularFirestoreCollection;
-  private countyCollection: AngularFirestoreCollection;
-  private areaCollection: AngularFirestoreCollection;
+  // private fieldsCollection: AngularFirestoreCollection<Field>;
+  // private personnelCollection: AngularFirestoreCollection;
+  // private countyCollection: AngularFirestoreCollection;
+  // private areaCollection: AngularFirestoreCollection;
   
   item: Observable<Customer>;
 
   // get fields with different styles;
-  fieldsKeyArr;
-  fieldsDetail: Field[]; // [{key: '_001ID_number', number: 10, ...}, {}, ...]
+  exportFieldsKeyArr;
+  fieldsDetail: Field[] = fieldsDetail; // [{key: '_001ID_number', number: 10, ...}, {}, ...]
   fieldsHeaderObjArr: { header: string; key: string }[]; // [{header: '001', key: '_001ID_number'}, {}, ...]
   fieldsKeyNumberObj: {}; // {_001ID_number: "10", ...}
   personnelCodeObj: {}; // {陳達欣: '14138', ...}
@@ -50,16 +49,16 @@ export class FirebaseService {
 
   constructor(private afs: AngularFirestore) {
     this.itemsCollection = afs.collection<Customer>("toFirebase");
-    this.fieldsCollection = afs.collection<Field>("fields");
-    this.personnelCollection = afs.collection("personnel_code");
-    this.countyCollection = afs.collection("county_code");
-    this.areaCollection = afs.collection("area_code");
+    // this.fieldsCollection = afs.collection<Field>("fields");
+    // this.personnelCollection = afs.collection("personnel_code");
+    // this.countyCollection = afs.collection("county_code");
+    // this.areaCollection = afs.collection("area_code");
   }
 
   // return [{header: '001', key: '_001ID_number'}, {}, ...
   private setFieldsHeaderObjArr() {
     let header: { header: string; key: string }[] = [];
-    fieldsData.map((key) =>
+    exportFields.map((key) =>
       header.push({ header: key.substring(1, 4), key: key })
     );
     this.fieldsHeaderObjArr = header;
@@ -67,7 +66,7 @@ export class FirebaseService {
   }
 
   // return {_001ID_number: 10, ...}
-  private setFieldsKeyNumberObj(fieldsDetail) {
+  private setFieldsKeyNumberObj() {
     let keyNumberObj = {} as { key: string; number: number };
     fieldsDetail.map((fieldObj) => {
       keyNumberObj[fieldObj.key] = fieldObj.number;
@@ -78,47 +77,64 @@ export class FirebaseService {
   }
 
   private getPersonnelCodeObj() {
-    this.personnelCollection.valueChanges().subscribe((data) => {
       let newObj = {};
-      // console.log(data);
-      data.map((obj) => (newObj[obj['key']] = obj['code']));
+      personnelCode.map((obj) => (newObj[obj['key']] = obj['code']));
       this.personnelCodeObj = newObj;
       console.log(this.personnelCodeObj);
-    });
+
+    // this.personnelCollection.valueChanges().subscribe((data) => {
+    //   let newObj = {};
+    //   // console.log(data);
+    //   data.map((obj) => (newObj[obj['key']] = obj['code']));
+    //   this.personnelCodeObj = newObj;
+    //   console.log(this.personnelCodeObj);
+    // });
   }
 
   private getCountyCodeObj() {
-    this.countyCollection.valueChanges().subscribe((data) => {
       let newObj = {};
       // console.log(data);
-      data.map((obj) => (newObj[obj['key']] = obj['code']));
+      countyCode.map((obj) => (newObj[obj['key']] = obj['code']));
       this.countyCodeObj = newObj;
       console.log(this.countyCodeObj);
-    });
+
+    // this.countyCollection.valueChanges().subscribe((data) => {
+    //   let newObj = {};
+    //   // console.log(data);
+    //   data.map((obj) => (newObj[obj['key']] = obj['code']));
+    //   this.countyCodeObj = newObj;
+    //   console.log(this.countyCodeObj);
+    // });
   }
 
   private getAreaCodeObj() {
-    this.areaCollection.valueChanges().subscribe((data) => {
       let newObj = {};
       // console.log(data);
-      data.map((obj) => (newObj[obj['key']] = obj['code']));
+      areaCode.map((obj) => (newObj[obj['key']] = obj['code']));
       this.areaCodeObj = newObj;
       console.log(this.areaCodeObj);
-    });
+
+    // this.areaCollection.valueChanges().subscribe((data) => {
+    //   let newObj = {};
+    //   // console.log(data);
+    //   data.map((obj) => (newObj[obj['key']] = obj['code']));
+    //   this.areaCodeObj = newObj;
+    //   console.log(this.areaCodeObj);
+    // });
   }
 
   // return [{key: '_001ID_number', number: 10, ...}, {}, ...]
   getFields() {
-    this.fieldsKeyArr = fieldsData;
-    this.setFieldsHeaderObjArr();
+    this.exportFieldsKeyArr = exportFields;
+    this.setFieldsHeaderObjArr(); 
     this.getPersonnelCodeObj();
     this.getCountyCodeObj();
     this.getAreaCodeObj();
-    this.fieldsCollection.valueChanges().subscribe((data) => {
-      this.fieldsDetail = data;
-      this.setFieldsKeyNumberObj(data);
-      console.log(this.fieldsDetail);
-    });
+    this.setFieldsKeyNumberObj();
+    // this.fieldsCollection.valueChanges().subscribe((data) => {
+    //   this.fieldsDetail = data;
+    //   console.log(this.fieldsDetail);
+    // });
   }
 
   getAllItems() {
