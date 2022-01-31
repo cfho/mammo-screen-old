@@ -241,10 +241,8 @@ export class CustomerCreateUpdateComponent implements OnInit {
     const customer: Customer = this.model;
     this.menopauseCausesSum();
     this.formlyToFirebase();
-    this.removeAbnormForm(customer);
-
-    customer._005current_area_code;
     this.fillSpaces(customer);
+    this.removeAbnormForm(customer);
     console.log(customer);
     customer.id = this.defaults.id;
     this.dialogRef.close(customer);
