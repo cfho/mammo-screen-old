@@ -16,7 +16,7 @@ import fieldsDetail from "../static-data/fieldsDetail.json";
 import personnelCode from "../static-data/personnel-code.json";
 import countyCode from "../static-data/county-code.json";
 import areaCode from "../static-data/area-code.json";
-
+import { shareReplay } from "rxjs/operators";
 
 export const deleteFields = [
   "id",
@@ -35,7 +35,7 @@ export class FirebaseService {
   // private personnelCollection: AngularFirestoreCollection;
   // private countyCollection: AngularFirestoreCollection;
   // private areaCollection: AngularFirestoreCollection;
-  
+
   item: Observable<Customer>;
 
   // get fields with different styles;
@@ -77,10 +77,10 @@ export class FirebaseService {
   }
 
   private getPersonnelCodeObj() {
-      let newObj = {};
-      personnelCode.map((obj) => (newObj[obj['key']] = obj['code']));
-      this.personnelCodeObj = newObj;
-      console.log(this.personnelCodeObj);
+    let newObj = {};
+    personnelCode.map((obj) => (newObj[obj["key"]] = obj["code"]));
+    this.personnelCodeObj = newObj;
+    console.log(this.personnelCodeObj);
 
     // this.personnelCollection.valueChanges().subscribe((data) => {
     //   let newObj = {};
@@ -92,11 +92,11 @@ export class FirebaseService {
   }
 
   private getCountyCodeObj() {
-      let newObj = {};
-      // console.log(data);
-      countyCode.map((obj) => (newObj[obj['key']] = obj['code']));
-      this.countyCodeObj = newObj;
-      console.log(this.countyCodeObj);
+    let newObj = {};
+    // console.log(data);
+    countyCode.map((obj) => (newObj[obj["key"]] = obj["code"]));
+    this.countyCodeObj = newObj;
+    console.log(this.countyCodeObj);
 
     // this.countyCollection.valueChanges().subscribe((data) => {
     //   let newObj = {};
@@ -108,11 +108,11 @@ export class FirebaseService {
   }
 
   private getAreaCodeObj() {
-      let newObj = {};
-      // console.log(data);
-      areaCode.map((obj) => (newObj[obj['key']] = obj['code']));
-      this.areaCodeObj = newObj;
-      console.log(this.areaCodeObj);
+    let newObj = {};
+    // console.log(data);
+    areaCode.map((obj) => (newObj[obj["key"]] = obj["code"]));
+    this.areaCodeObj = newObj;
+    console.log(this.areaCodeObj);
 
     // this.areaCollection.valueChanges().subscribe((data) => {
     //   let newObj = {};
@@ -126,7 +126,7 @@ export class FirebaseService {
   // return [{key: '_001ID_number', number: 10, ...}, {}, ...]
   getFields() {
     this.exportFieldsKeyArr = exportFields;
-    this.setFieldsHeaderObjArr(); 
+    this.setFieldsHeaderObjArr();
     this.getPersonnelCodeObj();
     this.getCountyCodeObj();
     this.getAreaCodeObj();
@@ -138,7 +138,9 @@ export class FirebaseService {
   }
 
   getAllItems() {
-    return this.itemsCollection.valueChanges({ idField: "id" });
+    return this.itemsCollection
+      .valueChanges({ idField: "id" })
+      .pipe(shareReplay(1));
   }
 
   updateItem(customer: Customer) {
