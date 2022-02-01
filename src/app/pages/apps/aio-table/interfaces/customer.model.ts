@@ -1,4 +1,5 @@
 export class Customer {
+  readCheckbox? : boolean;
   id?: string;
   drName?: string;
   techName?: string;

@@ -68,6 +68,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   subject$: ReplaySubject<Customer[]> = new ReplaySubject<Customer[]>(1);
   data$: Observable<Customer[]> = this.subject$.asObservable();
   customers: Customer[];
+  isRead = false;
 
   @Input()
   columns: TableColumn<Customer>[] = [
@@ -98,11 +99,11 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     // { label: 'Street', property: 'street', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
     // { label: 'Zipcode', property: 'zipcode', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
     {
-      label: "City",
-      property: "city",
-      type: "text",
-      visible: false,
-      cssClasses: ["text-secondary", "font-medium"],
+      label: "Read",
+      property: "readCheckbox",
+      type: "check",
+      visible: true,
+      // cssClasses: ["text-secondary", "font-medium"],
     },
     {
       label: "City",
@@ -314,4 +315,21 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     this.customers[index].labels = change.value;
     this.subject$.next(this.customers);
   }
+
+  isReadToggle(customer: Customer) {
+    console.log(customer.readCheckbox);
+    if(customer.readCheckbox) {
+      console.log('has data');
+      customer.readCheckbox = !customer.readCheckbox;
+    } else {
+      console.log('no data')
+      customer.readCheckbox = true;
+    }
+    // if(customer.readCheckbox) {
+      // this.isRead = !this.isRead;
+      // customer.readCheckbox = true;
+    // }
+    // customer.readCheckbox = true;
+  }
+
 }

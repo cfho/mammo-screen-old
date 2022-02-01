@@ -89,7 +89,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
   }
 
   firebaseToFormly() {
-    console.log(this.fieldsDetail);
+    // console.log(this.fieldsDetail);
     const checkboxFieldsArr = this.fieldsDetail
       .filter((obj) => obj.type === "checkbox")
       .map((obj) => obj.key);

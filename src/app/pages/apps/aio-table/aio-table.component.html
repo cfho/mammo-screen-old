@@ -187,6 +187,32 @@
           </ng-container>
         </ng-container>
 
+        <!-- DIY Check Columns -->
+        <ng-container *ngFor="let column of columns; trackBy: trackByProperty">
+          <ng-container
+            *ngIf="column.type === 'check'"
+            [matColumnDef]="column.property"
+          >
+            <th
+              *matHeaderCellDef
+              class="uppercase"
+              mat-header-cell
+              mat-sort-header
+            >
+              {{ column.label }}
+            </th>
+            <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>
+              <mat-checkbox 
+                (click)="isReadToggle(row)"
+                [checked]="row.readCheckbox == true ? true : false"
+                color="primary"
+              >
+              </mat-checkbox>
+              <!-- {{ row[column.property] }} -->
+            </td>
+          </ng-container>
+        </ng-container>
+
         <!-- Contact Column -->
         <ng-container matColumnDef="contact">
           <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
