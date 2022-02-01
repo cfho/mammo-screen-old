@@ -203,9 +203,9 @@
             </th>
             <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>
               <mat-checkbox 
-                (click)="isReadToggle(row)"
                 [checked]="row.readCheckbox == true ? true : false"
                 color="primary"
+                [disabled]="true"
               >
               </mat-checkbox>
               <!-- {{ row[column.property] }} -->
@@ -312,8 +312,8 @@
 
         <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
         <tr
-          (click)="updateCustomer(row); clickedRows.add(row)"
-          [class.demo-row-is-clicked]="clickedRows.has(row)"
+          (click)="updateCustomer(row)"
+          [class.demo-row-is-clicked]="row.readCheckbox == true ? true : false"
           *matRowDef="let row; columns: visibleColumns"
           @fadeInUp
           class="cursor-pointer hover:bg-hover trans-ease-out"

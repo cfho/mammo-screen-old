@@ -99,7 +99,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     // { label: 'Street', property: 'street', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
     // { label: 'Zipcode', property: 'zipcode', type: 'text', visible: false, cssClasses: ['text-secondary', 'font-medium'] },
     {
-      label: "Read",
+      label: "已確認",
       property: "readCheckbox",
       type: "check",
       visible: true,
@@ -232,6 +232,17 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   updateCustomer(customer: Customer) {
+
+    // console.log(customer.readCheckbox);
+    // if(customer.readCheckbox) {
+    //   console.log('has data');
+    //   customer.readCheckbox = !customer.readCheckbox;
+    // } else {
+    //   console.log('no data')
+    //   customer.readCheckbox = true;
+    // }
+      customer.readCheckbox = true;
+
     this.dialog
       .open(CustomerCreateUpdateComponent, {
         data: customer,
@@ -314,22 +325,6 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     const index = this.customers.findIndex((c) => c === row);
     this.customers[index].labels = change.value;
     this.subject$.next(this.customers);
-  }
-
-  isReadToggle(customer: Customer) {
-    console.log(customer.readCheckbox);
-    if(customer.readCheckbox) {
-      console.log('has data');
-      customer.readCheckbox = !customer.readCheckbox;
-    } else {
-      console.log('no data')
-      customer.readCheckbox = true;
-    }
-    // if(customer.readCheckbox) {
-      // this.isRead = !this.isRead;
-      // customer.readCheckbox = true;
-    // }
-    // customer.readCheckbox = true;
   }
 
 }

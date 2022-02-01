@@ -24,6 +24,7 @@ import JSONdata from "./dynamic-form.json";
 import fieldsDetail from "../../../../../static-data/fieldsDetail.json";
 import { log } from "console";
 import { Field } from "../interfaces/field";
+import { BehaviorSubject, Subject } from "rxjs";
 
 // import data from "@iconify/icons-ic/twotone-more-vert";
 
@@ -258,5 +259,10 @@ export class CustomerCreateUpdateComponent implements OnInit {
 
   toggleDisabled() {
     this.options.formState.disabled = !this.options.formState.disabled;
+  }
+
+  isReadToggle() {
+    this.model.readCheckbox = !this.model.readCheckbox;
+    console.log(this.model.readCheckbox);
   }
 }
