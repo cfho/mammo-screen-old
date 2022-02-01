@@ -122,7 +122,6 @@ export class CustomerCreateUpdateComponent implements OnInit {
 
   fillSpaces(obj: Customer) {
     const keyNumberObj = this.afService.fieldsKeyNumberObj;
-    // console.log(this.fieldsDetail);
     console.log(keyNumberObj);
 
     Object.keys(keyNumberObj)
@@ -139,6 +138,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
     Object.keys(keyNumberObj)
       .filter((key) => !obj[key])
       .map((key) => {
+        // console.log("no match");
         // console.log("資料key： " + key);
         // console.log("預計value長： " + keyNumberObj[key]);
         obj[key] = "".padEnd(+keyNumberObj[key]);

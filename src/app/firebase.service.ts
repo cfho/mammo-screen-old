@@ -19,6 +19,9 @@ import areaCode from "../static-data/area-code.json";
 import { shareReplay } from "rxjs/operators";
 
 export const deleteFields = [
+  "drName",
+  "report",
+  "techName",
   "id",
   "_031menopause_causes_2",
   "_031menopause_causes_3",
