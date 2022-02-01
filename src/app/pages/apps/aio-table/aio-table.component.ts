@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { Observable, of, ReplaySubject } from "rxjs";
-import { filter } from "rxjs/operators";
+import { filter, shareReplay } from "rxjs/operators";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -21,6 +21,7 @@ import icEdit from "@iconify/icons-ic/twotone-edit";
 import icDelete from "@iconify/icons-ic/twotone-delete";
 import icSearch from "@iconify/icons-ic/twotone-search";
 import icAdd from "@iconify/icons-ic/twotone-add";
+import fileDownload from "@iconify/icons-ic/file-download";
 import icFilterList from "@iconify/icons-ic/twotone-filter-list";
 import { SelectionModel } from "@angular/cdk/collections";
 import icMoreHoriz from "@iconify/icons-ic/twotone-more-horiz";
@@ -59,7 +60,7 @@ import * as fs from "file-saver";
   ],
 })
 export class AioTableComponent implements OnInit, AfterViewInit {
-  layoutCtrl = new FormControl("boxed");
+  layoutCtrl = new FormControl("fullwidth");
 
   /**
    * Simulating a service with HTTP that returns Observables
@@ -76,7 +77,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       label: "Checkbox",
       property: "checkbox",
       type: "checkbox",
-      visible: true,
+      visible: false,
     },
     // { label: 'Image', property: 'image', type: 'image', visible: true },
     {
@@ -86,9 +87,16 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       visible: true,
       cssClasses: ["font-medium"],
     },
+    {
+      label: "身份證",
+      property: "_001ID_number",
+      type: "text",
+      visible: true,
+      cssClasses: ["font-medium"],
+    },
     // { label: 'First Name', property: 'firstName', type: 'text', visible: false },
     // { label: 'Last Name', property: 'lastName', type: 'text', visible: false },
-    { label: "Contact", property: "contact", type: "button", visible: true },
+    // { label: "Contact", property: "contact", type: "button", visible: true },
     {
       label: "現居地",
       property: "_006current_residence",
@@ -106,8 +114,15 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       // cssClasses: ["text-secondary", "font-medium"],
     },
     {
-      label: "City",
-      property: "_005area_code",
+      label: "病歷號",
+      property: "_016hx_number",
+      type: "text",
+      visible: false,
+      cssClasses: ["text-secondary", "font-medium"],
+    },
+    {
+      label: "流水號",
+      property: "accessionNumber",
       type: "text",
       visible: false,
       cssClasses: ["text-secondary", "font-medium"],
@@ -119,8 +134,8 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       visible: true,
       cssClasses: ["text-secondary", "font-medium"],
     },
-    { label: "Labels", property: "labels", type: "button", visible: true },
-    { label: "Actions", property: "actions", type: "button", visible: true },
+    // { label: "Labels", property: "labels", type: "button", visible: true },
+    // { label: "Actions", property: "actions", type: "button", visible: true },
   ];
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 20, 50];
@@ -140,6 +155,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   icFilterList = icFilterList;
   icMoreHoriz = icMoreHoriz;
   icFolder = icFolder;
+  fileDownload = fileDownload
 
   clickedRows = new Set();
 
@@ -196,7 +212,10 @@ export class AioTableComponent implements OnInit, AfterViewInit {
 
     this.dataSource = new MatTableDataSource();
 
-    this.data$.pipe(filter<Customer[]>(Boolean)).subscribe((customers) => {
+    this.data$.pipe(
+      filter<Customer[]>(Boolean),
+      // shareReplay(1)
+      ).subscribe((customers) => {
       this.customers = customers;
       console.log(customers);
       this.dataSource.data = customers;

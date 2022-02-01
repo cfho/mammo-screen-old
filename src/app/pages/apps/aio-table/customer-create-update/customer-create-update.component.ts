@@ -11,6 +11,7 @@ import icMoreVert from "@iconify/icons-ic/twotone-more-vert";
 import icClose from "@iconify/icons-ic/twotone-close";
 import icPrint from "@iconify/icons-ic/twotone-print";
 import icDownload from "@iconify/icons-ic/twotone-cloud-download";
+import edit from "@iconify/icons-ic/edit";
 import icDelete from "@iconify/icons-ic/twotone-delete";
 import icPhone from "@iconify/icons-ic/twotone-phone";
 import icPerson from "@iconify/icons-ic/twotone-person";
@@ -65,6 +66,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
   icLocationCity = icLocationCity;
   icEditLocation = icEditLocation;
   icPhone = icPhone;
+  edit = edit;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: Customer,

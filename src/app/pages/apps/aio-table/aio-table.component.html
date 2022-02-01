@@ -10,16 +10,16 @@
       class="flex flex-col justify-between w-full sm:flex-row"
     >
       <div>
-        <h1 class="mt-0 mb-1 title">All-In-One Table</h1>
+        <h1 class="mt-0 mb-1 title">乳房篩檢清單</h1>
         <vex-breadcrumbs
           [crumbs]="['Apps', 'All-In-One Table']"
         ></vex-breadcrumbs>
       </div>
 
-      <mat-button-toggle-group [formControl]="layoutCtrl" class="mt-4 sm:mt-0">
+      <!-- <mat-button-toggle-group [formControl]="layoutCtrl" class="mt-4 sm:mt-0">
         <mat-button-toggle value="boxed">BOXED</mat-button-toggle>
         <mat-button-toggle value="fullwidth">FULL-WIDTH</mat-button-toggle>
-      </mat-button-toggle-group>
+      </mat-button-toggle-group> -->
     </div>
   </vex-page-layout-header>
 
@@ -115,7 +115,7 @@
         </button>
 
         <button
-          (click)="createCustomer()"
+          (click)="exportExcel()"
           class="ml-4"
           color="primary"
           fxFlex="none"
@@ -123,7 +123,7 @@
           matTooltip="Add Customer"
           type="button"
         >
-          <mat-icon [icIcon]="icAdd"></mat-icon>
+          <mat-icon [icIcon]="fileDownload"></mat-icon>
         </button>
       </div>
 
