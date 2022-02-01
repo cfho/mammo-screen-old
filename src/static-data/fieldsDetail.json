@@ -1,1532 +1,1702 @@
 [
-    {
-      "key": "_001ID_number",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "身分証字號/護照號碼",
-      "description": "F123456789"
-    },
-    {
-      "key": "_002ID_class",
-      "number": 1,
-      "type": "input",
-      "defaultValue": "1",
-      "required": true,
-      "chinese": "ID 類別",
-      "description": "1-身份證字號;2-護照號碼"
-    },
-    {
-      "key": "_003name",
-      "number": 15,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "姓名",
-      "description": "受檢者姓名"
-    },
-    {
-      "key": "_004birthday",
-      "number": 7,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "出生日期",
-      "description": "number YYYMMDD 民國年月日"
-    },
-    {
-      "key": "_005current_area_code",
-      "number": 4,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "現居地地區代碼",
-      "description": "number"
-    },
-    {
-      "key": "_006current_residence",
-      "number": 50,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "地址",
-      "description": "受檢者地址"
-    },
-    {
-      "key": "_007phone_area_code",
-      "number": 4,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "電話區碼",
-      "description": "number"
-    },
-    {
-      "key": "_008phone",
-      "number": 20,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "電話",
-      "description": "number"
-    },
-    {
-      "key": "_009phone_ext",
-      "number": 6,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "分機",
-      "description": "number"
-    },
-    {
-      "key": "_010mobile",
-      "number": 20,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "手機",
-      "description": "number"
-    },
-    {
-      "key": "_011payment",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "2",
-      "required": true,
-      "chinese": "支付方式",
-      "description": "1-健保醫療給付;\n2-預防保健;\n3-其他公務預算補助;\n4-其他;\n5-自費健康檢查(102/6/15 新增);"
-    },
-    {
-      "key": "_012isMammoCar",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "1",
-      "required": true,
-      "chinese": "乳攝車",
-      "description": "0-否;1-是"
-    },
-    {
-      "key": "_013mammoCar_number",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "乳攝車車號",
-      "description": "123-AB 或者 BA-321"
-    },
-    {
-      "key": "_014affiliated_code",
-      "number": 10,
-      "type": "input",
-      "defaultValue": "1231050017",
-      "required": false,
-      "chinese": "所屬單位機構代碼",
-      "description": "number"
-    },
-    {
-      "key": "_015mammoCar_code",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "乳攝儀器登設字號",
-      "description": "number"
-    },
-    {
-      "key": "_016hx_number",
-      "number": 25,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "病歷號",
-      "description": "number"
-    },
-    {
-      "key": "_017education",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "教育程度",
-      "description": "1-不識字無\n2-小學;\n3-國(初)中;\n4-高中/高職專科;\n5-專科、大學以上;\n6-研究所以上;\n7-拒答。"
-    },
-    {
-      "key": "_018height",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "身高",
-      "description": "number"
-    },
-    {
-      "key": "_019weight",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "體重",
-      "description": "number"
-    },
-    {
-      "key": "_020past_hx",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "0",
-      "required": true,
-      "chinese": "疾病史-有無得過下列疾病",
-      "description": "0-無;\n1-乳房良性相關疾病;\r\n2-乳癌;3-其他癌症;"
-    },
-    {
-      "key": "_021cancer_hx",
-      "number": 25,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "疾病史-其他癌症敘述",
-      "description": "「20.疾病史-有無得過下列疾病」為「3」時, 必填"
-    },
-    {
-      "key": "_022isBreastCa_family_hx",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "0",
-      "required": true,
-      "chinese": "家族史-與您有血緣的家屬中，有無人得過乳癌",
-      "description": "0-無;1-有"
-    },
-    {
-      "key": "_023mother_number",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "家族史-母親人數",
-      "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
-    },
-    {
-      "key": "_024sister_number",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "家族史-姐妹人數",
-      "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
-    },
-    {
-      "key": "_025daughter_number",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "家族史-女兒人數",
-      "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
-    },
-    {
-      "key": "_026grandma_mother_number",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "家族史-祖母人數",
-      "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
-    },
-    {
-      "key": "_027grandma_father_number",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "家族史-外祖母人數",
-      "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
-    },
-    {
-      "key": "_028menarche",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "月經史-初經年齡",
-      "description": "number"
-    },
-    {
-      "key": "_029isMenopause",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "月經史-是否停經",
-      "description": "0-否;1-是"
-    },
-    {
-      "key": "_030menopause_period",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "月經史-停經年齡",
-      "description": "數字;「29.月經史-是否停經」為「1」時, 必填"
-    },
-    {
-      "key": "_031menopause_causes",
-      "number": 4,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "月經史-停經原因 (可複選)",
-      "description": "空白表示未停經;\n2-自然停經;\n3-子宮切除;\n4-卵巢切除;\n5-其他;\n「29.月經史-是否停經」為「1」時,必填\n可複選,不足四碼時補空白字元,例如\n「34 」"
-    },
-    {
-      "key": "_031menopause_causes_2",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "停經原因-自然停經",
-      "description": "停經原因-自然停經"
-    },
-    {
-      "key": "_031menopause_causes_3",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "停經原因-子宮切除;",
-      "description": "停經原因-子宮切除;"
-    },
-    {
-      "key": "_031menopause_causes_4",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "停經原因-卵巢切除;",
-      "description": "停經原因-卵巢切除;"
-    },
-    {
-      "key": "_031menopause_causes_5",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "停經原因-其他;",
-      "description": "停經原因-其他;"
-    },
-    {
-      "key": "_032menopause_other",
-      "number": 25,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "月經史-停經原因其他敘述",
-      "description": "「30月經史‧停經原因」為有 「5‧其他」 時，必填"
-    },
-    {
-      "key": "_033production_number",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "生育史-生育次數",
-      "description": "number"
-    },
-    {
-      "key": "_034isBreastFeeding",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "生育史-有無哺餵母乳",
-      "description": "0-否;1-是"
-    },
-    {
-      "key": "_035production_age",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "生育史-第一胎生產年齡",
-      "description": "number"
-    },
-    {
-      "key": "_036isHormone",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "用藥史-是否服用荷爾蒙補充劑",
-      "description": "0-否;1-是"
-    },
-    {
-      "key": "_037hormone_age",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "用藥史-幾歲開始(荷)",
-      "description": "number"
-    },
-    {
-      "key": "_038hormone_period",
-      "number": 6,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "用藥史-服用幾年(荷)",
-      "description": "number"
-    },
-    {
-      "key": "_039isContraceptive",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "用藥史-是否服用避孕藥",
-      "description": "0-否;1-是"
-    },
-    {
-      "key": "_040contraceptive_age",
-      "number": 2,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "用藥史-幾歲開始(避)",
-      "description": "number"
-    },
-    {
-      "key": "_041contracepative_period",
-      "number": 6,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "用藥史-服用幾年(避)",
-      "description": "數字;可有小數點;「39.用藥史-是否服用避"
-    },
-    {
-      "key": "_042isSelfExam",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "2",
-      "required": true,
-      "chinese": "是否有感覺到異常腫塊",
-      "description": "1-有摸到硬塊或疼痛、壓痛;\n2-沒有症狀;\n3-未做過乳房自我檢查;"
-    },
-    {
-      "key": "_043isTouch",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "其他-最近二年內是否做過-醫護人員觸診",
-      "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
-    },
-    {
-      "key": "_044isMammo",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "其他-最近二年內是否做過-乳房 X 光攝影檢查",
-      "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
-    },
-    {
-      "key": "_045isSono",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "其他-最近二年內是否做過-乳房超音波檢查",
-      "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
-    },
-    {
-      "key": "_046isNoExam",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "其他-以上皆未做過",
-      "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
-    },
-    {
-      "key": "_047isOP",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "F",
-      "required": true,
-      "chinese": "其他-是否接受過乳房手術",
-      "description": "T:是 F:否"
-    },
-    {
-      "key": "_048OP_left",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "其他-乳房手術左側",
-      "description": "0-否;\n1-是;\n「47.其他-是否接受過乳房手術」\n為「T」時,「48~49」,擇一必填為 1"
-    },
-    {
-      "key": "_049OP_right",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "其他-乳房手術右側",
-      "description": "0-否;\n1-是;\n「47.其他-是否接受過乳房手術」\n為「T」時,「48~49」,擇一必填為 1"
-    },
-    {
-      "key": "_050hospital_code",
-      "number": 10,
-      "type": "input",
-      "defaultValue": "1231050017",
-      "required": true,
-      "chinese": "乳攝醫院代碼",
-      "description": "必須和上傳的醫療院所代碼相同"
-    },
-    {
-      "key": "_051mammo_day",
-      "number": 7,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "乳攝日期",
-      "description": "number YYYMMDD 民國年月日"
-    },
-    {
-      "key": "_052mammo_machine",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "3",
-      "required": true,
-      "chinese": "攝影儀機型",
-      "description": "2-數位 CR\n3- 數 位 DR\n4-乳房斷層攝影機(Tomosynthesis, Tomo)"
-    },
-    {
-      "key": "_053touch_result",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": "2",
-      "required": true,
-      "chinese": "乳房觸診檢查",
-      "description": "1-有腫塊或其他異常;\n2-無異常;\n3-未做觸診檢查;"
-    },
-    {
-      "key": "_054gland_composition",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "乳腺組成",
-      "description": "1-Fatty breast;\n2-Mildly dense;(105/5/1 移除)\n3-Moderate Heterogeneously dense\n4-Extremely dense;\n5-Scattered fibroglandular density"
-    },
-    {
-      "key": "_055isComparison",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "與舊片比較",
-      "description": "T:是 F:否"
-    },
-    {
-      "key": "_056noOldMammo_cause",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "無舊片的原因",
-      "description": "1-第一次篩檢;\n2-無法取得舊片;\n3-無法獲知是否有舊片;"
-    },
-    {
-      "key": "_057report_day",
-      "number": 7,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "攝影判讀日期",
-      "description": "number YYYMMDD 民國年月日"
-    },
-    {
-      "key": "_058mammo_category",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "乳攝結果",
-      "description": "0-需附加其他影像檢查再評估;\n1-無異常發現;\n2-良性發現;\n3-可能是良性發現-六個月內須追蹤檢查;\n3-可能是良性發現-須短期追蹤檢查\n4-可疑異常需考慮組織生檢;\n5-高度懷疑為惡性腫瘤,須採取適當的措施;"
-    },
-    {
-      "key": "_059cat4_subtype",
-      "number": 1,
-      "type": "radio",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "乳攝結果 4 的次選項",
-      "description": "a-Low suspicion;\nb-Moderate Intermediate suspicion;\nc-High Moderate suspicion; 「58.乳攝結果」為「4」時,必填"
-    },
-    {
-      "key": "_060report_Dr",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "放射科醫師",
-      "description": "請乳攝醫院管理者於「單位管理-醫護人員設定」中查詢放射科醫師所屬 DB 序號"
-    },
-    {
-      "key": "_061technician",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": true,
-      "chinese": "醫事放射師",
-      "description": "請乳攝醫院管理者於「單位管理-醫護人員設定」中查詢放射師所屬 DB 序號"
-    },
-    {
-      "key": "_062referHospital_code",
-      "number": 10,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "轉診醫院代碼",
-      "description": "轉診醫院代碼"
-    },
-    {
-      "key": "_063IsMass",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "1.Mass",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_064mass_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_065mass_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_066mass_uni",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "multiple, unilateral",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_067mass_bil",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "multiple, bilateral",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_068mass_UOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_069mass_UIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_070mass_LOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_071mass_LIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_072mass_subareolar",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-subareolar",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_073mass_axilla",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-axillary tail",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_074mass_oneView_upper",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- upper hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_075mass_oneView_lower",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- lower hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_076mass_oneView_outer",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- outer hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_077mass_oneView_inner",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- inner hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_078mass_size_1",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Size- <1.0cm",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_079mass_size_2",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Size- 1-2cm",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_080mass_size_3",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Size- 2-3cm",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_081mass_size_4",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Size- 3-4cm",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_082mass_size_large",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Size- >4cm",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_083mass_round",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Shape- round",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_084mass_ovale",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Shape- oval",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_085mass_lobular",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Shape- lobular",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_086mass_irregular",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Shape- irregular",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_087mass_circum",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Margin- circumscribed",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_088mass_microlob",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Margin- microlobulated",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_089mass_obscured",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Margin- obscured",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_090mass_indistinct",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Margin- Indistinct",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_091mass_spiculated",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Margin- spiculated",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_092mass_highDensity",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Density- high-density",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_093mass_equalDensity",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Density- Equal density",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_094mass_lowDensity",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Density- low-density",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_095mass_fat",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Density- Fat-containing",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_096isCal",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "2.Calcifications",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_097cal_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_098cal_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_099cal_uni",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "multiple, unilateral",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_100cal_bil",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "multiple, bilateral",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_101cal_UOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_102cal_UIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_103cal_LOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_104cal_LIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_105cal_subareolar",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-subareolar",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_106cal_axilla",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-axillary tail",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_107cal_oneView_upper",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- upper hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_108cal_oneView_lower",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- lower hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_109cal_oneView_outer",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- outer hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_110cal_oneView_inner",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- inner hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_111cal_grouped",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Distribution- Grouped",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_112cal_linear",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Distribution- linear",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_113cal_segmental",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Distribution- segmental",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_114cal_regional",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Distribution- regional",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_115cal_diffuse",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Distribution- diffuse",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_116cal_amorphous",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Morphology-amorphous",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_117cal_coarseHetero",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Morphology- Coarse Heterogeneous",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_118cal_finePleo",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Morphology- Fine pleomorphic",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_119cal_fineBranching",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Morphology- fine linear branching",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_120isAsym",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "3. Asymmetry",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_121asym_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_122asym_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_123Asymmetry",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Asymmetry",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_124focalAsymmetry",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Focal asymmetry",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_125asym_developing",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Developing asymmetry",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_126asym_UOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_127asym_UIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_128asym_LOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_129asym_LIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_130asym_subareolar",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-subareolar",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_131asym_axilla",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-axillary tail",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_132asym_oneView_upper",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- upper hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_133asym_oneView_lower",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- lower hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_134asym_oneView_outer",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- outer hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_135asym_oneView_inner",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- inner hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_136isDistorsion",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "4.Architectural distortion",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_137distorsion_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_138distorsion_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_139distorsion_UOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_140distorsion_UIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-UIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_141distorsion_LOQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LOQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_142distorsion_LIQ",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-LIQ",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_143distorsion_subareolar",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-subareolar",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_144distorsion_axilla",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Location-axillary tail",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_145distorsion_oneView_upper",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- upper hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_146distorsion_oneView_lower",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- lower hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_147distorsion_oneView_outer",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- outer hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_148distorsion_oneView_inner",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "One view only- inner hemisphere",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_149isRectraction",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "5. Thickening or retraction of the skin and/or nipple",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_150retraction_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_151retraction_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_152isLN",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "6. Dense or enlarged axillary LNs",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_153LN_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_154LN_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_155isDuct",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "7. Dilated lactiferous ducts",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_156duct_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_157duct_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_158isSkin",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "8. Diffuse thickening of the skin and increased density",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_159skin_right",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Rt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_160skin_left",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "Lt.",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_161isOther",
-      "number": 1,
-      "type": "checkbox",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "9.Others……",
-      "description": "T 勾選;空白沒勾"
-    },
-    {
-      "key": "_162Other",
-      "number": 100,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "9.Others……的敘述",
-      "description": "「161.Others」為「T」時,必填"
-    },
-    {
-      "key": "id",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "firebase document name",
-      "description": "firebase document name"
-    },
-    {
-      "key": "report",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "乳房篩檢報告",
-      "description": "mammo report"
-    },
-    {
-      "key": "drName",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "報告醫師姓名",
-      "description": "報告醫師姓名"
-    },
-    {
-      "key": "techName",
-      "number": null,
-      "type": "input",
-      "defaultValue": null,
-      "required": false,
-      "chinese": "放射師姓名",
-      "description": "放射師姓名"
-    }
-  ]
+  {
+    "key": "_001ID_number",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "身分証字號/護照號碼",
+    "description": "F123456789"
+  },
+  {
+    "key": "_002ID_class",
+    "export": true,
+    "number": 1,
+    "type": "input",
+    "defaultValue": "1",
+    "required": true,
+    "chinese": "ID 類別",
+    "description": "1-身份證字號;2-護照號碼"
+  },
+  {
+    "key": "_003name",
+    "export": true,
+    "number": 15,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "姓名",
+    "description": "受檢者姓名"
+  },
+  {
+    "key": "_004birthday",
+    "export": true,
+    "number": 7,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "出生日期",
+    "description": "number YYYMMDD 民國年月日"
+  },
+  {
+    "key": "_005current_area_code",
+    "export": true,
+    "number": 4,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "現居地地區代碼",
+    "description": "number"
+  },
+  {
+    "key": "_006current_residence",
+    "export": true,
+    "number": 50,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "地址",
+    "description": "受檢者地址"
+  },
+  {
+    "key": "_007phone_area_code",
+    "export": true,
+    "number": 4,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "電話區碼",
+    "description": "number"
+  },
+  {
+    "key": "_008phone",
+    "export": true,
+    "number": 20,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "電話",
+    "description": "number"
+  },
+  {
+    "key": "_009phone_ext",
+    "export": true,
+    "number": 6,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "分機",
+    "description": "number"
+  },
+  {
+    "key": "_010mobile",
+    "export": true,
+    "number": 20,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "手機",
+    "description": "number"
+  },
+  {
+    "key": "_011payment",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "2",
+    "required": true,
+    "chinese": "支付方式",
+    "description": "1-健保醫療給付;\n2-預防保健;\n3-其他公務預算補助;\n4-其他;\n5-自費健康檢查(102/6/15 新增);"
+  },
+  {
+    "key": "_012isMammoCar",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "1",
+    "required": true,
+    "chinese": "乳攝車",
+    "description": "0-否;1-是"
+  },
+  {
+    "key": "_013mammoCar_number",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "乳攝車車號",
+    "description": "123-AB 或者 BA-321"
+  },
+  {
+    "key": "_014affiliated_code",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": "1231050017",
+    "required": false,
+    "chinese": "所屬單位機構代碼",
+    "description": "number"
+  },
+  {
+    "key": "_015mammoCar_code",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "乳攝儀器登設字號",
+    "description": "number"
+  },
+  {
+    "key": "_016hx_number",
+    "export": true,
+    "number": 25,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "病歷號",
+    "description": "number"
+  },
+  {
+    "key": "_017education",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "教育程度",
+    "description": "1-不識字無\n2-小學;\n3-國(初)中;\n4-高中/高職專科;\n5-專科、大學以上;\n6-研究所以上;\n7-拒答。"
+  },
+  {
+    "key": "_018height",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "身高",
+    "description": "number"
+  },
+  {
+    "key": "_019weight",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "體重",
+    "description": "number"
+  },
+  {
+    "key": "_020past_hx",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "0",
+    "required": true,
+    "chinese": "疾病史-有無得過下列疾病",
+    "description": "0-無;\n1-乳房良性相關疾病;\r\n2-乳癌;3-其他癌症;"
+  },
+  {
+    "key": "_021cancer_hx",
+    "export": true,
+    "number": 25,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "疾病史-其他癌症敘述",
+    "description": "「20.疾病史-有無得過下列疾病」為「3」時, 必填"
+  },
+  {
+    "key": "_022isBreastCa_family_hx",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "0",
+    "required": true,
+    "chinese": "家族史-與您有血緣的家屬中，有無人得過乳癌",
+    "description": "0-無;1-有"
+  },
+  {
+    "key": "_023mother_number",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "家族史-母親人數",
+    "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
+  },
+  {
+    "key": "_024sister_number",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "家族史-姐妹人數",
+    "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
+  },
+  {
+    "key": "_025daughter_number",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "家族史-女兒人數",
+    "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
+  },
+  {
+    "key": "_026grandma_mother_number",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "家族史-祖母人數",
+    "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
+  },
+  {
+    "key": "_027grandma_father_number",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "家族史-外祖母人數",
+    "description": "人數;「22.家族史-與您有血緣的家屬中,有\n無人得過乳癌」為「1」時,「23~27 家族史-\n人數」,擇一必填且非 0"
+  },
+  {
+    "key": "_028menarche",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "月經史-初經年齡",
+    "description": "number"
+  },
+  {
+    "key": "_029isMenopause",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "月經史-是否停經",
+    "description": "0-否;1-是"
+  },
+  {
+    "key": "_030menopause_period",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "月經史-停經年齡",
+    "description": "數字;「29.月經史-是否停經」為「1」時, 必填"
+  },
+  {
+    "key": "_031menopause_causes",
+    "export": true,
+    "number": 4,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "月經史-停經原因 (可複選)",
+    "description": "空白表示未停經;\n2-自然停經;\n3-子宮切除;\n4-卵巢切除;\n5-其他;\n「29.月經史-是否停經」為「1」時,必填\n可複選,不足四碼時補空白字元,例如\n「34 」"
+  },
+  {
+    "key": "_031menopause_causes_2",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "停經原因-自然停經",
+    "description": "停經原因-自然停經"
+  },
+  {
+    "key": "_031menopause_causes_3",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "停經原因-子宮切除;",
+    "description": "停經原因-子宮切除;"
+  },
+  {
+    "key": "_031menopause_causes_4",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "停經原因-卵巢切除;",
+    "description": "停經原因-卵巢切除;"
+  },
+  {
+    "key": "_031menopause_causes_5",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "停經原因-其他;",
+    "description": "停經原因-其他;"
+  },
+  {
+    "key": "_032menopause_other",
+    "export": true,
+    "number": 25,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "月經史-停經原因其他敘述",
+    "description": "「30月經史‧停經原因」為有 「5‧其他」 時，必填"
+  },
+  {
+    "key": "_033production_number",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "生育史-生育次數",
+    "description": "number"
+  },
+  {
+    "key": "_034isBreastFeeding",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "生育史-有無哺餵母乳",
+    "description": "0-否;1-是"
+  },
+  {
+    "key": "_035production_age",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "生育史-第一胎生產年齡",
+    "description": "number"
+  },
+  {
+    "key": "_036isHormone",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "用藥史-是否服用荷爾蒙補充劑",
+    "description": "0-否;1-是"
+  },
+  {
+    "key": "_037hormone_age",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "用藥史-幾歲開始(荷)",
+    "description": "number"
+  },
+  {
+    "key": "_038hormone_period",
+    "export": true,
+    "number": 6,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "用藥史-服用幾年(荷)",
+    "description": "number"
+  },
+  {
+    "key": "_039isContraceptive",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "用藥史-是否服用避孕藥",
+    "description": "0-否;1-是"
+  },
+  {
+    "key": "_040contraceptive_age",
+    "export": true,
+    "number": 2,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "用藥史-幾歲開始(避)",
+    "description": "number"
+  },
+  {
+    "key": "_041contracepative_period",
+    "export": true,
+    "number": 6,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "用藥史-服用幾年(避)",
+    "description": "數字;可有小數點;「39.用藥史-是否服用避"
+  },
+  {
+    "key": "_042isSelfExam",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "2",
+    "required": true,
+    "chinese": "是否有感覺到異常腫塊",
+    "description": "1-有摸到硬塊或疼痛、壓痛;\n2-沒有症狀;\n3-未做過乳房自我檢查;"
+  },
+  {
+    "key": "_043isTouch",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "其他-最近二年內是否做過-醫護人員觸診",
+    "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
+  },
+  {
+    "key": "_044isMammo",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "其他-最近二年內是否做過-乳房 X 光攝影檢查",
+    "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
+  },
+  {
+    "key": "_045isSono",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "其他-最近二年內是否做過-乳房超音波檢查",
+    "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
+  },
+  {
+    "key": "_046isNoExam",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "其他-以上皆未做過",
+    "description": "1-有;空白表示沒有勾選 「43~46 其他」,擇一必填"
+  },
+  {
+    "key": "_047isOP",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "F",
+    "required": true,
+    "chinese": "其他-是否接受過乳房手術",
+    "description": "T:是 F:否"
+  },
+  {
+    "key": "_048OP_left",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "其他-乳房手術左側",
+    "description": "0-否;\n1-是;\n「47.其他-是否接受過乳房手術」\n為「T」時,「48~49」,擇一必填為 1"
+  },
+  {
+    "key": "_049OP_right",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "其他-乳房手術右側",
+    "description": "0-否;\n1-是;\n「47.其他-是否接受過乳房手術」\n為「T」時,「48~49」,擇一必填為 1"
+  },
+  {
+    "key": "_050hospital_code",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": "1231050017",
+    "required": true,
+    "chinese": "乳攝醫院代碼",
+    "description": "必須和上傳的醫療院所代碼相同"
+  },
+  {
+    "key": "_051mammo_day",
+    "export": true,
+    "number": 7,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "乳攝日期",
+    "description": "number YYYMMDD 民國年月日"
+  },
+  {
+    "key": "_052mammo_machine",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "3",
+    "required": true,
+    "chinese": "攝影儀機型",
+    "description": "2-數位 CR\n3- 數 位 DR\n4-乳房斷層攝影機(Tomosynthesis, Tomo)"
+  },
+  {
+    "key": "_053touch_result",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": "2",
+    "required": true,
+    "chinese": "乳房觸診檢查",
+    "description": "1-有腫塊或其他異常;\n2-無異常;\n3-未做觸診檢查;"
+  },
+  {
+    "key": "_054gland_composition",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "乳腺組成",
+    "description": "1-Fatty breast;\n2-Mildly dense;(105/5/1 移除)\n3-Moderate Heterogeneously dense\n4-Extremely dense;\n5-Scattered fibroglandular density"
+  },
+  {
+    "key": "_055isComparison",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "與舊片比較",
+    "description": "T:是 F:否"
+  },
+  {
+    "key": "_056noOldMammo_cause",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "無舊片的原因",
+    "description": "1-第一次篩檢;\n2-無法取得舊片;\n3-無法獲知是否有舊片;"
+  },
+  {
+    "key": "_057report_day",
+    "export": true,
+    "number": 7,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "攝影判讀日期",
+    "description": "number YYYMMDD 民國年月日"
+  },
+  {
+    "key": "_058mammo_category",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "乳攝結果",
+    "description": "0-需附加其他影像檢查再評估;\n1-無異常發現;\n2-良性發現;\n3-可能是良性發現-六個月內須追蹤檢查;\n3-可能是良性發現-須短期追蹤檢查\n4-可疑異常需考慮組織生檢;\n5-高度懷疑為惡性腫瘤,須採取適當的措施;"
+  },
+  {
+    "key": "_059cat4_subtype",
+    "export": true,
+    "number": 1,
+    "type": "radio",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "乳攝結果 4 的次選項",
+    "description": "a-Low suspicion;\nb-Moderate Intermediate suspicion;\nc-High Moderate suspicion; 「58.乳攝結果」為「4」時,必填"
+  },
+  {
+    "key": "_060report_Dr",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "放射科醫師",
+    "description": "請乳攝醫院管理者於「單位管理-醫護人員設定」中查詢放射科醫師所屬 DB 序號"
+  },
+  {
+    "key": "_061technician",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": true,
+    "chinese": "醫事放射師",
+    "description": "請乳攝醫院管理者於「單位管理-醫護人員設定」中查詢放射師所屬 DB 序號"
+  },
+  {
+    "key": "_062referHospital_code",
+    "export": true,
+    "number": 10,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "轉診醫院代碼",
+    "description": "轉診醫院代碼"
+  },
+  {
+    "key": "_063IsMass",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "1.Mass",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_064mass_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_065mass_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_066mass_uni",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "multiple, unilateral",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_067mass_bil",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "multiple, bilateral",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_068mass_UOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_069mass_UIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_070mass_LOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_071mass_LIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_072mass_subareolar",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-subareolar",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_073mass_axilla",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-axillary tail",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_074mass_oneView_upper",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- upper hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_075mass_oneView_lower",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- lower hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_076mass_oneView_outer",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- outer hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_077mass_oneView_inner",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- inner hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_078mass_size_1",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Size- <1.0cm",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_079mass_size_2",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Size- 1-2cm",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_080mass_size_3",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Size- 2-3cm",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_081mass_size_4",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Size- 3-4cm",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_082mass_size_large",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Size- >4cm",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_083mass_round",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Shape- round",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_084mass_ovale",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Shape- oval",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_085mass_lobular",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Shape- lobular",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_086mass_irregular",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Shape- irregular",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_087mass_circum",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Margin- circumscribed",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_088mass_microlob",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Margin- microlobulated",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_089mass_obscured",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Margin- obscured",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_090mass_indistinct",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Margin- Indistinct",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_091mass_spiculated",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Margin- spiculated",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_092mass_highDensity",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Density- high-density",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_093mass_equalDensity",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Density- Equal density",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_094mass_lowDensity",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Density- low-density",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_095mass_fat",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Density- Fat-containing",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_096isCal",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "2.Calcifications",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_097cal_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_098cal_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_099cal_uni",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "multiple, unilateral",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_100cal_bil",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "multiple, bilateral",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_101cal_UOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_102cal_UIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_103cal_LOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_104cal_LIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_105cal_subareolar",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-subareolar",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_106cal_axilla",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-axillary tail",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_107cal_oneView_upper",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- upper hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_108cal_oneView_lower",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- lower hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_109cal_oneView_outer",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- outer hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_110cal_oneView_inner",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- inner hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_111cal_grouped",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Distribution- Grouped",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_112cal_linear",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Distribution- linear",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_113cal_segmental",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Distribution- segmental",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_114cal_regional",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Distribution- regional",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_115cal_diffuse",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Distribution- diffuse",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_116cal_amorphous",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Morphology-amorphous",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_117cal_coarseHetero",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Morphology- Coarse Heterogeneous",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_118cal_finePleo",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Morphology- Fine pleomorphic",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_119cal_fineBranching",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Morphology- fine linear branching",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_120isAsym",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "3. Asymmetry",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_121asym_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_122asym_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_123Asymmetry",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Asymmetry",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_124focalAsymmetry",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Focal asymmetry",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_125asym_developing",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Developing asymmetry",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_126asym_UOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_127asym_UIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_128asym_LOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_129asym_LIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_130asym_subareolar",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-subareolar",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_131asym_axilla",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-axillary tail",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_132asym_oneView_upper",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- upper hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_133asym_oneView_lower",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- lower hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_134asym_oneView_outer",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- outer hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_135asym_oneView_inner",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- inner hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_136isDistorsion",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "4.Architectural distortion",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_137distorsion_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_138distorsion_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_139distorsion_UOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_140distorsion_UIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-UIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_141distorsion_LOQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LOQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_142distorsion_LIQ",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-LIQ",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_143distorsion_subareolar",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-subareolar",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_144distorsion_axilla",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Location-axillary tail",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_145distorsion_oneView_upper",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- upper hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_146distorsion_oneView_lower",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- lower hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_147distorsion_oneView_outer",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- outer hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_148distorsion_oneView_inner",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "One view only- inner hemisphere",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_149isRectraction",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "5. Thickening or retraction of the skin and/or nipple",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_150retraction_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_151retraction_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_152isLN",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "6. Dense or enlarged axillary LNs",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_153LN_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_154LN_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_155isDuct",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "7. Dilated lactiferous ducts",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_156duct_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_157duct_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_158isSkin",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "8. Diffuse thickening of the skin and increased density",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_159skin_right",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Rt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_160skin_left",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "Lt.",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_161isOther",
+    "export": true,
+    "number": 1,
+    "type": "checkbox",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "9.Others……",
+    "description": "T 勾選;空白沒勾"
+  },
+  {
+    "key": "_162Other",
+    "export": true,
+    "number": 100,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "9.Others……的敘述",
+    "description": "「161.Others」為「T」時,必填"
+  },
+  {
+    "key": "id",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "firebase document name",
+    "description": "firebase document name"
+  },
+  {
+    "key": "report",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "乳房篩檢報告",
+    "description": "mammo report"
+  },
+  {
+    "key": "drName",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "報告醫師姓名",
+    "description": "報告醫師姓名"
+  },
+  {
+    "key": "techName",
+    "export": false,
+    "number": null,
+    "type": "input",
+    "defaultValue": null,
+    "required": false,
+    "chinese": "放射師姓名",
+    "description": "放射師姓名"
+  }
+]

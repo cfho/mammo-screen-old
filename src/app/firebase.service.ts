@@ -5,29 +5,17 @@ import {
   AngularFirestoreDocument,
 } from "@angular/fire/compat/firestore";
 import { Observable } from "rxjs";
+import { shareReplay } from "rxjs/operators";
 import { Customer } from "./pages/apps/aio-table/interfaces/customer.model";
 
 //interface
 import { Field } from "./pages/apps/aio-table/interfaces/field";
 
 //local data in static-data folder
-import { exportFields } from "../static-data/fields-data";
 import fieldsDetail from "../static-data/fieldsDetail.json";
 import personnelCode from "../static-data/personnel-code.json";
 import countyCode from "../static-data/county-code.json";
 import areaCode from "../static-data/area-code.json";
-import { shareReplay } from "rxjs/operators";
-
-export const deleteFields = [
-  "drName",
-  "report",
-  "techName",
-  "id",
-  "_031menopause_causes_2",
-  "_031menopause_causes_3",
-  "_031menopause_causes_4",
-  "_031menopause_causes_5",
-];
 
 @Injectable({
   providedIn: "root",
@@ -42,7 +30,7 @@ export class FirebaseService {
   item: Observable<Customer>;
 
   // get fields with different styles;
-  exportFieldsKeyArr;
+  exportFieldsKeyArr: string[];
   fieldsDetail: Field[] = fieldsDetail; // [{key: '_001ID_number', number: 10, ...}, {}, ...]
   fieldsHeaderObjArr: { header: string; key: string }[]; // [{header: '001', key: '_001ID_number'}, {}, ...]
   fieldsKeyNumberObj: {}; // {_001ID_number: "10", ...}
@@ -61,7 +49,7 @@ export class FirebaseService {
   // return [{header: '001', key: '_001ID_number'}, {}, ...
   private setFieldsHeaderObjArr() {
     let header: { header: string; key: string }[] = [];
-    exportFields.map((key) =>
+    this.exportFieldsKeyArr.map((key) =>
       header.push({ header: key.substring(1, 4), key: key })
     );
     this.fieldsHeaderObjArr = header;
@@ -71,11 +59,12 @@ export class FirebaseService {
   // return {_001ID_number: 10, ...}
   private setFieldsKeyNumberObj() {
     let keyNumberObj = {} as { key: string; number: number };
-    fieldsDetail.map((fieldObj) => {
-      keyNumberObj[fieldObj.key] = fieldObj.number;
-    });
+
+    this.fieldsDetail
+      .filter((fieldObj) => fieldObj.export == true)
+      .map((fieldObj) => (keyNumberObj[fieldObj.key] = fieldObj.number));
+
     this.fieldsKeyNumberObj = keyNumberObj;
-    deleteFields.map((key) => delete this.fieldsKeyNumberObj[key]);
     console.log(this.fieldsKeyNumberObj);
   }
 
@@ -127,8 +116,20 @@ export class FirebaseService {
   }
 
   // return [{key: '_001ID_number', number: 10, ...}, {}, ...]
+
+  private getExportKeyArr() {
+    let arr = [];
+    this.fieldsDetail
+      .filter((obj) => obj.export == true)
+      .map((obj) => {
+        arr.push(obj.key);
+      });
+    this.exportFieldsKeyArr = arr;
+    // console.log(this.exportFieldsKeyArr);
+  }
+
   getFields() {
-    this.exportFieldsKeyArr = exportFields;
+    this.getExportKeyArr();
     this.setFieldsHeaderObjArr();
     this.getPersonnelCodeObj();
     this.getCountyCodeObj();
