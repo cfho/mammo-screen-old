@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  ComponentFactoryResolver,
   Input,
   OnInit,
   ViewChild,
@@ -43,6 +44,9 @@ import { Customer } from "src/app/pages/apps/aio-table/interfaces/customer.model
 
 import { Workbook } from "exceljs";
 import * as fs from "file-saver";
+import { collectionSnapshots } from "@angular/fire/firestore";
+import { log } from "console";
+// import { saveAs } from 'file-saver';
 
 @UntilDestroy()
 @Component({
@@ -155,7 +159,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   icFilterList = icFilterList;
   icMoreHoriz = icMoreHoriz;
   icFolder = icFolder;
-  fileDownload = fileDownload
+  fileDownload = fileDownload;
 
   clickedRows = new Set();
 
@@ -176,27 +180,34 @@ export class AioTableComponent implements OnInit, AfterViewInit {
    */
 
   exportExcel() {
-    let header = this.afService.fieldsHeaderObjArr;
-    let workbook = new Workbook();
-    let worksheet = workbook.addWorksheet("ProductSheet");
-    worksheet.columns = header;
+    let contact: string = this.afService.contactString;
 
-    const exportData = this.customers;
-    for (const obj of exportData) {
-      // 選出 report category = 1 or 2
-      if (obj._058mammo_category == "1" || obj._058mammo_category == "2") {
-        Object.keys(obj)
-          .filter((key) => +key.substring(1, 4) > 62) // filter _62 以後的item
-          .map((key) => delete obj[key]); // remove _062 以後的item
-      }
-    }
-    console.log(exportData);
-
-    worksheet.addRows(exportData, "n");
-    workbook.xlsx.writeBuffer().then((data) => {
-      let blob = new Blob([data], { type: "text/csv" });
-      fs.saveAs(blob, "下載資料.csv");
+    //取得匯出的資料：Object
+    const exportKeyArr = this.afService.exportFieldsKeyArr;
+    const savedData = this.customers;
+    const exportArr = [];
+    savedData.map((dataArr) => {
+      const newObj = {};
+      exportKeyArr.forEach((key) => {
+        if (savedData[0][key]) newObj[key] = dataArr[key];
+      });
+      exportArr.push(newObj);
     });
+
+    //將資料 Object 轉成 string
+    const stringArr = [...exportArr.map((obj) => [...Object.values(obj)])]
+      .map((e) => e.join(""))
+    stringArr.unshift(contact);
+    const exportString = stringArr.join("\n");
+
+    // 儲存檔案的名稱：BreastA1231050017_11102
+    const month = (new Date().getUTCMonth() + 1).toString().padStart(2, "0");
+    const year = new Date().getUTCFullYear() - 1911;
+    const fileName = "BreastA1231050017_" + year + month + ".txt";
+
+    //存儲檔案
+    const blob = new Blob([exportString], { type: "text/csv" });
+      fs.saveAs(blob, fileName);
   }
 
   getData() {
@@ -212,14 +223,16 @@ export class AioTableComponent implements OnInit, AfterViewInit {
 
     this.dataSource = new MatTableDataSource();
 
-    this.data$.pipe(
-      filter<Customer[]>(Boolean),
-      // shareReplay(1)
-      ).subscribe((customers) => {
-      this.customers = customers;
-      console.log(customers);
-      this.dataSource.data = customers;
-    });
+    this.data$
+      .pipe(
+        filter<Customer[]>(Boolean)
+        // shareReplay(1)
+      )
+      .subscribe((customers) => {
+        this.customers = customers;
+        console.log(customers);
+        this.dataSource.data = customers;
+      });
 
     this.searchCtrl.valueChanges
       .pipe(untilDestroyed(this))
@@ -251,7 +264,6 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   updateCustomer(customer: Customer) {
-
     // console.log(customer.readCheckbox);
     // if(customer.readCheckbox) {
     //   console.log('has data');
@@ -260,7 +272,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     //   console.log('no data')
     //   customer.readCheckbox = true;
     // }
-      customer.readCheckbox = true;
+    customer.readCheckbox = true;
 
     this.dialog
       .open(CustomerCreateUpdateComponent, {
@@ -345,5 +357,4 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     this.customers[index].labels = change.value;
     this.subject$.next(this.customers);
   }
-
 }

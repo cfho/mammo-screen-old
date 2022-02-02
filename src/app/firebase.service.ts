@@ -4,8 +4,8 @@ import {
   AngularFirestoreCollection,
   AngularFirestoreDocument,
 } from "@angular/fire/compat/firestore";
-import { Observable } from "rxjs";
-import { shareReplay } from "rxjs/operators";
+import { Observable, pipe } from "rxjs";
+import { shareReplay, take } from "rxjs/operators";
 import { Customer } from "./pages/apps/aio-table/interfaces/customer.model";
 
 //interface
@@ -16,6 +16,7 @@ import fieldsDetail from "../static-data/fieldsDetail.json";
 import personnelCode from "../static-data/personnel-code.json";
 import countyCode from "../static-data/county-code.json";
 import areaCode from "../static-data/area-code.json";
+import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
 
 @Injectable({
   providedIn: "root",
@@ -37,6 +38,7 @@ export class FirebaseService {
   personnelCodeObj: {}; // {陳達欣: '14138', ...}
   countyCodeObj: {}; // {台北市: '01', ...}
   areaCodeObj: {}; // {中正區: '01', ...}
+  contactString: string;
 
   constructor(private afs: AngularFirestore) {
     this.itemsCollection = afs.collection<Customer>("toFirebase");
@@ -115,8 +117,7 @@ export class FirebaseService {
     // });
   }
 
-  // return [{key: '_001ID_number', number: 10, ...}, {}, ...]
-
+  // return ['_001ID_number', ...]
   private getExportKeyArr() {
     let arr = [];
     this.fieldsDetail
@@ -128,6 +129,17 @@ export class FirebaseService {
     // console.log(this.exportFieldsKeyArr);
   }
 
+  private getContact() {
+    this.afs.doc('contact/1231050017').valueChanges().pipe(take(1)).subscribe(data => {
+      this.contactString = data['hospital_code'].padEnd(10) + 
+      data['contact'].padEnd(10) + 
+      data['phone'].padEnd(20) + 
+      data['email'].padEnd(50)
+      // console.log(this.contactString);
+    })
+  }
+
+
   getFields() {
     this.getExportKeyArr();
     this.setFieldsHeaderObjArr();
@@ -135,6 +147,7 @@ export class FirebaseService {
     this.getCountyCodeObj();
     this.getAreaCodeObj();
     this.setFieldsKeyNumberObj();
+    this.getContact();
     // this.fieldsCollection.valueChanges().subscribe((data) => {
     //   this.fieldsDetail = data;
     //   console.log(this.fieldsDetail);
