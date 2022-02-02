@@ -34,6 +34,23 @@
 //   border-color: currentColor;
 // }
 
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color:rgb(66, 134, 244); 
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color:rgb(66, 134, 244);
+  background-color:rgb(66, 134, 244) ;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:rgb(101, 154, 240);
+}
+
 .demo-row-is-clicked {
   // font-weight: bold;
   background-color: lightgrey;
@@ -47,6 +64,12 @@
 //for radio
 .mat-radio-label-content {
   margin-right: 10px;
+}
+
+.title0 {
+  font-size: large;
+  font-weight: bold;
+  color: rgb(12, 119, 155);
 }
 
 .title1 {
