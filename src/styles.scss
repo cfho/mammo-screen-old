@@ -34,6 +34,21 @@
 //   border-color: currentColor;
 // }
 
+.report {
+  white-space: pre-wrap;
+  background-color: rgba(230, 218, 218, 0.486);
+  padding: 15px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+//調整 space between label & checkbox
+button .mat-checkbox-layout .mat-checkbox-label {
+  margin-left: 17px;
+}
+
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
   background-color: rgb(66, 134, 244);
 }

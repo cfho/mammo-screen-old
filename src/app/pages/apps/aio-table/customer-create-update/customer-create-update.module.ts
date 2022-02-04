@@ -13,6 +13,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { CustomerCreateUpdateComponent } from "./customer-create-update.component";
 import { MatMenuModule } from "@angular/material/menu";
@@ -79,6 +80,7 @@ export function numberValidatorMessage(err, field: FormlyFieldConfig) {
     MatSelectModule,
     MatMenuModule,
     MatCheckboxModule,
+    MatExpansionModule,
     IconModule,
     MatDividerModule,
     FormlyModule.forRoot({
