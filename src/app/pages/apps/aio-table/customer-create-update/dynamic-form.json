@@ -1712,6 +1712,9 @@
           "required": true,
           "maxLength": 4,
           "readonly": true
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -1964,6 +1967,9 @@
           "label": "醫師姓名",
           "maxLength": 10,
           "readonly": true
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {
@@ -1987,6 +1993,9 @@
           "label": "放射師姓名",
           "maxLength": 10,
           "readonly": true
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "formState.disabled"
         }
       },
       {

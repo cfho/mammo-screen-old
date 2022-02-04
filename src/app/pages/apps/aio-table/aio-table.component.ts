@@ -148,7 +148,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     // { label: "Labels", property: "labels", type: "button", visible: true },
     // { label: "Actions", property: "actions", type: "button", visible: true },
   ];
-  pageSize = 100;
+  pageSize = 20;
   pageSizeOptions: number[] = [100, 200, 300];
   dataSource: MatTableDataSource<Customer> | null;
   selection = new SelectionModel<Customer>(true, []);
