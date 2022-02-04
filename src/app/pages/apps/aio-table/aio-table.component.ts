@@ -81,7 +81,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       label: "Checkbox",
       property: "checkbox",
       type: "checkbox",
-      visible: false,
+      visible: true,
     },
     // { label: 'Image', property: 'image', type: 'image', visible: true },
     {
@@ -308,14 +308,17 @@ export class AioTableComponent implements OnInit, AfterViewInit {
      * Here we are updating our local array.
      * You would probably make an HTTP request here.
      */
-    this.customers.splice(
-      this.customers.findIndex(
-        (existingCustomer) => existingCustomer.id === customer.id
-      ),
-      1
-    );
-    this.selection.deselect(customer);
-    this.subject$.next(this.customers);
+
+    // this.customers.splice(
+    //   this.customers.findIndex(
+    //     (existingCustomer) => existingCustomer.id === customer.id
+    //   ),
+    //   1
+    // );
+    // this.selection.deselect(customer);
+    // this.subject$.next(this.customers);
+    this.afService.deleteItem(customer);
+
   }
 
   deleteCustomers(customers: Customer[]) {
