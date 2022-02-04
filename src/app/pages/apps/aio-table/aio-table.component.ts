@@ -95,7 +95,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       label: "身份證",
       property: "_001ID_number",
       type: "text",
-      visible: true,
+      visible: false,
       cssClasses: ["font-medium"],
     },
     // { label: 'First Name', property: 'firstName', type: 'text', visible: false },
@@ -125,10 +125,17 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       cssClasses: ["text-secondary", "font-medium"],
     },
     {
+      label: "報告醫師",
+      property: "drName",
+      type: "text",
+      visible: true,
+      cssClasses: ["text-secondary", "font-medium"],
+    },
+    {
       label: "流水號",
       property: "accessionNumber",
       type: "text",
-      visible: false,
+      visible: true,
       cssClasses: ["text-secondary", "font-medium"],
     },
     {
@@ -141,8 +148,8 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     // { label: "Labels", property: "labels", type: "button", visible: true },
     // { label: "Actions", property: "actions", type: "button", visible: true },
   ];
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 20, 50];
+  pageSize = 100;
+  pageSizeOptions: number[] = [100, 200, 300];
   dataSource: MatTableDataSource<Customer> | null;
   selection = new SelectionModel<Customer>(true, []);
   searchCtrl = new FormControl();
