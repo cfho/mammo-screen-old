@@ -179,7 +179,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
       // this.defaults.techName = this.defaults._061technician;
       this.defaults._061technician = personnelCodeObj[techName];
     } else {
-      alert(`放射師： ${drName}, 找不到`);
+      alert(`放射師： ${techName}, 找不到`);
     }
   }
 

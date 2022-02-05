@@ -142,7 +142,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       label: "手機",
       property: "_010mobile",
       type: "text",
-      visible: true,
+      visible: false,
       cssClasses: ["text-secondary", "font-medium"],
     },
     // { label: "Labels", property: "labels", type: "button", visible: true },
