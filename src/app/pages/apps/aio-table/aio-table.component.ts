@@ -148,7 +148,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     // { label: "Labels", property: "labels", type: "button", visible: true },
     // { label: "Actions", property: "actions", type: "button", visible: true },
   ];
-  pageSize = 20;
+  pageSize = 100;
   pageSizeOptions: number[] = [100, 200, 300];
   dataSource: MatTableDataSource<Customer> | null;
   selection = new SelectionModel<Customer>(true, []);
@@ -186,12 +186,12 @@ export class AioTableComponent implements OnInit, AfterViewInit {
    * We are simulating this request here.
    */
 
-  exportExcel() {
+  exportExcel(customers: Customer[]) {
     let contact: string = this.afService.contactString;
 
     //取得匯出的資料：Object
     const exportKeyArr = this.afService.exportFieldsKeyArr;
-    const savedData = this.customers;
+    const savedData = customers;
     const exportArr = [];
     savedData.map((dataArr) => {
       const newObj = {};
@@ -213,9 +213,15 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     const fileName = "BreastA1231050017_" + year + month + ".txt";
 
     //存儲檔案
-    const blob = new Blob([exportString], { type: "text/csv" });
+    const blob = new Blob([exportString], {type: "text/plain;charset=utf-8"});
       fs.saveAs(blob, fileName);
   }
+
+  exportAll() {
+    this.exportExcel(this.customers);
+  }
+
+
 
   getData() {
     // return of(aioTableData.map(customer => new Customer(customer)));

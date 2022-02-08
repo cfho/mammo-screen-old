@@ -615,7 +615,7 @@
             { "value": "3", "label": "無法獲知是否有舊片" }
           ]
         },
-        "hideExpression": "model._055isComparison === 'F'"
+        "hideExpression": "model._055isComparison === 'T'"
       }
     ]
   },
@@ -1846,7 +1846,7 @@
         "type": "input",
         "className": "flex-1",
         "templateOptions": {
-          "label": "所屬單位機構代碼",
+          "label": "乳攝車所屬單位機構代碼",
           "maxLength": 10,
           "description": "新店耕莘醫院"
         },
