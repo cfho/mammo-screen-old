@@ -55,7 +55,7 @@ export class FirebaseService {
       header.push({ header: key.substring(1, 4), key: key })
     );
     this.fieldsHeaderObjArr = header;
-    console.log(header);
+    // console.log(header);
   }
 
   // return {_001ID_number: 10, ...}

@@ -3,7 +3,7 @@
     "className": "title1",
     "template": "<hr /><div><strong>一，個案基本資料</strong></div>"
   },
-  
+
   {
     "key": "_017education",
     "type": "radio",
@@ -217,8 +217,8 @@
       {
         "key": "_031menopause_causes_2",
         "type": "checkbox",
-        "className": "flex-1",
         "defaultValue": false,
+        "className": "flex-1",
         "templateOptions": {
           "label": "自然停經"
         },
@@ -227,8 +227,8 @@
       {
         "key": "_031menopause_causes_3",
         "type": "checkbox",
-        "className": "flex-1",
         "defaultValue": false,
+        "className": "flex-1",
         "templateOptions": {
           "label": "子宮切除"
         },
@@ -237,8 +237,8 @@
       {
         "key": "_031menopause_causes_4",
         "type": "checkbox",
-        "className": "flex-1",
         "defaultValue": false,
+        "className": "flex-1",
         "templateOptions": {
           "label": "卵巢切除"
         },
@@ -247,8 +247,8 @@
       {
         "key": "_031menopause_causes_5",
         "type": "checkbox",
-        "className": "flex-1",
         "defaultValue": false,
+        "className": "flex-1",
         "templateOptions": {
           "label": "其他"
         },
@@ -303,8 +303,8 @@
           "label": "有無哺餵母乳",
           "required": true,
           "options": [
-            { "value": "0", "label": "否" },
-            { "value": "1", "label": "是" }
+            { "value": "1", "label": "是" },
+            { "value": "0", "label": "否" }
           ]
         }
       }
@@ -351,7 +351,7 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "服用幾年(荷)",
-          "maxLength": 2
+          "maxLength": 6
         },
         "hideExpression": "model._036isHormone === '0'"
       }
@@ -384,7 +384,6 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "幾歲開始(避)",
-          "type": "number",
           "maxLength": 2
         },
         "hideExpression": "model._039isContraceptive === '0'"
@@ -395,8 +394,7 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "服用幾年(避)",
-          "type": "number",
-          "maxLength": 2
+          "maxLength": 6
         },
         "hideExpression": "model._039isContraceptive === '0'"
       }
@@ -439,64 +437,45 @@
     "fieldGroup": [
       {
         "key": "_046isNoExam",
-        "type": "radio",
+        "type": "checkbox",
+        "defaultValue": true,
         "className": "flex-1",
-        "defaultValue": "1",
         "templateOptions": {
-          "label": "有做檢查嗎？",
-          "options": [
-            { "value": "1", "label": "沒有" },
-            { "value": " ", "label": "有做檢查：" }
-          ]
+          "label": "以上皆未做過"
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "model._043isTouch == true || model._044isMammo == true || model._045isSono == true"
         }
       },
       {
         "key": "_043isTouch",
-        "type": "radio",
+        "type": "checkbox",
+        "defaultValue": false,
         "className": "flex-1",
-        "defaultValue": " ",
         "templateOptions": {
-          "label": "醫護人員觸診？",
-          "options": [
-            { "value": "1", "label": "有" },
-            { "value": " ", "label": "無" }
-          ]
+          "label": "醫護人員觸診？"
         },
-        "expressionProperties": {
-          "templateOptions.disabled": "model._046isNoExam =='1'"
-        }
+        "hideExpression": "model._046isNoExam == true"
       },
       {
         "key": "_044isMammo",
-        "type": "radio",
+        "type": "checkbox",
+        "defaultValue": false,
         "className": "flex-1",
-        "defaultValue": " ",
         "templateOptions": {
-          "label": "乳房X光攝影檢查？",
-          "options": [
-            { "value": "1", "label": "有" },
-            { "value": " ", "label": "無" }
-          ]
+          "label": "乳房X光攝影檢查？"
         },
-        "expressionProperties": {
-          "templateOptions.disabled": "model._046isNoExam =='1'"
-        }
+        "hideExpression": "model._046isNoExam == true"
       },
       {
         "key": "_045isSono",
-        "type": "radio",
+        "type": "checkbox",
+        "defaultValue": false,
         "className": "flex-1",
-        "defaultValue": " ",
         "templateOptions": {
-          "label": "乳房超音波檢查？",
-          "options": [
-            { "value": "1", "label": "有" },
-            { "value": " ", "label": "無" }
-          ]
+          "label": "乳房超音波檢查？"
         },
-        "expressionProperties": {
-          "templateOptions.disabled": "model._046isNoExam =='1'"
-        }
+        "hideExpression": "model._046isNoExam == true"
       }
     ]
   },
@@ -523,29 +502,21 @@
       },
       {
         "key": "_048OP_left",
-        "type": "radio",
+        "type": "checkbox",
+        "defaultValue": false,
         "className": "flex-1",
-        "defaultValue": "0",
         "templateOptions": {
-          "label": "左側開刀",
-          "options":[
-            { "value": "0", "label": "否" },
-            { "value": "1", "label": "是" }
-          ]
+          "label": "左側開刀"
         },
         "hideExpression": "model._047isOP === 'F'"
       },
       {
         "key": "_049OP_right",
-        "type": "radio",
+        "type": "checkbox",
+        "defaultValue": false,
         "className": "flex-1",
-        "defaultValue": "0",
         "templateOptions": {
-          "label": "右側開刀",
-          "options":[
-            { "value": "0", "label": "否" },
-            { "value": "1", "label": "是" }
-          ]
+          "label": "右側開刀"
         },
         "hideExpression": "model._047isOP === 'F'"
       }
@@ -555,7 +526,7 @@
     "className": "title1",
     "template": "<hr /><div><strong>三，乳房X光攝影檢查結果（攝影醫院填寫）</strong></div>"
   },
-  
+
   {
     "key": "_053touch_result",
     "type": "radio",
@@ -665,7 +636,7 @@
       }
     ]
   },
-  
+
   {
     "className": "title1",
     "template": "<hr /><div>【檢查異常個案報告表】</div>"
@@ -678,6 +649,7 @@
   {
     "key": "_063IsMass",
     "type": "checkbox",
+    "defaultValue": false,
     "className": "flex-1",
     "templateOptions": {
       "label": "1.Mass"
@@ -690,6 +662,7 @@
       {
         "key": "_064mass_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -698,6 +671,7 @@
       {
         "key": "_065mass_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -706,6 +680,7 @@
       {
         "key": "_066mass_uni",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "multiple, unilateral"
@@ -714,6 +689,7 @@
       {
         "key": "_067mass_bil",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "multiple, bilateral"
@@ -733,6 +709,7 @@
       {
         "key": "_068mass_UOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UOQ"
@@ -741,6 +718,7 @@
       {
         "key": "_069mass_UIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UIQ"
@@ -749,6 +727,7 @@
       {
         "key": "_070mass_LOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LOQ"
@@ -757,6 +736,7 @@
       {
         "key": "_071mass_LIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LIQ"
@@ -765,6 +745,7 @@
       {
         "key": "_072mass_subareolar",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "subareolar"
@@ -773,6 +754,7 @@
       {
         "key": "_073mass_axilla",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "axilla"
@@ -792,6 +774,7 @@
       {
         "key": "_074mass_oneView_upper",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "upper"
@@ -800,6 +783,7 @@
       {
         "key": "_075mass_oneView_lower",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "lower"
@@ -808,6 +792,7 @@
       {
         "key": "_076mass_oneView_outer",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "outer"
@@ -816,6 +801,7 @@
       {
         "key": "_077mass_oneView_inner",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "inner"
@@ -835,6 +821,7 @@
       {
         "key": "_078mass_size_1",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "< 1.0 cm"
@@ -843,6 +830,7 @@
       {
         "key": "_079mass_size_2",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "1-2 cm"
@@ -851,6 +839,7 @@
       {
         "key": "_080mass_size_3",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "2-3 cm"
@@ -859,6 +848,7 @@
       {
         "key": "_081mass_size_4",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "3-4 cm"
@@ -867,6 +857,7 @@
       {
         "key": "_082mass_size_large",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "> 4 cm"
@@ -886,6 +877,7 @@
       {
         "key": "_083mass_round",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "round"
@@ -894,6 +886,7 @@
       {
         "key": "_084mass_ovale",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "ovale"
@@ -902,6 +895,7 @@
       {
         "key": "_085mass_lobular",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "lobular"
@@ -910,6 +904,7 @@
       {
         "key": "_086mass_irregular",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "irregular"
@@ -929,6 +924,7 @@
       {
         "key": "_087mass_circum",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "circumscribed"
@@ -937,6 +933,7 @@
       {
         "key": "_088mass_microlob",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "microlobulated"
@@ -945,6 +942,7 @@
       {
         "key": "_089mass_obscured",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "obscured"
@@ -953,6 +951,7 @@
       {
         "key": "_090mass_indistinct",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "indistinct"
@@ -961,6 +960,7 @@
       {
         "key": "_091mass_spiculated",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "spiculated"
@@ -980,6 +980,7 @@
       {
         "key": "_092mass_highDensity",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "high-density"
@@ -988,6 +989,7 @@
       {
         "key": "_093mass_equalDensity",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "equal density"
@@ -996,6 +998,7 @@
       {
         "key": "_094mass_lowDensity",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "low density"
@@ -1004,6 +1007,7 @@
       {
         "key": "_095mass_fat",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "fat-containing"
@@ -1020,6 +1024,7 @@
   {
     "key": "_096isCal",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "defaultValue": false,
     "templateOptions": {
@@ -1033,6 +1038,7 @@
       {
         "key": "_097cal_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1041,6 +1047,7 @@
       {
         "key": "_098cal_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1049,6 +1056,7 @@
       {
         "key": "_099cal_uni",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "multiple, unilateral"
@@ -1057,6 +1065,7 @@
       {
         "key": "_100cal_bil",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "multiple, bilateral"
@@ -1076,6 +1085,7 @@
       {
         "key": "_101cal_UOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UOQ"
@@ -1084,6 +1094,7 @@
       {
         "key": "_102cal_UIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UIQ"
@@ -1092,6 +1103,7 @@
       {
         "key": "_103cal_LOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LOQ"
@@ -1100,6 +1112,7 @@
       {
         "key": "_104cal_LIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LIQ"
@@ -1108,6 +1121,7 @@
       {
         "key": "_105cal_subareolar",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "subareolar"
@@ -1116,6 +1130,7 @@
       {
         "key": "_106cal_axilla",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "axilla"
@@ -1135,6 +1150,7 @@
       {
         "key": "_107cal_oneView_upper",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "upper"
@@ -1143,6 +1159,7 @@
       {
         "key": "_108cal_oneView_lower",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "lower"
@@ -1151,6 +1168,7 @@
       {
         "key": "_109cal_oneView_outer",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "outer"
@@ -1159,6 +1177,7 @@
       {
         "key": "_110cal_oneView_inner",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "inner"
@@ -1175,6 +1194,7 @@
   {
     "key": "_120isAsym",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "templateOptions": {
       "label": "3.Aymmetry"
@@ -1187,6 +1207,7 @@
       {
         "key": "_121asym_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1195,6 +1216,7 @@
       {
         "key": "_122asym_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1203,6 +1225,7 @@
       {
         "key": "_123Asymmetry",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "Asymmetry"
@@ -1211,6 +1234,7 @@
       {
         "key": "_124focalAsymmetry",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "Focal asymmetry"
@@ -1219,6 +1243,7 @@
       {
         "key": "_125asym_developing",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-2",
         "templateOptions": {
           "label": "Developing asymmetry"
@@ -1238,6 +1263,7 @@
       {
         "key": "_126asym_UOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UOQ"
@@ -1246,6 +1272,7 @@
       {
         "key": "_127asym_UIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UIQ"
@@ -1254,6 +1281,7 @@
       {
         "key": "_128asym_LOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LOQ"
@@ -1262,6 +1290,7 @@
       {
         "key": "_129asym_LIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LIQ"
@@ -1270,6 +1299,7 @@
       {
         "key": "_130asym_subareolar",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "subareolar"
@@ -1278,6 +1308,7 @@
       {
         "key": "_131asym_axilla",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "axilla"
@@ -1297,6 +1328,7 @@
       {
         "key": "_132asym_oneView_upper",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "upper"
@@ -1305,6 +1337,7 @@
       {
         "key": "_133asym_oneView_lower",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "lower"
@@ -1313,6 +1346,7 @@
       {
         "key": "_134asym_oneView_outer",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "outer"
@@ -1321,6 +1355,7 @@
       {
         "key": "_135asym_oneView_inner",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "inner"
@@ -1337,6 +1372,7 @@
   {
     "key": "_136isDistorsion",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "templateOptions": {
       "label": "4.Architectural distorsion"
@@ -1349,6 +1385,7 @@
       {
         "key": "_137distorsion_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1357,6 +1394,7 @@
       {
         "key": "_138distorsion_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1376,6 +1414,7 @@
       {
         "key": "_139distorsion_UOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UOQ"
@@ -1384,6 +1423,7 @@
       {
         "key": "_140distorsion_UIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "UIQ"
@@ -1392,6 +1432,7 @@
       {
         "key": "_141distorsion_LOQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LOQ"
@@ -1400,6 +1441,7 @@
       {
         "key": "_142distorsion_LIQ",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "LIQ"
@@ -1408,6 +1450,7 @@
       {
         "key": "_143distorsion_subareolar",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "subareolar"
@@ -1416,6 +1459,7 @@
       {
         "key": "_144distorsion_axilla",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "axilla"
@@ -1435,6 +1479,7 @@
       {
         "key": "_145distorsion_oneView_upper",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "upper"
@@ -1443,6 +1488,7 @@
       {
         "key": "_146distorsion_oneView_lower",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "lower"
@@ -1451,6 +1497,7 @@
       {
         "key": "_147distorsion_oneView_outer",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "outer"
@@ -1459,6 +1506,7 @@
       {
         "key": "_148distorsion_oneView_inner",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "inner"
@@ -1475,6 +1523,7 @@
   {
     "key": "_149isRectraction",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "templateOptions": {
       "label": "5.Thickening or retraction of the skin and/or nipple"
@@ -1487,6 +1536,7 @@
       {
         "key": "_150retraction_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1495,6 +1545,7 @@
       {
         "key": "_151retraction_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1511,6 +1562,7 @@
   {
     "key": "_152isLN",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "templateOptions": {
       "label": "6.Dense or enlarged axillary LNs"
@@ -1523,6 +1575,7 @@
       {
         "key": "_153LN_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1531,6 +1584,7 @@
       {
         "key": "_154LN_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1547,6 +1601,7 @@
   {
     "key": "_155isDuct",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "templateOptions": {
       "label": "7.Dilated lactiferous ducts"
@@ -1559,6 +1614,7 @@
       {
         "key": "_156duct_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1567,6 +1623,7 @@
       {
         "key": "_157duct_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1583,6 +1640,7 @@
   {
     "key": "_158isSkin",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "defaultValue": false,
     "templateOptions": {
@@ -1596,6 +1654,7 @@
       {
         "key": "_159skin_right",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Rt"
@@ -1604,6 +1663,7 @@
       {
         "key": "_160skin_left",
         "type": "checkbox",
+        "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
           "label": "Lt"
@@ -1620,6 +1680,7 @@
   {
     "key": "_161isOther",
     "type": "checkbox",
+    "defaultvalue": false,
     "className": "flex-1 ",
     "templateOptions": {
       "label": "9.Others"

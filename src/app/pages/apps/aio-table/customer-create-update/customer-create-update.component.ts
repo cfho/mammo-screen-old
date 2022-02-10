@@ -54,6 +54,15 @@ export class CustomerCreateUpdateComponent implements OnInit {
     5: "_031menopause_causes_5",
   };
 
+  transformItemsObj = {
+    _043isTouch: {true: "1", false: " "},
+    _044isMammo: {true: "1", false: " "},
+    _045isSono: {true: "1", false: " "},
+    _046isNoExam: {true: "1", false: " "},
+    _048OP_left: {true: "1", false: "0"},
+    _049OP_right: {true: "1", false: "0"},
+  }
+
   static id = 100;
   mode: "create" | "update" = "create";
   icMoreVert = icMoreVert;
@@ -94,11 +103,9 @@ export class CustomerCreateUpdateComponent implements OnInit {
   firebaseToFormly() {
     // console.log(this.fieldsDetail);
     const checkboxFieldsArr = this.fieldsDetail
-      .filter((obj) => obj.type === "checkbox")
+      .filter((obj) => (obj.type === "checkbox")||(obj.type === "checkbox2"))
       .map((obj) => obj.key);
-    if (this.defaults._046isNoExam == "") {
-      this.defaults._046isNoExam = "1";
-    }
+      // console.log(checkboxFieldsArr);
     checkboxFieldsArr.map((key) => {
       if (this.defaults[key] == "T" || this.defaults[key] == "1") {
         this.defaults[key] = true;
@@ -120,7 +127,21 @@ export class CustomerCreateUpdateComponent implements OnInit {
         this.model[key] = " ";
       }
     });
+    this.transformFn();
     console.log(this.model);
+  }
+
+  transformFn() {
+    Object.keys(this.transformItemsObj).map(key => {
+      // console.log(key);
+      // console.log(this.model);
+      let value = this.model[key];
+      if(!this.model[key]) {
+        value = false;
+      }
+      this.model[key] = this.transformItemsObj[key][value];
+      // console.log(this.model[key]);
+    })
   }
 
   fillSpaces(obj: Customer) {
@@ -246,6 +267,7 @@ export class CustomerCreateUpdateComponent implements OnInit {
     this.formlyToFirebase();
     this.fillSpaces(customer);
     this.removeAbnormForm(customer);
+    customer.readCheckbox = true;
     console.log(customer);
     customer.id = this.defaults.id;
     this.dialogRef.close(customer);

@@ -285,7 +285,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     //   console.log('no data')
     //   customer.readCheckbox = true;
     // }
-    customer.readCheckbox = true;
+    // customer.readCheckbox = true;
 
     this.dialog
       .open(CustomerCreateUpdateComponent, {
