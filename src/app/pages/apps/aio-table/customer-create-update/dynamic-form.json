@@ -748,7 +748,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "subareolar"
+          "label": "Subareolar"
         }
       },
       {
@@ -757,7 +757,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "axilla"
+          "label": "Axillary tail"
         }
       }
     ],
@@ -1124,7 +1124,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "subareolar"
+          "label": "Subareolar"
         }
       },
       {
@@ -1133,7 +1133,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "axilla"
+          "label": "Axillary tail"
         }
       }
     ],
@@ -1181,6 +1181,109 @@
         "className": "flex-1",
         "templateOptions": {
           "label": "inner"
+        }
+      }
+    ],
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Distribution</div>",
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_111cal_grouped",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Grouped"
+        }
+      },
+      {
+        "key": "_112cal_linear",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Linear"
+        }
+      },
+      {
+        "key": "_113cal_segmental",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Segmental"
+        }
+      },
+      {
+        "key": "_114cal_regional",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Regional"
+        }
+      },
+      {
+        "key": "_115cal_diffuse",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Diffuse"
+        }
+      }
+    ],
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "className": "title3",
+    "template": "<hr /><div>Morphology</div>",
+    "hideExpression": "!model._096isCal"
+  },
+  {
+    "fieldGroupClassName": "display-flex",
+    "fieldGroup": [
+      {
+        "key": "_116cal_amorphous",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Amorphous"
+        }
+      },
+      {
+        "key": "_117cal_coarseHetero",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Coarse Heterogenous"
+        }
+      },
+      {
+        "key": "_118cal_finePleo",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Fine Pleomorphic"
+        }
+      },
+      {
+        "key": "_119cal_fineBranching",
+        "type": "checkbox",
+        "defaultvalue": false,
+        "className": "flex-1",
+        "templateOptions": {
+          "label": "Fine Linear Branching"
         }
       }
     ],
@@ -1302,7 +1405,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "subareolar"
+          "label": "Subareolar"
         }
       },
       {
@@ -1311,7 +1414,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "axilla"
+          "label": "Axillary tail"
         }
       }
     ],
@@ -1453,7 +1556,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "subareolar"
+          "label": "Subareolar"
         }
       },
       {
@@ -1462,7 +1565,7 @@
         "defaultvalue": false,
         "className": "flex-1",
         "templateOptions": {
-          "label": "axilla"
+          "label": "Axillary tail"
         }
       }
     ],
