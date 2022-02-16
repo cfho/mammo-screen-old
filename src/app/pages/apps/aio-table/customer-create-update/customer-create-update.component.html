@@ -13,7 +13,14 @@
     <mat-icon [icIcon]="icMoreVert"></mat-icon>
   </button>
 </mat-toolbar>
-<mat-expansion-panel>
+<mat-expansion-panel
+  [ngStyle]="{
+    backgroundColor:
+      (model._058mammo_category == '1' || model._058mammo_category == '2')
+        ? 'white'
+        : 'lightsalmon'
+  }"
+>
   <mat-expansion-panel-header>
     <mat-panel-title> 顯示報告内容 </mat-panel-title>
   </mat-expansion-panel-header>

@@ -193,7 +193,14 @@
               >
                 {{ column.label }}
               </th>
-              <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>
+              <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell
+              [ngStyle]="{
+                color:
+                  (row._058mammo_category == '1' || row._058mammo_category == '2')
+                    ? 'black'
+                    : 'red'
+              }"
+              >
                 {{ row[column.property] }}
               </td>
             </ng-container>
