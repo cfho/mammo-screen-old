@@ -95,7 +95,7 @@ export class AioTableComponent implements OnInit, AfterViewInit {
       label: "身份證",
       property: "_001ID_number",
       type: "text",
-      visible: false,
+      visible: true,
       cssClasses: ["font-medium"],
     },
     // { label: 'First Name', property: 'firstName', type: 'text', visible: false },
