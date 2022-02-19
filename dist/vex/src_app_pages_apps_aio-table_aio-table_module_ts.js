@@ -1257,7 +1257,7 @@ function AioTableComponent_ng_container_32_ng_container_1_td_2_Template(rf, ctx)
 } if (rf & 2) {
     const row_r37 = ctx.$implicit;
     const column_r32 = _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵnextContext"](2).$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵproperty"]("ngClass", column_r32.cssClasses)("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵpureFunction1"](3, _c0, row_r37._058mammo_category == "1" || row_r37._058mammo_category == "2" ? "black" : "red"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵproperty"]("ngClass", column_r32.cssClasses)("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵpureFunction1"](3, _c0, row_r37._058mammo_category == "1" || row_r37._058mammo_category == "2" ? "" : "red"));
     _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵtextInterpolate1"](" ", row_r37[column_r32.property], " ");
 } }
@@ -1497,7 +1497,7 @@ let AioTableComponent = class AioTableComponent {
                 label: "身份證",
                 property: "_001ID_number",
                 type: "text",
-                visible: false,
+                visible: true,
                 cssClasses: ["font-medium"],
             },
             // { label: 'First Name', property: 'firstName', type: 'text', visible: false },
