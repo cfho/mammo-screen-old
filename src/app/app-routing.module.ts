@@ -7,7 +7,20 @@ const routes: VexRoutes = [
   {
     path: "",
     component: CustomLayoutComponent,
-    children: [],
+    children: [
+      {
+        path: "apps",
+        children: [
+          {
+            path: "aio-table",
+            loadChildren: () =>
+              import("./pages/apps/aio-table/aio-table.module").then(
+                (m) => m.AioTableModule
+              ),
+          },
+        ],
+      },
+    ],
   },
   {
     path: 'login',
@@ -21,19 +34,6 @@ const routes: VexRoutes = [
     path: 'forgot-password',
     loadChildren: () => import('./pages/pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule),
   },
-  {
-    path: "apps",
-    children: [
-      {
-        path: "aio-table",
-        loadChildren: () =>
-          import("./pages/apps/aio-table/aio-table.module").then(
-            (m) => m.AioTableModule
-          ),
-      },
-    ],
-  },
-      
 ];
 
 @NgModule({
