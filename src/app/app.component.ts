@@ -8,6 +8,7 @@ import icLayers from "@iconify/icons-ic/twotone-layers";
 
 import faceblowingakiss from "@iconify/icons-logos/homebrew";
 import bellSlash from "@iconify/icons-fa-solid/bell-slash";
+import icLock from '@iconify/icons-ic/twotone-lock';
 
 import { LayoutService } from "../@vex/services/layout.service";
 import { ActivatedRoute } from "@angular/router";
@@ -104,6 +105,34 @@ export class AppComponent {
       //   route: '/',
       //   icon: icLayers
       // },
+      {
+        type: 'subheading',
+        label: 'Pages',
+        children: [
+          {
+            type: 'dropdown',
+            label: 'Authentication',
+            icon: icLock,
+            children: [
+              {
+                type: 'link',
+                label: 'Login',
+                route: '/login'
+              },
+              {
+                type: 'link',
+                label: 'Register',
+                route: '/register'
+              },
+              {
+                type: 'link',
+                label: 'Forgot Password',
+                route: '/forgot-password'
+              }
+            ]
+          },
+        ]
+      },
       {
         type: "subheading",
         label: "Apps",

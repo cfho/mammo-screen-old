@@ -23,6 +23,7 @@ import { FormlyModule, FormlyFieldConfig,
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FirebaseService } from './firebase.service';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { FirebaseService } from './firebase.service';
     VexModule,
     CustomLayoutModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideRemoteConfig(() => getRemoteConfig()),
     FormlyModule.forRoot(
