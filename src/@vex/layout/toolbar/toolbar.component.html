@@ -1,15 +1,28 @@
-<div class="w-full toolbar px-gutter" fxLayout="row" fxLayoutAlign="start center" vexContainer>
-  <button (click)="openSidenav()" [fxHide]="!mobileQuery" mat-icon-button type="button">
+<div
+  class="w-full toolbar px-gutter"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  vexContainer
+>
+  <button
+    (click)="openSidenav()"
+    [fxHide]="!mobileQuery"
+    mat-icon-button
+    type="button"
+  >
     <mat-icon [icIcon]="icMenu"></mat-icon>
   </button>
 
-  <a *ngIf="isVerticalLayout$ | async"
-     [routerLink]="['/']"
-     class="block ltr:mr-4 rtl:ml-4"
-     fxLayout="row"
-     fxLayoutAlign="start center">
-    <img class="w-8 select-none" src="assets/img/demo/logo.svg">
-    <h1 [fxHide]="mobileQuery" class="m-0 select-none title ltr:pl-4 rtl:pr-4">VEX</h1>
+  <a
+    [routerLink]="['/']"
+    class="block ltr:mr-4 rtl:ml-4"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <img class="w-8 select-none" src="assets/img/demo/logo.svg" />
+    <h1 [fxHide]="mobileQuery" class="m-0 select-none title ltr:pl-4 rtl:pr-4">
+      VEX
+    </h1>
   </a>
 
   <!-- 説明： ADD NEW & MEGA MENU -->
@@ -71,14 +84,18 @@
     </button>
   </div> -->
 
-
-  <div *ngIf="(isVerticalLayout$ | async) && isNavbarInToolbar$ | async"
-       [fxHide]="mobileQuery"
-       class="px-gutter"
-       fxFlex="none"
-       fxLayout="row"
-       fxLayoutAlign="start center">
-    <vex-navigation-item *ngFor="let item of navigationItems" [item]="item"></vex-navigation-item>
+  <div
+    *ngIf="(isVerticalLayout$ | async) && isNavbarInToolbar$ | async"
+    [fxHide]="mobileQuery"
+    class="px-gutter"
+    fxFlex="none"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <vex-navigation-item
+      *ngFor="let item of navigationItems"
+      [item]="item"
+    ></vex-navigation-item>
   </div>
 
   <span fxFlex></span>
@@ -128,5 +145,7 @@
   </div>
 </div>
 
-<vex-navigation *ngIf="(isVerticalLayout$ | async) && isNavbarBelowToolbar$ | async"
-                [fxHide]="mobileQuery"></vex-navigation>
+<vex-navigation
+  *ngIf="(isVerticalLayout$ | async) && isNavbarBelowToolbar$ | async"
+  [fxHide]="mobileQuery"
+></vex-navigation>

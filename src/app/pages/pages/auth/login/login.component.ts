@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(data)
       .then(() => {
-        console.log('ok');
         this.router.navigate(["/apps/aio-table"]);
       })
       .catch((e) => console.log(e.message));

@@ -3,11 +3,12 @@ import {
   Component,
   ComponentFactoryResolver,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { Observable, of, ReplaySubject } from "rxjs";
-import { filter, shareReplay } from "rxjs/operators";
+import { Observable, of, ReplaySubject, Subject } from "rxjs";
+import { filter, shareReplay, takeUntil } from "rxjs/operators";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -63,7 +64,8 @@ import { log } from "console";
     },
   ],
 })
-export class AioTableComponent implements OnInit, AfterViewInit {
+export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
+  private destroy$ = new Subject();
   layoutCtrl = new FormControl("fullwidth");
 
   /**
@@ -229,8 +231,9 @@ export class AioTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // this.afService.getFields().subscribe(console.log);
-    this.getData().subscribe((customers) => {
+    this.getData()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((customers) => {
       this.subject$.next(customers);
     });
 
@@ -238,8 +241,9 @@ export class AioTableComponent implements OnInit, AfterViewInit {
 
     this.data$
       .pipe(
-        filter<Customer[]>(Boolean)
+        filter<Customer[]>(Boolean),
         // shareReplay(1)
+        takeUntil(this.destroy$)
       )
       .subscribe((customers) => {
         this.customers = customers;
@@ -373,4 +377,11 @@ export class AioTableComponent implements OnInit, AfterViewInit {
     this.customers[index].labels = change.value;
     this.subject$.next(this.customers);
   }
+
+  ngOnDestroy() {
+    // when the component get's destroyed, pass something to the
+    // destroy$ ReplaySubject
+    this.destroy$.next(true);
+    console.log("💥Destroyed");
+}
 }

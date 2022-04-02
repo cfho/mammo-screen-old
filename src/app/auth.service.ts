@@ -8,9 +8,11 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "@angular/fire/auth";
 import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
-import { BehaviorSubject, EMPTY, Observable, Subject } from "rxjs";
+import { BehaviorSubject, EMPTY, firstValueFrom, lastValueFrom, Observable, Subject, throwError } from "rxjs";
+import { map, retry, switchMap, tap } from "rxjs/operators";
 import { LoginData } from "../app/interfaces/login-data.interface";
 import { DocUser, Roles } from "../app/interfaces/user.interface";
 
@@ -25,7 +27,7 @@ export class AuthService implements OnDestroy {
   userDocUid: string;
   currentUser: User | null = null;
   private authStatusSub = new BehaviorSubject(this.currentUser);
-  currentAuthStatus = this.authStatusSub.asObservable();
+  currentAuthStatus$ = this.authStatusSub.asObservable();
 
   showLoginButton = false;
   showLogoutButton = false;
@@ -38,8 +40,8 @@ export class AuthService implements OnDestroy {
     this.auth.onAuthStateChanged((credential) => {
       if (credential) {
         this.userDocUid = credential.uid;
-        console.log(credential);
         this.authStatusSub.next(credential);
+        // console.log(credential)
         console.log("User is logged in");
       } else {
         this.authStatusSub.next(null);
@@ -58,9 +60,12 @@ export class AuthService implements OnDestroy {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
-  register({ email, password }: LoginData) {
+  register({ email, password, name }: LoginData) {
     return createUserWithEmailAndPassword(this.auth, email, password)
-      .then((res) => console.log("User registered!"))
+      .then((res) => {
+        updateProfile(res.user, { displayName: name });
+        console.log("User registered!");
+      })
       .catch((err) => console.log(err));
   }
 
@@ -70,10 +75,15 @@ export class AuthService implements OnDestroy {
       .catch((err) => console.log(err));
   }
 
-  getUser(uid: string) {
-    const docRef = doc(this.firestore, `users/${uid}`);
-    return docData(docRef);
-    // console.log(user);
+  getUser() {
+    return this.currentAuthStatus$.pipe(
+      map((user: User) => user? user.uid : throwError(() => new Error('no user data'))),
+      retry(),
+      switchMap((uid) => {
+          const docRef = doc(this.firestore, `users/${uid}`);
+          return docData(docRef);
+      })
+    );
   }
 
   SetUserData(user: LoginData) {

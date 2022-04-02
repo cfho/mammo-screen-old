@@ -7,13 +7,15 @@
       <div class="dropdown-heading">David Smith</div>
     </div>
 
-    <button [matMenuTriggerFor]="settingsMenu"
+
+    <!-- 備注：右邊設定按鈕-->
+    <!-- <button [matMenuTriggerFor]="settingsMenu"
             mat-icon-button
             matTooltip="Settings"
             matTooltipPosition="before"
             type="button">
       <mat-icon [icIcon]="icSettings" class="notifications-header-icon"></mat-icon>
-    </button>
+    </button> -->
   </div>
 
   <div class="dropdown-content">
@@ -36,7 +38,11 @@
     </a>
   </div>
 
-  <div class="dropdown-footer" fxLayout="row" fxLayoutAlign="space-between center">
+  
+  <a (click)="close()" [routerLink]="['/login']" color="primary" mat-button>LOGOUT</a>
+
+  <!-- 備注：狀態下拉選項 & LOGOUT-->
+  <!-- <div class="dropdown-footer" fxLayout="row" fxLayoutAlign="space-between center">
     <button [matMenuTriggerFor]="statusMenu" class="dropdown-footer-select" mat-button type="button">
       <ng-container *ngFor="let status of statuses; trackBy: trackById">
         <span *ngIf="status === activeStatus">
@@ -47,7 +53,7 @@
       </ng-container>
     </button>
     <a (click)="close()" [routerLink]="['/login']" color="primary" mat-button>LOGOUT</a>
-  </div>
+  </div> -->
 </div>
 
 <mat-menu #statusMenu="matMenu" xPosition="before" yPosition="below">
@@ -58,6 +64,7 @@
     <span>{{ status.label }}</span>
   </button>
 </mat-menu>
+
 
 
 <mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">

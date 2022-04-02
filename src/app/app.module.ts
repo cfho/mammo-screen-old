@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FirebaseService } from './firebase.service';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,9 +52,9 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     {
       provide: APP_INITIALIZER,
       useFactory: resourceProviderFactory,
-      deps: [FirebaseService],
+      deps: [FirebaseService ],
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
