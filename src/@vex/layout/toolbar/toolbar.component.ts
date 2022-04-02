@@ -13,11 +13,14 @@ import icDescription from '@iconify/icons-ic/twotone-description';
 import icAssignment from '@iconify/icons-ic/twotone-assignment';
 import icReceipt from '@iconify/icons-ic/twotone-receipt';
 import icDoneAll from '@iconify/icons-ic/twotone-done-all';
+import icLogout from '@iconify/icons-ic/twotone-logout';
 import { NavigationService } from '../../services/navigation.service';
 import icArrowDropDown from '@iconify/icons-ic/twotone-arrow-drop-down';
 import { PopoverService } from '../../components/popover/popover.service';
 import { MegaMenuComponent } from '../../components/mega-menu/mega-menu.component';
 import icSearch from '@iconify/icons-ic/twotone-search';
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'vex-toolbar',
@@ -52,11 +55,14 @@ export class ToolbarComponent implements OnInit {
   icReceipt = icReceipt;
   icDoneAll = icDoneAll;
   icArrowDropDown = icArrowDropDown;
+  icLogout = icLogout;
 
   constructor(private layoutService: LayoutService,
               private configService: ConfigService,
               private navigationService: NavigationService,
-              private popoverService: PopoverService) { }
+              private popoverService: PopoverService,
+              private authService: AuthService, 
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -92,5 +98,10 @@ export class ToolbarComponent implements OnInit {
 
   openSearch() {
     this.layoutService.openSearch();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/login"]);
   }
 }

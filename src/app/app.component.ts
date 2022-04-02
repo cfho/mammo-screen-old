@@ -101,7 +101,7 @@ export class AppComponent {
     this.navigationService.items = [
       // {
       //   type: 'link',
-      //   label: 'Dashboard',
+      //   label: 'Logout',
       //   route: '/',
       //   icon: icLayers
       // },

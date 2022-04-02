@@ -131,6 +131,12 @@
       <vex-toolbar-user></vex-toolbar-user>
     </div>
 
+    <div class="px-1">
+      <button mat-icon-button type="button" (click)="logout()">
+        <mat-icon [icIcon]="icLogout"></mat-icon>
+      </button>
+    </div>
+
     <!-- <mat-menu #languageMenu="matMenu" overlapTrigger="false" xPosition="before" yPosition="below">
       <button mat-menu-item>
         <mat-icon [icIcon]="emojioneUS"></mat-icon>
