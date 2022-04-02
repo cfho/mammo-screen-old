@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from "@angular/core";
 import {
   Auth,
   User,
@@ -8,19 +8,14 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-} from '@angular/fire/auth';
-import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
-import {
-  BehaviorSubject,
-  EMPTY,
-  Observable,
-  Subject,
-} from 'rxjs';
-import { LoginData } from '../app/interfaces/login-data.interface';
-import { DocUser, Roles } from '../app/interfaces/user.interface';
+} from "@angular/fire/auth";
+import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
+import { BehaviorSubject, EMPTY, Observable, Subject } from "rxjs";
+import { LoginData } from "../app/interfaces/login-data.interface";
+import { DocUser, Roles } from "../app/interfaces/user.interface";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService implements OnDestroy {
   private destroy$ = new Subject();
@@ -42,20 +37,20 @@ export class AuthService implements OnDestroy {
   authStatusListener() {
     this.auth.onAuthStateChanged((credential) => {
       if (credential) {
-        this.userDocUid = credential.uid
+        this.userDocUid = credential.uid;
         console.log(credential);
         this.authStatusSub.next(credential);
-        console.log('User is logged in');
+        console.log("User is logged in");
       } else {
         this.authStatusSub.next(null);
-        console.log('User is logged out');
+        console.log("User is logged out");
       }
     });
   }
 
   login({ email, password }: LoginData) {
     return signInWithEmailAndPassword(this.auth, email, password)
-      .then((res) => console.log('User logged in!'))
+      .then((res) => console.log("User logged in!"))
       .catch((err) => console.log(err));
   }
 
@@ -65,12 +60,14 @@ export class AuthService implements OnDestroy {
 
   register({ email, password }: LoginData) {
     return createUserWithEmailAndPassword(this.auth, email, password)
-      .then((res) => console.log('User registered!'))
+      .then((res) => console.log("User registered!"))
       .catch((err) => console.log(err));
   }
 
   logout() {
-    return signOut(this.auth);
+    return signOut(this.auth)
+      .then((res) => console.log("User logout!"))
+      .catch((err) => console.log(err));
   }
 
   getUser(uid: string) {
@@ -98,17 +95,17 @@ export class AuthService implements OnDestroy {
   ///// Role-based Authorization //////
 
   canRead(user: DocUser): boolean {
-    const allowed = ['admin', 'editor', 'subscriber'];
+    const allowed = ["admin", "editor", "subscriber"];
     return this.checkAuthorization(user, allowed);
   }
 
   canEdit(user: DocUser): boolean {
-    const allowed = ['admin', 'editor'];
+    const allowed = ["admin", "editor"];
     return this.checkAuthorization(user, allowed);
   }
 
   canDelete(user: DocUser): boolean {
-    const allowed = ['admin'];
+    const allowed = ["admin"];
     return this.checkAuthorization(user, allowed);
   }
 
@@ -127,6 +124,6 @@ export class AuthService implements OnDestroy {
     // when the component get's destroyed, pass something to the
     // destroy$ ReplaySubject
     this.destroy$.next(true);
-    console.log('💥Destroyed');
+    console.log("💥Destroyed");
   }
 }
