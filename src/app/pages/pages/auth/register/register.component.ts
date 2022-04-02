@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
       .register(data)
       .then(() => {
         this.authService.SetUserData(data);
-        // this.router.navigate(['/dashboard']);
         this.router.navigate(["/apps/aio-table"]);
       })
       .catch((e) => console.log(e.message));

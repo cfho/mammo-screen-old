@@ -41,6 +41,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  loginWithGoogle() {
+    this.authService
+      .loginWithGoogle()
+      .then(() => {
+        // this.authService.SetUserData();
+        this.router.navigate(['/apps/aio-table'])
+      })
+      .catch((e) => console.log(e.message));
+  }
+
   send() {
     console.log(this.form.value);
     const data: LoginData = {

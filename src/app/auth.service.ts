@@ -9,7 +9,10 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  
+  
 } from "@angular/fire/auth";
+import { customClaims } from "@angular/fire/auth-guard";
 import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
 import { BehaviorSubject, EMPTY, firstValueFrom, lastValueFrom, Observable, Subject, throwError } from "rxjs";
 import { map, retry, switchMap, tap } from "rxjs/operators";
@@ -41,7 +44,7 @@ export class AuthService implements OnDestroy {
       if (credential) {
         this.userDocUid = credential.uid;
         this.authStatusSub.next(credential);
-        // console.log(credential)
+        console.log(credential)
         console.log("User is logged in");
       } else {
         this.authStatusSub.next(null);

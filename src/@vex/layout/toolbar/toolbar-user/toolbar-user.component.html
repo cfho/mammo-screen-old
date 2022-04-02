@@ -4,9 +4,12 @@
      class="relative flex items-center py-1 pl-3 pr-1 rounded cursor-pointer select-none trans-ease-out hover:bg-hover"
      matRipple> -->
 
-<div class="relative flex items-center py-1 pl-3 pr-1 rounded cursor-pointer select-none trans-ease-out">
-  <div class="font-medium leading-snug body-1 ltr:mr-3 rtl:ml-3" fxHide.xs>{{displayName$ | async}}</div>
+<div class="relative flex items-center py-1 pl-3 pr-1 rounded cursor-pointer select-none trans-ease-out" >
+  <div *ngIf="authStatus$ | async as user">
+    <div class="font-medium leading-snug body-1 ltr:mr-3 rtl:ml-3" fxHide.xs>{{ user.displayName}}</div>
+    
+  </div>
   <div class="flex items-center justify-center rounded-full h-9 w-9 text-primary bg-primary-light">
-    <mat-icon [icIcon]="icPerson"></mat-icon>
+    <mat-icon [icIcon]="icPerson"></mat-icon> 
   </div>
 </div>

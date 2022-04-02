@@ -1,15 +1,22 @@
 <div class="w-full h-full bg-pattern" fxLayout="column" fxLayoutAlign="center center">
-  <div @fadeInUp class="card overflow-hidden w-full max-w-xs">
+  <div @fadeInUp class="w-full max-w-xs overflow-hidden card">
     <div class="p-6 pb-0" fxLayout="column" fxLayoutAlign="center center">
-      <div class="fill-current text-center">
+      <div class="text-center fill-current">
         <img class="w-16" src="assets/img/demo/logo.svg">
       </div>
     </div>
 
-    <div class="text-center mt-4">
-      <h2 class="title m-0">Welcome back</h2>
-      <h4 class="body-2 text-secondary m-0">Sign in with your credentials below.</h4>
+    <div class="mt-4 text-center">
+      <h2 class="m-0 title">請登入</h2>
+      <!-- <h4 class="m-0 body-2 text-secondary">Sign in with your credentials below.</h4> -->
     </div>
+
+    <div class="mt-4 text-center">
+      <button (click)="loginWithGoogle()" color="accent" mat-raised-button type="button">
+        GOOGLE 賬戶登入
+      </button>
+    </div>
+
 
     <div [formGroup]="form" class="p-6" fxLayout="column" fxLayoutGap="16px">
       <div fxFlex="auto" fxLayout="column">
@@ -36,10 +43,10 @@
       </div>
 
       <button (click)="send()" color="primary" mat-raised-button type="button">
-        SIGN IN
+        EMAIL 登入
       </button>
 
-      <p class="text-secondary text-center">
+      <p class="text-center text-secondary">
         Don't have an account?<br/>
         <a [routerLink]="['/register']">Click here to create one</a>
       </p>

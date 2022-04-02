@@ -10,6 +10,8 @@ import { ToolbarUserDropdownComponent } from "./toolbar-user-dropdown/toolbar-us
 import icPerson from "@iconify/icons-ic/twotone-person";
 import { AuthService } from "src/app/auth.service";
 import { map, Observable, Subject, takeUntil } from "rxjs";
+import { User } from "@angular/fire/auth";
+
 
 @Component({
   selector: "vex-toolbar-user",
@@ -21,6 +23,8 @@ export class ToolbarUserComponent implements OnInit, OnDestroy {
   dropdownOpen: boolean;
   icPerson = icPerson;
   displayName$: Observable<string>;
+  authStatus$: Observable<User>;
+
   constructor(
     private popover: PopoverService,
     private cd: ChangeDetectorRef,
@@ -29,9 +33,12 @@ export class ToolbarUserComponent implements OnInit, OnDestroy {
     this.displayName$ = authService
       .getUser()
       .pipe(map((user) => user.displayName));
+    this.authStatus$ = authService.currentAuthStatus$;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authStatus$.subscribe(data => {console.log(data);})
+  }
 
   showPopover(originRef: HTMLElement) {
     this.dropdownOpen = true;
