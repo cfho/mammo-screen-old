@@ -9,12 +9,18 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-  
-  
 } from "@angular/fire/auth";
 import { customClaims } from "@angular/fire/auth-guard";
 import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
-import { BehaviorSubject, EMPTY, firstValueFrom, lastValueFrom, Observable, Subject, throwError } from "rxjs";
+import {
+  BehaviorSubject,
+  EMPTY,
+  firstValueFrom,
+  lastValueFrom,
+  Observable,
+  Subject,
+  throwError,
+} from "rxjs";
 import { map, retry, switchMap, tap } from "rxjs/operators";
 import { LoginData } from "../app/interfaces/login-data.interface";
 import { DocUser, Roles } from "../app/interfaces/user.interface";
@@ -44,7 +50,7 @@ export class AuthService implements OnDestroy {
       if (credential) {
         this.userDocUid = credential.uid;
         this.authStatusSub.next(credential);
-        console.log(credential)
+        // console.log(credential);
         console.log("User is logged in");
       } else {
         this.authStatusSub.next(null);
@@ -80,29 +86,40 @@ export class AuthService implements OnDestroy {
 
   getUser() {
     return this.currentAuthStatus$.pipe(
-      map((user: User) => user? user.uid : throwError(() => new Error('no user data'))),
+      map((user: User) =>
+        user.uid && user.displayName && user.email? user.uid : throwError(() => new Error("no user data"))
+      ),
       retry(),
       switchMap((uid) => {
-          const docRef = doc(this.firestore, `users/${uid}`);
-          return docData(docRef);
+        const docRef = doc(this.firestore, `users/${uid}`);
+        return docData(docRef);
       })
     );
   }
 
-  SetUserData(user: LoginData) {
-    const uid = this.auth.currentUser?.uid;
-    const userData = {
-      displayName: user.name,
-      email: user.email,
-      uid: uid,
-      roles: {
-        admin: false,
-        editor: false,
-        subscriber: true,
-      },
-    };
-    const docRef = doc(this.firestore, `users/${uid}`);
-    setDoc(docRef, userData, { merge: true });
+  SetUserData() {
+    return this.currentAuthStatus$.pipe(
+      map((user: User) =>
+        user.uid? user : throwError(() => new Error("no user data"))
+      ),
+      retry(),
+      switchMap( (user: User) => {
+        console.log(user)
+        const userData = {
+          displayName: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          roles: {
+            admin: false,
+            editor: false,
+            subscriber: true,
+          },
+        }
+        console.log(userData);
+        const docRef = doc(this.firestore, `users/${userData.uid}`);
+        return setDoc(docRef, userData, { merge: true });
+      })
+    );
   }
 
   ///// Role-based Authorization //////

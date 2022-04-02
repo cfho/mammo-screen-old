@@ -12,7 +12,6 @@ import { AuthService } from "src/app/auth.service";
 import { map, Observable, Subject, takeUntil } from "rxjs";
 import { User } from "@angular/fire/auth";
 
-
 @Component({
   selector: "vex-toolbar-user",
   templateUrl: "./toolbar-user.component.html",
@@ -36,9 +35,7 @@ export class ToolbarUserComponent implements OnInit, OnDestroy {
     this.authStatus$ = authService.currentAuthStatus$;
   }
 
-  ngOnInit() {
-    this.authStatus$.subscribe(data => {console.log(data);})
-  }
+  ngOnInit() {}
 
   showPopover(originRef: HTMLElement) {
     this.dropdownOpen = true;

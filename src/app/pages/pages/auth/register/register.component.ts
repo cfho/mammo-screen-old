@@ -45,13 +45,15 @@ export class RegisterComponent implements OnInit {
       password: this.form.value.password,
       name: this.form.value.name,
     };
-    this.authService
-      .register(data)
-      .then(() => {
-        this.authService.SetUserData(data);
-        this.router.navigate(["/apps/aio-table"]);
-      })
-      .catch((e) => console.log(e.message));
+
+    const register = async () => {
+      await this.authService.register(data);
+    };
+    register();
+    this.authService.SetUserData().subscribe(()=>{
+      console.log('save userData')
+      this.router.navigate(["/apps/aio-table"]);
+    });
   }
 
   toggleVisibility() {
