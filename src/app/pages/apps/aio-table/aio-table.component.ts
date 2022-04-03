@@ -204,8 +204,9 @@ export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     //將資料 Object 轉成 string
-    const stringArr = [...exportArr.map((obj) => [...Object.values(obj)])]
-      .map((e) => e.join(""))
+    const stringArr = [...exportArr.map((obj) => [...Object.values(obj)])].map(
+      (e) => e.join("")
+    );
     stringArr.unshift(contact);
     const exportString = stringArr.join("\n");
 
@@ -215,15 +216,13 @@ export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
     const fileName = "BreastA1231050017_" + year + month + ".txt";
 
     //存儲檔案
-    const blob = new Blob([exportString], {type: "text/plain;charset=utf-8"});
-      fs.saveAs(blob, fileName);
+    const blob = new Blob([exportString], { type: "text/plain;charset=utf-8" });
+    fs.saveAs(blob, fileName);
   }
 
   exportAll() {
     this.exportExcel(this.customers);
   }
-
-
 
   getData() {
     // return of(aioTableData.map(customer => new Customer(customer)));
@@ -231,11 +230,12 @@ export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.afService.getFields()
     this.getData()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((customers) => {
-      this.subject$.next(customers);
-    });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((customers) => {
+        this.subject$.next(customers);
+      });
 
     this.dataSource = new MatTableDataSource();
 
@@ -328,7 +328,6 @@ export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.selection.deselect(customer);
     // this.subject$.next(this.customers);
     this.afService.deleteItem(customer);
-
   }
 
   deleteCustomers(customers: Customer[]) {
@@ -383,5 +382,5 @@ export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
     // destroy$ ReplaySubject
     this.destroy$.next(true);
     console.log("💥Destroyed");
-}
+  }
 }
