@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
 import {
   Auth,
@@ -62,11 +63,14 @@ export class AuthService implements OnDestroy {
   login({ email, password }: LoginData) {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => console.log("User logged in!"))
-      .catch((err) => console.log(err));
+      .catch(this.handleError);
+    // .catch((err) => console.log(err.code));
   }
 
   loginWithGoogle() {
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
+    return signInWithPopup(this.auth, new GoogleAuthProvider())
+      .then((res) => console.log("Google account is logged in!"))
+      .catch(this.handleError);
   }
 
   register({ email, password, name }: LoginData) {
@@ -75,7 +79,8 @@ export class AuthService implements OnDestroy {
         updateProfile(res.user, { displayName: name });
         console.log("User registered!");
       })
-      .catch((err) => console.log(err));
+      .catch(this.handleError);
+    // .catch((err) => console.log(err));
   }
 
   logout() {
@@ -87,7 +92,9 @@ export class AuthService implements OnDestroy {
   getUser() {
     return this.currentAuthStatus$.pipe(
       map((user: User) =>
-        user.uid && user.displayName && user.email? user.uid : throwError(() => new Error("no user data"))
+        user.uid && user.displayName && user.email
+          ? user.uid
+          : throwError(() => new Error("no user data"))
       ),
       retry(),
       switchMap((uid) => {
@@ -100,11 +107,11 @@ export class AuthService implements OnDestroy {
   SetUserData() {
     return this.currentAuthStatus$.pipe(
       map((user: User) =>
-        user.uid? user : throwError(() => new Error("no user data"))
+        user.uid ? user : throwError(() => new Error("no user data"))
       ),
       retry(),
-      switchMap( (user: User) => {
-        console.log(user)
+      switchMap((user: User) => {
+        console.log(user);
         const userData = {
           displayName: user.displayName,
           email: user.email,
@@ -114,7 +121,7 @@ export class AuthService implements OnDestroy {
             editor: false,
             subscriber: true,
           },
-        }
+        };
         console.log(userData);
         const docRef = doc(this.firestore, `users/${userData.uid}`);
         return setDoc(docRef, userData, { merge: true });
@@ -122,8 +129,35 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  ///// Role-based Authorization //////
+  ///// Error Handling //////
+  private handleError(errorRes) {
+    console.log(errorRes.code);
+    let errorMessage = "An unknown error occurred!";
+    // if (true) {
+    //   return throwError(() => new Error("💥Other error message!"));
+    // }
+    switch (errorRes.code) {
+      case "auth/email-already-in-use":
+        errorMessage = "💥這個 email 已經登記，請直接登入!💥";
+        break;
+      case "auth/weak-password":
+        errorMessage = "💥請輸入最少六個字元的密碼!💥";
+        break;
+      case "auth/user-not-found":
+        errorMessage = "💥這個 email 沒有登記！請先注冊。💥";
+        break;
+      case "auth/wrong-password":
+        errorMessage = "💥密碼錯誤，請再試一次！💥";
+        break;
+      case "auth/too-many-requests":
+        errorMessage = "💥請稍等一下再登入！💥";
+        break;
+    }
+    console.log(errorMessage);
+    throw new Error(errorMessage);
+  }
 
+  ///// Role-based Authorization //////
   canRead(user: DocUser): boolean {
     const allowed = ["admin", "editor", "subscriber"];
     return this.checkAuthorization(user, allowed);

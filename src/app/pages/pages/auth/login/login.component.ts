@@ -12,12 +12,14 @@ import { LoginData } from 'src/app/interfaces/login-data.interface';
   selector: 'vex-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     fadeInUp400ms
   ]
 })
 export class LoginComponent implements OnInit {
+
+  error: string | null = null;
 
   form: FormGroup;
 
@@ -36,8 +38,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -48,7 +50,11 @@ export class LoginComponent implements OnInit {
         this.authService.SetUserData();
         this.router.navigate(['/apps/aio-table'])
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        this.error = e.message;
+        alert(e.message);
+        console.log(e)
+      });
   }
 
   send() {
@@ -63,10 +69,14 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.router.navigate(["/apps/aio-table"]);
       })
-      .catch((e) => console.log(e.message));
-    // this.snackbar.open('Lucky you! Looks like you didn\'t need a password or email address! For a real application we provide validators to prevent this. ;)', 'LOL THANKS', {
-    //   duration: 10000
-    // });
+      .catch((e) => {
+        this.error = e.message;
+        alert(e.message);
+        console.log(e)
+        if (e.message === "💥這個 email 沒有登記！請先注冊。💥") {
+          this.router.navigate(["/register"]);
+        }
+      });
   }
 
   toggleVisibility() {

@@ -14,6 +14,8 @@ import { LoginData } from "src/app/interfaces/login-data.interface";
   animations: [fadeInUp400ms],
 })
 export class RegisterComponent implements OnInit {
+  error: string | null = null;
+
   form: FormGroup;
 
   inputType = "password";
@@ -32,9 +34,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       name: ["", Validators.required],
-      email: ["", Validators.required],
-      password: ["", Validators.required],
-      passwordConfirm: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(6)]],
+      passwordConfirm: [""],
     });
   }
 
@@ -47,11 +49,19 @@ export class RegisterComponent implements OnInit {
     };
 
     const register = async () => {
-      await this.authService.register(data);
+      await this.authService.register(data).catch((e) => {
+        this.error = e.message;
+        alert(e.message);
+        console.log(e);
+        if (e.message === "💥這個 email 已經登記，請直接登入!💥") {
+          this.router.navigate(["/login"]);
+        }
+      });
     };
+
     register();
-    this.authService.SetUserData().subscribe(()=>{
-      console.log('save userData')
+    this.authService.SetUserData().subscribe(() => {
+      console.log("save userData");
       this.router.navigate(["/apps/aio-table"]);
     });
   }

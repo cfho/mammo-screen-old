@@ -48,17 +48,17 @@ import { AuthService } from './auth.service';
     ReactiveFormsModule,
     FormlyMaterialModule
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: resourceProviderFactory,
-      deps: [FirebaseService ],
-      multi: true
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: APP_INITIALIZER,
+  //     useFactory: resourceProviderFactory,
+  //     deps: [FirebaseService ],
+  //     multi: true
+  //   },
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export function resourceProviderFactory(provider: FirebaseService) {
-  return () => provider.getFields();
-}
+// export function resourceProviderFactory(provider: FirebaseService) {
+//   return () => provider.getFields();
+// }
