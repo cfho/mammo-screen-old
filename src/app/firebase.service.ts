@@ -130,15 +130,19 @@ export class FirebaseService {
   }
 
   private getContact() {
-    this.afs.doc('contact/1231050017').valueChanges().pipe(take(1)).subscribe(data => {
-      this.contactString = data['hospital_code'].padEnd(10) + 
-      data['contact'].padEnd(10) + 
-      data['phone'].padEnd(20) + 
-      data['email'].padEnd(50)
-      // console.log(this.contactString);
-    })
+    this.afs
+      .doc("contact/1231050017")
+      .valueChanges()
+      .pipe(take(1))
+      .subscribe((data) => {
+        this.contactString =
+          data["hospital_code"].padEnd(10) +
+          data["contact"].padEnd(10) +
+          data["phone"].padEnd(20) +
+          data["email"].padEnd(50);
+        // console.log(this.contactString);
+      });
   }
-
 
   getFields() {
     this.getExportKeyArr();
@@ -163,7 +167,13 @@ export class FirebaseService {
   updateItem(customer: Customer) {
     const path = customer.id;
     // this.afs.doc<Customer>("toFirebase/" + path).update(customer);
-    this.afs.doc<Customer>("toFirebase/" + path).set(customer);
+    this.afs.doc<Customer>("toFirebase/" + path).set(customer)
+    .catch((err) => {
+      if (err.code === "permission-denied") {
+        console.log(err.code);
+        alert("💥權限不足，請聯絡何醫師💥");
+      }
+    });
   }
 
   newItem(customer: Customer) {
@@ -173,6 +183,14 @@ export class FirebaseService {
 
   deleteItem(customer: Customer) {
     const path = customer.id;
-    this.afs.doc<Customer>("toFirebase/" + path).delete();
+    this.afs
+      .doc<Customer>("toFirebase/" + path)
+      .delete()
+      .catch((err) => {
+        if (err.code === "permission-denied") {
+          console.log(err.code);
+          alert("💥權限不足，請聯絡何醫師💥");
+        }
+      });
   }
 }

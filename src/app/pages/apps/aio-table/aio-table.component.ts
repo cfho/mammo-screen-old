@@ -330,12 +330,19 @@ export class AioTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.afService.deleteItem(customer);
   }
 
-  deleteCustomers(customers: Customer[]) {
+  deleteCustomers = async(customers: Customer[]) => {
     /**
      * Here we are updating our local array.
      * You would probably make an HTTP request here.
      */
-    customers.forEach((c) => this.deleteCustomer(c));
+    try {
+      await customers.forEach((c) => this.deleteCustomer(c));
+    }
+    catch (err) {
+      console.error(err.code);
+    }
+    
+
   }
 
   onFilterChange(value: string) {
