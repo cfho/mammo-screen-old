@@ -10,6 +10,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  user,
 } from "@angular/fire/auth";
 import { customClaims } from "@angular/fire/auth-guard";
 import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
@@ -22,7 +23,7 @@ import {
   Subject,
   throwError,
 } from "rxjs";
-import { map, retry, switchMap, tap } from "rxjs/operators";
+import { map, retry, switchMap, take, tap } from "rxjs/operators";
 import { LoginData } from "../app/interfaces/login-data.interface";
 import { DocUser, Roles } from "../app/interfaces/user.interface";
 
@@ -33,6 +34,7 @@ export class AuthService implements OnDestroy {
   private destroy$ = new Subject();
   public readonly user: Observable<User | null> = EMPTY;
   user$: Observable<DocUser | null>;
+  displayName: string | null;
 
   userDocUid: string;
   currentUser: User | null = null;
@@ -44,6 +46,12 @@ export class AuthService implements OnDestroy {
 
   constructor(private auth: Auth, private firestore: Firestore) {
     this.authStatusListener();
+    user(this.auth).subscribe(response => {
+      if(response) {
+        this.displayName = response.displayName;
+      }
+      console.log(response);
+    })
   }
 
   authStatusListener() {
@@ -69,24 +77,29 @@ export class AuthService implements OnDestroy {
 
   loginWithGoogle() {
     return signInWithPopup(this.auth, new GoogleAuthProvider())
-      .then((res) => console.log("Google account is logged in!"))
+      .then((res) => {
+        this.SetUserData('Google.name')
+        .pipe(take(1))
+        .subscribe(res => console.log('Google account is logged in!'));
+    })
       .catch(this.handleError);
   }
 
   register({ email, password, name }: LoginData) {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
-        updateProfile(res.user, { displayName: name });
-        console.log("User registered!");
+        updateProfile(res.user, { displayName: name }).then(()=> console.log('set displayName'));
+        this.SetUserData(name)
+        .pipe(take(1))
+        .subscribe(res => console.log("User registered!"));
       })
       .catch(this.handleError);
-    // .catch((err) => console.log(err));
   }
 
   logout() {
     return signOut(this.auth)
       .then((res) => console.log("User logout!"))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('create user profile!'));
   }
 
   getUser() {
@@ -104,8 +117,8 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  SetUserData() {
-    return this.currentAuthStatus$.pipe(
+  SetUserData(name: string,) {
+    return user(this.auth).pipe(
       map((user: User) =>
         user.uid ? user : throwError(() => new Error("no user data"))
       ),
@@ -113,7 +126,7 @@ export class AuthService implements OnDestroy {
       switchMap((user: User) => {
         console.log(user);
         const userData = {
-          displayName: user.displayName,
+          displayName: name,
           email: user.email,
           uid: user.uid,
           roles: {

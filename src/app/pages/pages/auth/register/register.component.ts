@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { fadeInUp400ms } from "../../../../../@vex/animations/fade-in-up.animation";
 import { AuthService } from "src/app/auth.service";
 import { LoginData } from "src/app/interfaces/login-data.interface";
+import { computeMsgId } from "@angular/compiler";
 
 @Component({
   selector: "vex-register",
@@ -48,8 +49,13 @@ export class RegisterComponent implements OnInit {
       name: this.form.value.name,
     };
 
-    const register = async () => {
-      await this.authService.register(data).catch((e) => {
+    // const register = async () => {
+      this.authService.register(data)
+      .then((e) => {
+        console.log(e);
+        this.router.navigate(["/apps/aio-table"]);
+      })
+      .catch((e) => {
         this.error = e.message;
         alert(e.message);
         console.log(e);
@@ -57,13 +63,12 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(["/login"]);
         }
       });
-    };
+    // };
 
-    register();
-    this.authService.SetUserData().subscribe(() => {
-      console.log("save userData");
-      this.router.navigate(["/apps/aio-table"]);
-    });
+    // register();
+    // this.authService.SetUserData().subscribe(() => {
+    //   console.log("save userData");
+    // });
   }
 
   toggleVisibility() {

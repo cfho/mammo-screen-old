@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.authService
       .loginWithGoogle()
       .then(() => {
-        this.authService.SetUserData();
+        // this.authService.SetUserData();
         this.router.navigate(['/apps/aio-table'])
       })
       .catch((e) => {
