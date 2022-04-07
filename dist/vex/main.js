@@ -5409,15 +5409,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/auth */ 84400);
 /* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/fire/auth */ 51070);
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/fire/firestore */ 25357);
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/fire/firestore */ 25357);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 24575);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 24163);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 58824);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 56769);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 2014);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 83485);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 72407);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 14001);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ 56769);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 47529);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 2014);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 83485);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 72407);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 14001);
 
 
 
@@ -5437,6 +5438,12 @@ class AuthService {
         this.showLoginButton = false;
         this.showLogoutButton = false;
         this.authStatusListener();
+        (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.user)(this.auth).subscribe(response => {
+            if (response) {
+                this.displayName = response.displayName;
+            }
+            console.log(response);
+        });
     }
     authStatusListener() {
         this.auth.onAuthStateChanged((credential) => {
@@ -5460,36 +5467,41 @@ class AuthService {
     }
     loginWithGoogle() {
         return (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.signInWithPopup)(this.auth, new _angular_fire_auth__WEBPACK_IMPORTED_MODULE_4__.GoogleAuthProvider())
-            .then((res) => console.log("Google account is logged in!"))
+            .then((res) => {
+            this.SetUserData('Google.name')
+                .pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.take)(1))
+                .subscribe(res => console.log('Google account is logged in!'));
+        })
             .catch(this.handleError);
     }
     register({ email, password, name }) {
         return (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.createUserWithEmailAndPassword)(this.auth, email, password)
             .then((res) => {
-            (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.updateProfile)(res.user, { displayName: name });
-            console.log("User registered!");
+            (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.updateProfile)(res.user, { displayName: name }).then(() => console.log('set displayName'));
+            this.SetUserData(name)
+                .pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.take)(1))
+                .subscribe(res => console.log("User registered!"));
         })
             .catch(this.handleError);
-        // .catch((err) => console.log(err));
     }
     logout() {
         return (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.signOut)(this.auth)
             .then((res) => console.log("User logout!"))
-            .catch((err) => console.log(err));
+            .catch((err) => console.log('create user profile!'));
     }
     getUser() {
-        return this.currentAuthStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.map)((user) => user.uid && user.displayName && user.email
+        return this.currentAuthStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.map)((user) => user.uid && user.displayName && user.email
             ? user.uid
-            : (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.throwError)(() => new Error("no user data"))), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.retry)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.switchMap)((uid) => {
-            const docRef = (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_9__.doc)(this.firestore, `users/${uid}`);
-            return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_9__.docData)(docRef);
+            : (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.throwError)(() => new Error("no user data"))), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.retry)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.switchMap)((uid) => {
+            const docRef = (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__.doc)(this.firestore, `users/${uid}`);
+            return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__.docData)(docRef);
         }));
     }
-    SetUserData() {
-        return this.currentAuthStatus$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.map)((user) => user.uid ? user : (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.throwError)(() => new Error("no user data"))), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_7__.retry)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.switchMap)((user) => {
+    SetUserData(name) {
+        return (0,_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.user)(this.auth).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_6__.map)((user) => user.uid ? user : (0,rxjs__WEBPACK_IMPORTED_MODULE_7__.throwError)(() => new Error("no user data"))), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.retry)(), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_9__.switchMap)((user) => {
             console.log(user);
             const userData = {
-                displayName: user.displayName,
+                displayName: name,
                 email: user.email,
                 uid: user.uid,
                 roles: {
@@ -5499,8 +5511,8 @@ class AuthService {
                 },
             };
             console.log(userData);
-            const docRef = (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_9__.doc)(this.firestore, `users/${userData.uid}`);
-            return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_9__.setDoc)(docRef, userData, { merge: true });
+            const docRef = (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__.doc)(this.firestore, `users/${userData.uid}`);
+            return (0,_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__.setDoc)(docRef, userData, { merge: true });
         }));
     }
     ///// Error Handling //////
@@ -5561,8 +5573,8 @@ class AuthService {
         console.log("💥Destroyed");
     }
 }
-AuthService.ɵfac = function AuthService_Factory(t) { return new (t || AuthService)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.Auth), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_9__.Firestore)); };
-AuthService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjectable"]({ token: AuthService, factory: AuthService.ɵfac, providedIn: "root" });
+AuthService.ɵfac = function AuthService_Factory(t) { return new (t || AuthService)(_angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵinject"](_angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__.Auth), _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵinject"](_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__.Firestore)); };
+AuthService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵdefineInjectable"]({ token: AuthService, factory: AuthService.ɵfac, providedIn: "root" });
 
 
 /***/ }),
