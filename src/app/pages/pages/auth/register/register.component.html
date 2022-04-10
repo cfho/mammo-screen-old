@@ -53,10 +53,12 @@
       <button (click)="send()" color="primary" mat-raised-button type="button" [disabled]="!form.valid">
         註冊
       </button>
-      <p class="text-center text-secondary">
-        已經有賬號?<br/>
-        <a [routerLink]="['/login']">請在此登入</a>
-      </p>
+      <!-- <p class="text-center text-secondary">
+        已經有賬號?
+      </p> -->
+      <button mat-stroked-button color="primary" >
+        <a [routerLink]="['/login']">已有帳號? 請在此登入</a>
+      </button>
     </div>
   </div>
 </div>

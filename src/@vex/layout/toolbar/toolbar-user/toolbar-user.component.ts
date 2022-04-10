@@ -21,7 +21,7 @@ export class ToolbarUserComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
   dropdownOpen: boolean;
   icPerson = icPerson;
-  displayName$: Observable<string>;
+  // displayName$: Observable<string>;
   authStatus$: Observable<User>;
 
   constructor(
@@ -29,9 +29,9 @@ export class ToolbarUserComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private authService: AuthService
   ) {
-    this.displayName$ = authService
-      .getUser()
-      .pipe(map((user) => user.displayName));
+    // this.displayName$ = authService
+    //   .getUser()
+    //   .pipe(map((user) => user.displayName));
     this.authStatus$ = authService.currentAuthStatus$;
   }
 

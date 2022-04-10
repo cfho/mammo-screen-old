@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
       .catch((e) => {
         this.error = e.message;
         alert(e.message);
-        console.log(e)
         if (e.message === "💥這個 email 沒有登記！請先注冊。💥") {
           this.router.navigate(["/register"]);
         }

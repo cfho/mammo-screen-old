@@ -12,19 +12,16 @@ import {
   updateProfile,
   user,
 } from "@angular/fire/auth";
-import { customClaims } from "@angular/fire/auth-guard";
 import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
-import { getMatIconNameNotFoundError } from "@angular/material/icon";
 import {
   BehaviorSubject,
   EMPTY,
   firstValueFrom,
-  lastValueFrom,
   Observable,
   Subject,
   throwError,
 } from "rxjs";
-import { map, retry, switchMap, take, tap } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { LoginData } from "../app/interfaces/login-data.interface";
 import { DocUser, Roles } from "../app/interfaces/user.interface";
 
@@ -34,33 +31,19 @@ import { DocUser, Roles } from "../app/interfaces/user.interface";
 export class AuthService implements OnDestroy {
   private destroy$ = new Subject();
   public readonly user: Observable<User | null> = EMPTY;
-  user$: Observable<DocUser | null>;
-  displayName: string | null;
 
-  userDocUid: string;
   currentUser: User | null = null;
   private authStatusSub = new BehaviorSubject(this.currentUser);
   currentAuthStatus$ = this.authStatusSub.asObservable();
 
-  showLoginButton = false;
-  showLogoutButton = false;
-
   constructor(private auth: Auth, private firestore: Firestore) {
     this.authStatusListener();
-    user(this.auth).subscribe((response) => {
-      if (response) {
-        this.displayName = response.displayName;
-      }
-      console.log(response);
-    });
   }
 
   authStatusListener() {
     this.auth.onAuthStateChanged((credential) => {
       if (credential) {
-        this.userDocUid = credential.uid;
         this.authStatusSub.next(credential);
-        // console.log(credential);
         console.log("User is logged in");
       } else {
         this.authStatusSub.next(null);
@@ -73,17 +56,22 @@ export class AuthService implements OnDestroy {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => console.log("User logged in!"))
       .catch(this.handleError);
-    // .catch((err) => console.log(err.code));
   }
 
-  loginWithGoogle() {
-    return signInWithPopup(this.auth, new GoogleAuthProvider())
-      .then((res) => {
-        this.SetUserData();
-        // .pipe(take(1))
-        // .subscribe((res) => console.log("Google account is logged in!"));
-      })
-      .catch(this.handleError);
+  async loginWithGoogle() {
+    await signInWithPopup(this.auth, new GoogleAuthProvider()).catch(
+      this.handleError
+    );
+    let hasUserData: boolean;
+    await this.getRoleBasedData().then((res) => {
+      hasUserData = !!res;
+    });
+    console.log(hasUserData);
+    if (!hasUserData) {
+      await this.SetUserData();
+    } else {
+      console.log("Google account already saved!");
+    }
   }
 
   async register({ email, password, name }: LoginData) {
@@ -98,27 +86,18 @@ export class AuthService implements OnDestroy {
   }
 
   logout() {
-    return signOut(this.auth)
-      .then((res) => console.log("User logout!"))
-      .catch((err) => console.log("create user profile!"));
+    return signOut(this.auth).then((res) => console.log("User logout!"));
   }
 
-  getUser() {
-    return this.currentAuthStatus$.pipe(
-      map((user: User) =>
-        user.uid && user.displayName && user.email
-          ? user.uid
-          : throwError(() => new Error("no user data"))
-      ),
-      retry(),
-      switchMap((uid) => {
-        const docRef = doc(this.firestore, `users/${uid}`);
-        return docData(docRef);
-      })
+  private async getRoleBasedData() {
+    const uid = await firstValueFrom(
+      user(this.auth).pipe(map((user) => user.uid))
     );
+    const docRef = doc(this.firestore, `users/${uid}`);
+    return await firstValueFrom(docData(docRef));
   }
 
-  async SetUserData() {
+  private async SetUserData() {
     let userData: DocUser;
     await firstValueFrom(
       user(this.auth).pipe(
@@ -135,11 +114,11 @@ export class AuthService implements OnDestroy {
           };
         })
       )
-    )
+    );
 
     const docRef = doc(this.firestore, `users/${userData.uid}`);
     setDoc(docRef, userData, { merge: true }).then(() => {
-      console.log("save user OK!");
+      console.log("save user data to Firestore OK!");
     });
   }
 
@@ -147,9 +126,6 @@ export class AuthService implements OnDestroy {
   private handleError(errorRes) {
     console.log(errorRes.code);
     let errorMessage = "An unknown error occurred!";
-    // if (true) {
-    //   return throwError(() => new Error("💥Other error message!"));
-    // }
     switch (errorRes.code) {
       case "auth/email-already-in-use":
         errorMessage = "💥這個 email 已經登記，請直接登入!💥";
@@ -167,7 +143,6 @@ export class AuthService implements OnDestroy {
         errorMessage = "💥請稍等一下再登入！💥";
         break;
     }
-    console.log(errorMessage);
     throw new Error(errorMessage);
   }
 
