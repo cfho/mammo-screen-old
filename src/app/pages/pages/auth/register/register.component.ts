@@ -15,7 +15,6 @@ import { computeMsgId } from "@angular/compiler";
   animations: [fadeInUp400ms],
 })
 export class RegisterComponent implements OnInit {
-  error: string | null = null;
 
   form: FormGroup;
 
@@ -50,12 +49,10 @@ export class RegisterComponent implements OnInit {
     };
 
       this.authService.register(data)
-      .then((e) => {
-        console.log(e);
+      .then(() => {
         this.router.navigate(["/apps/aio-table"]);
       })
       .catch((e) => {
-        this.error = e.message;
         alert(e.message);
         console.log(e);
         if (e.message === "💥這個 email 已經登記，請直接登入!💥") {

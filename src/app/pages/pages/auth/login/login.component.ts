@@ -19,8 +19,6 @@ import { LoginData } from 'src/app/interfaces/login-data.interface';
 })
 export class LoginComponent implements OnInit {
 
-  error: string | null = null;
-
   form: FormGroup;
 
   inputType = 'password';
@@ -51,7 +49,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/apps/aio-table'])
       })
       .catch((e) => {
-        this.error = e.message;
         alert(e.message);
         console.log(e)
       });
@@ -70,7 +67,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/apps/aio-table"]);
       })
       .catch((e) => {
-        this.error = e.message;
         alert(e.message);
         if (e.message === "💥這個 email 沒有登記！請先注冊。💥") {
           this.router.navigate(["/register"]);

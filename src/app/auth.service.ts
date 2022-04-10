@@ -79,10 +79,18 @@ export class AuthService implements OnDestroy {
       this.auth,
       email,
       password
-    );
-    const user = credential.user;
-    await updateProfile(user, { displayName: name });
-    this.SetUserData();
+    )
+      .then((res) => {
+        console.log("User registered!");
+        return res;
+      })
+      .catch(this.handleError);
+
+    if (credential) {
+      const user = credential.user;
+      await updateProfile(user, { displayName: name });
+      this.SetUserData();
+    }
   }
 
   logout() {
