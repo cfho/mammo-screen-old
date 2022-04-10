@@ -14,6 +14,7 @@ import {
 } from "@angular/fire/auth";
 import { customClaims } from "@angular/fire/auth-guard";
 import { doc, docData, Firestore, setDoc } from "@angular/fire/firestore";
+import { getMatIconNameNotFoundError } from "@angular/material/icon";
 import {
   BehaviorSubject,
   EMPTY,
@@ -46,12 +47,12 @@ export class AuthService implements OnDestroy {
 
   constructor(private auth: Auth, private firestore: Firestore) {
     this.authStatusListener();
-    user(this.auth).subscribe(response => {
-      if(response) {
+    user(this.auth).subscribe((response) => {
+      if (response) {
         this.displayName = response.displayName;
       }
       console.log(response);
-    })
+    });
   }
 
   authStatusListener() {
@@ -78,28 +79,28 @@ export class AuthService implements OnDestroy {
   loginWithGoogle() {
     return signInWithPopup(this.auth, new GoogleAuthProvider())
       .then((res) => {
-        this.SetUserData('Google.name')
-        .pipe(take(1))
-        .subscribe(res => console.log('Google account is logged in!'));
-    })
+        this.SetUserData();
+        // .pipe(take(1))
+        // .subscribe((res) => console.log("Google account is logged in!"));
+      })
       .catch(this.handleError);
   }
 
-  register({ email, password, name }: LoginData) {
-    return createUserWithEmailAndPassword(this.auth, email, password)
-      .then((res) => {
-        updateProfile(res.user, { displayName: name }).then(()=> console.log('set displayName'));
-        this.SetUserData(name)
-        .pipe(take(1))
-        .subscribe(res => console.log("User registered!"));
-      })
-      .catch(this.handleError);
+  async register({ email, password, name }: LoginData) {
+    const credential = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    );
+    const user = credential.user;
+    await updateProfile(user, { displayName: name });
+    this.SetUserData();
   }
 
   logout() {
     return signOut(this.auth)
       .then((res) => console.log("User logout!"))
-      .catch((err) => console.log('create user profile!'));
+      .catch((err) => console.log("create user profile!"));
   }
 
   getUser() {
@@ -117,29 +118,29 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  SetUserData(name: string,) {
-    return user(this.auth).pipe(
-      map((user: User) =>
-        user.uid ? user : throwError(() => new Error("no user data"))
-      ),
-      retry(),
-      switchMap((user: User) => {
-        console.log(user);
-        const userData = {
-          displayName: name,
-          email: user.email,
-          uid: user.uid,
-          roles: {
-            admin: false,
-            editor: false,
-            subscriber: true,
-          },
-        };
-        console.log(userData);
-        const docRef = doc(this.firestore, `users/${userData.uid}`);
-        return setDoc(docRef, userData, { merge: true });
-      })
-    );
+  async SetUserData() {
+    let userData: DocUser;
+    await firstValueFrom(
+      user(this.auth).pipe(
+        map((user) => {
+          userData = {
+            displayName: user.displayName,
+            email: user.email,
+            uid: user.uid,
+            roles: {
+              admin: false,
+              editor: false,
+              subscriber: true,
+            },
+          };
+        })
+      )
+    )
+
+    const docRef = doc(this.firestore, `users/${userData.uid}`);
+    setDoc(docRef, userData, { merge: true }).then(() => {
+      console.log("save user OK!");
+    });
   }
 
   ///// Error Handling //////

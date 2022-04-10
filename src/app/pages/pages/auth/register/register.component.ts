@@ -42,14 +42,13 @@ export class RegisterComponent implements OnInit {
   }
 
   send() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
     const data: LoginData = {
       email: this.form.value.email,
       password: this.form.value.password,
       name: this.form.value.name,
     };
 
-    // const register = async () => {
       this.authService.register(data)
       .then((e) => {
         console.log(e);
@@ -63,12 +62,6 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(["/login"]);
         }
       });
-    // };
-
-    // register();
-    // this.authService.SetUserData().subscribe(() => {
-    //   console.log("save userData");
-    // });
   }
 
   toggleVisibility() {
