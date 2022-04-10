@@ -108,7 +108,6 @@ class RegisterComponent {
         this.fb = fb;
         this.cd = cd;
         this.authService = authService;
-        this.error = null;
         this.inputType = "password";
         this.visible = false;
         this.icVisibility = _iconify_icons_ic_twotone_visibility__WEBPACK_IMPORTED_MODULE_0__["default"];
@@ -123,31 +122,23 @@ class RegisterComponent {
         });
     }
     send() {
-        console.log(this.form.value);
+        // console.log(this.form.value);
         const data = {
             email: this.form.value.email,
             password: this.form.value.password,
             name: this.form.value.name,
         };
-        // const register = async () => {
         this.authService.register(data)
-            .then((e) => {
-            console.log(e);
+            .then(() => {
             this.router.navigate(["/apps/aio-table"]);
         })
             .catch((e) => {
-            this.error = e.message;
             alert(e.message);
             console.log(e);
             if (e.message === "💥這個 email 已經登記，請直接登入!💥") {
                 this.router.navigate(["/login"]);
             }
         });
-        // };
-        // register();
-        // this.authService.SetUserData().subscribe(() => {
-        //   console.log("save userData");
-        // });
     }
     toggleVisibility() {
         if (this.visible) {
@@ -163,7 +154,7 @@ class RegisterComponent {
     }
 }
 RegisterComponent.ɵfac = function RegisterComponent_Factory(t) { return new (t || RegisterComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_auth_service__WEBPACK_IMPORTED_MODULE_3__.AuthService)); };
-RegisterComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({ type: RegisterComponent, selectors: [["vex-register"]], decls: 36, vars: 10, consts: [["fxLayout", "column", "fxLayoutAlign", "center center", 1, "w-full", "h-full", "bg-pattern"], [1, "w-full", "max-w-xs", "overflow-hidden", "card"], ["fxLayout", "column", "fxLayoutAlign", "center center", 1, "p-6", "pb-0"], [1, "text-center", "fill-current"], ["src", "assets/img/demo/logo.svg", 1, "w-16"], [1, "mt-4", "text-center"], [1, "m-0", "title"], ["fxLayout", "column", "fxLayoutGap", "16px", 1, "p-6", 3, "formGroup"], ["fxFlex", "auto", "fxLayout", "column"], ["fxFlex", "grow"], ["formControlName", "name", "matInput", ""], ["formControlName", "email", "matInput", ""], [4, "ngIf"], ["formControlName", "password", "matInput", "", 3, "type"], ["mat-icon-button", "", "matSuffix", "", "matTooltip", "Toggle Visibility", "type", "button", 3, "click"], [3, "icIcon", 4, "ngIf"], ["color", "primary", "mat-raised-button", "", "type", "button", 3, "disabled", "click"], [1, "text-center", "text-secondary"], [3, "routerLink"], [3, "icIcon"]], template: function RegisterComponent_Template(rf, ctx) { if (rf & 1) {
+RegisterComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({ type: RegisterComponent, selectors: [["vex-register"]], decls: 34, vars: 10, consts: [["fxLayout", "column", "fxLayoutAlign", "center center", 1, "w-full", "h-full", "bg-pattern"], [1, "w-full", "max-w-xs", "overflow-hidden", "card"], ["fxLayout", "column", "fxLayoutAlign", "center center", 1, "p-6", "pb-0"], [1, "text-center", "fill-current"], ["src", "assets/img/demo/logo.svg", 1, "w-16"], [1, "mt-4", "text-center"], [1, "m-0", "title"], ["fxLayout", "column", "fxLayoutGap", "16px", 1, "p-6", 3, "formGroup"], ["fxFlex", "auto", "fxLayout", "column"], ["fxFlex", "grow"], ["formControlName", "name", "matInput", ""], ["formControlName", "email", "matInput", ""], [4, "ngIf"], ["formControlName", "password", "matInput", "", 3, "type"], ["mat-icon-button", "", "matSuffix", "", "matTooltip", "Toggle Visibility", "type", "button", 3, "click"], [3, "icIcon", 4, "ngIf"], ["color", "primary", "mat-raised-button", "", "type", "button", 3, "disabled", "click"], ["mat-stroked-button", "", "color", "primary"], [3, "routerLink"], [3, "icIcon"]], template: function RegisterComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](2, "div", 2);
@@ -211,11 +202,9 @@ RegisterComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("click", function RegisterComponent_Template_button_click_29_listener() { return ctx.send(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](30, " \u8A3B\u518A ");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](31, "p", 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](32, " \u5DF2\u7D93\u6709\u8CEC\u865F?");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](33, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](34, "a", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](35, "\u8ACB\u5728\u6B64\u767B\u5165");
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](31, "button", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](32, "a", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](33, "\u5DF2\u6709\u5E33\u865F? \u8ACB\u5728\u6B64\u767B\u5165");
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
@@ -238,7 +227,7 @@ RegisterComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx.form.get("password").hasError("required"));
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("disabled", !ctx.form.valid);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpureFunction0"](9, _c0));
     } }, directives: [_angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_7__.DefaultLayoutDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_7__.DefaultLayoutAlignDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_7__.DefaultLayoutGapDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormGroupDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_7__.DefaultFlexDirective, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__.MatLabel, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.DefaultValueAccessor, _angular_material_input__WEBPACK_IMPORTED_MODULE_9__.MatInput, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormControlName, _angular_common__WEBPACK_IMPORTED_MODULE_10__.NgIf, _angular_material_button__WEBPACK_IMPORTED_MODULE_11__.MatButton, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__.MatSuffix, _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_12__.MatTooltip, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__.MatHint, _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouterLinkWithHref, ngx_quicklink__WEBPACK_IMPORTED_MODULE_13__["ɵɵLinkDirective"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__.MatError, _angular_material_icon__WEBPACK_IMPORTED_MODULE_14__.MatIcon, _visurel_iconify_angular__WEBPACK_IMPORTED_MODULE_15__.IconDirective], styles: [".title[_ngcontent-%COMP%] {\n  font-size: larger;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlZ2lzdGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksaUJBQUE7RUFDQSxtQkFBQTtBQUNKIiwiZmlsZSI6InJlZ2lzdGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRpdGxlIHsgXHJcbiAgICBmb250LXNpemU6IGxhcmdlcjtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkZXI7XHJcbiAgICAvLyBjb2xvcjogcmVkO1xyXG59Il19 */"], data: { animation: [_vex_animations_fade_in_up_animation__WEBPACK_IMPORTED_MODULE_2__.fadeInUp400ms] } });
 
